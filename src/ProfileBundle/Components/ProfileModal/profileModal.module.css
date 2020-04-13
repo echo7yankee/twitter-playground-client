@@ -13,7 +13,7 @@
 .profileModalContent {
   overflow-y: scroll;
   overflow-x: none;
-  max-height: 60rem;
+  max-height: 60vh;
 }
 
 .profileModalContent::-webkit-scrollbar {
@@ -63,4 +63,10 @@
 
 .profileModalTop button:hover {
   background-color: var(--blue-color-1-darken);
+}
+
+@media screen and (max-width: 1024px) {
+  .profileModalContent {
+    max-height: 45vh;
+  }
 }
