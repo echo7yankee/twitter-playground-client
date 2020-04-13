@@ -16,7 +16,7 @@ export const Modal = ({
   buttonTwoText,
   destroyModal }) => {
   return (
-    <div className={style.modalOverlay} onClick={destroyModal}>
+    <div className={`${style.modalOverlay} overlay-alpha-black`} onClick={destroyModal}>
       <div className={style.modal} style={styleModal}>
         <ModalHeader
           text={text}
