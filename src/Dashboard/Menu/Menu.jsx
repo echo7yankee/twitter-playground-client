@@ -51,7 +51,7 @@ export const Menu = () => {
                 : <div className='tweet-profile-img-container-menu mr-2'>
                   <img
                     className='tweet-profile-img align-self-start '
-                    src={`${url.API_URL}/image/${profileImg}`}
+                    src={`${url.API_URL}image/${profileImg}`}
                     alt="profile" />
                 </div>
             }

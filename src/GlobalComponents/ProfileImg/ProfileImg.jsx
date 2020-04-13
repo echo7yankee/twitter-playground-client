@@ -8,7 +8,7 @@ export const ProfileImg = ({ user }) => {
   const { url } = config;
   return (
     user.profileImg
-      ? <img src={`${url.API_URL}/image/${user.profileImg}`} alt='profile' />
+      ? <img src={`${url.API_URL}image/${user.profileImg}`} alt='profile' />
       : <IoIosPerson />
   )
 }
