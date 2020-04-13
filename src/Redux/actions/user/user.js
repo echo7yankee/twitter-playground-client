@@ -1,0 +1,45 @@
+//axios
+import axios from 'axios';
+import { GET_USER_DETAILS } from '../../types';
+
+import { getAllPosts } from '../post/post';
+
+export const getUserDetails = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/user/userDetails/${userId}`);
+      const { data } = response;
+
+      dispatch({
+        type: GET_USER_DETAILS,
+        payload: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const updateUserDetails = (newUserDetails, closeModal) => {
+  return async (dispatch) => {
+    try {
+      await axios.put(`/user/userDetails/${newUserDetails.id}`, newUserDetails)
+      closeModal()
+      dispatch(getUserDetails(newUserDetails.id))
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+export const uploadUserImg = (formData, config, userId) => {
+  return async (dispatch) => {
+    try {
+      await axios.put(`/user/userDetails/${userId}/upload`, formData, config);
+      dispatch(getUserDetails(userId));
+      dispatch(getAllPosts());
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}

@@ -1,0 +1,392 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap");
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+
+:root {
+  --white-color:rgb(255,255,255);
+  --white-color-alpha:rgba(255,255,255,.2);
+  --grey-color-1:#EDF2F5;
+  --grey-color-2:rgb(233, 233, 233);
+  --grey-color-3:rgb(216, 216, 216);
+  --grey-color-4:#657786;
+  --black-color-1:#14171A;
+  --overlay-color-1:rgba(73,63,62,.9);
+  --red-color-1:#D8000C;
+  --red-color-1-alpha:rgba(216, 0, 12,.1);
+  --red-color-2:#FFD2D2;
+  --red-color-3:#DE4C4A;
+  --red-color-4:rgb(224, 36, 94);
+  --red-color-4-alpha:rgb(224,36,94,0.1);
+  --green-color-1: #0ba80b;
+  --blue-color-1:#1da1f2;
+  --blue-color-1-alpha:rgba(29, 161, 242,.8);
+  --blue-color-1-alpha-half:rgba(29,161,242,.5);
+  --blue-color-1-darken:#1A91DA;
+  --blue-color-2:#E8F5FE;
+  --blue-color-3:#659DD2;
+  --blue-color-4:#E6ECF0;
+  --blue-color-5:#F5F8FA;
+  --blue-color-6:#4BC2F4;
+  --blue-color-7:#66757F;
+  --blue-color-7-lighten:rgb(146, 152, 155);
+  --blue-color-8:#CCD6DD;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-family: "Roboto", sans-serif;
+  color: var(--grey-color-0);
+  background-color: var(--white-color);
+  -webkit-font-smoothing: antialised;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1.6rem;
+  color: var(--black-color-1);
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+input,textarea,textarea::placeholder,input::placeholder {
+  outline: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.6rem;
+}
+
+
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+.dashboard {
+  min-height: 100vh;
+  background-color: var(--white-color);
+  padding-top: 5.3rem;
+}
+
+.container {
+  max-width: 100rem;
+  margin: 0rem auto;
+}
+
+.container-large {
+  max-width: 120rem;
+  margin: 0rem auto;
+  display: flex;
+  padding: 0 2rem;
+}
+
+.container-column-small {
+  width: 18%;
+}
+
+.container-column-medium {
+  width: 30%;
+}
+
+.container-column-large {
+  width: 68rem;
+  margin:0 2.5rem;
+}
+
+.pos-relative {
+  position: relative;
+}
+
+.dflex {
+  display: flex;
+  align-items: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.set-center {
+  text-align: center;
+}
+
+.set-right {
+  text-align: right;
+}
+
+.align-center {
+  display: flex;
+  justify-content: center;
+}
+
+.align-self-start {
+  align-self: flex-start;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.overlay-alpha-black {
+  background-color: rgba(0,0,0,.3);
+}
+
+.overlay-alpha-brown {
+  background-color: var(--overlay-color-1);
+}
+
+.overlay-white {
+  background-color: var(--white-color);
+  z-index: 150000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.overlay-white svg {
+  fill: var(--blue-color-1);
+  width: 3.6rem;
+  height: 3.6rem;
+}
+
+.overlay-white img {
+  width: 2.7rem;
+  height: 2.7rem;
+}
+
+.error-container {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.error {
+  background-color: var(--red-color-2);
+  color: var(--red-color-1);
+  padding: .6rem .8rem;
+  border-radius: 2.5rem;
+  width: max-content;
+  font-size: 1.4rem;
+}
+
+.placeholder-profile-img,.placeholder-profile-img-reply{
+  width: 5.5rem;
+  height: 5.5rem;
+  fill: var(--grey-color-3);
+  border: 2px solid var(--grey-color-3);
+  border-radius: 100%;
+  padding: .5rem;
+  margin-right: 1rem;
+  align-self: flex-start;
+}
+
+.placeholder-profile-img-reply {
+  width: 3.7rem;
+  height: 3.7rem;
+}
+
+.tweet-profile-img-container,
+.tweet-profile-img-container-reply,
+.tweet-profile-img-container-menu {
+  width: 5.3rem;
+  height: 5.3rem;
+  border-radius: 100%;
+  position: relative;
+  overflow: hidden;
+  align-self: flex-start;
+}
+
+.tweet-profile-img-container-reply {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.tweet-profile-img-container-menu {
+  width: 3rem;
+  height: 3rem;
+}
+
+.tweet-profile-img {
+  width: 100%;
+  height: auto;
+  object-fit: fill;
+  position: absolute;
+  bottom: 50%;
+  transform: translateY(50%);
+}
+
+.file-input {
+  display: none;
+}
+
+.svg-fill-red {
+  fill: var(--red-color-1);
+}
+
+.divider {
+  margin: .8rem 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--blue-color-4);
+}
+
+/* arrow rotations */
+.rotate-0 {
+  transform: rotate(0deg);
+  transition: transform .2s ease-in !important;
+}
+
+.rotate-90 {
+  transform: rotate(-90deg);
+  transition: transform .2s ease-in !important;
+}
+
+
+/* margin bottom */
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+.mb-2 {
+  margin-bottom: 2rem;
+}
+.mb-3 {
+  margin-bottom: 3rem;
+}
+.mb-4 {
+  margin-bottom: 4rem;
+}
+.mb-5 {
+  margin-bottom: 5rem;
+}
+
+
+/* margin right */
+.mr-05 {
+  margin-right: .5rem;
+}
+.mr-1 {
+  margin-right: 1rem;
+}
+.mr-2 {
+  margin-right: 2rem;
+}
+.mr-3 {
+  margin-right: 3rem;
+}
+.mr-4 {
+  margin-right: 4rem;
+}
+.mr-5 {
+  margin-right: 5rem;
+}
+
+/* margin left */
+
+.ml-05 {
+  margin-left: 0.5rem;
+}
+
+.ml-1 {
+  margin-left: 1rem;
+}
+.ml-2 {
+  margin-left: 2rem;
+}
+.ml-3 {
+  margin-left: 3rem;
+}
+.ml-4 {
+  margin-left: 4rem;
+}
+.ml-5 {
+  margin-left: 5rem;
+}
+
+.ml-6 {
+  margin-left: 6rem;
+}
+
+.ml-7 {
+  margin-left: 7rem;
+}
+
+
+/* margin top */
+.mt-1 {
+  margin-top: 1rem;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
+.mt-3 {
+  margin-top: 3rem;
+}
+.mt-4 {
+  margin-top: 4rem;
+}
+.mt-5 {
+  margin-top: 5rem;
+}
+
+/* padding left */
+.pl-1 {
+  padding-left: 1rem;
+}
+.pl-2 {
+  padding-left: 2rem;
+}
+.pl-3 {
+  padding-left: 3rem;
+}
+.pl-4 {
+  padding-left: 4rem;
+}
+.pl-5 {
+  padding-left: 5rem;
+}
+
+/* padding right */
+.pr-1 {
+  padding-right: 1rem;
+}
+.pr-2 {
+  padding-right: 2rem;
+}
+.pr-3 {
+  padding-right: 3rem;
+}
+.pr-4 {
+  padding-right: 4rem;
+}
+.pr-5 {
+  padding-right: 5rem;
+}

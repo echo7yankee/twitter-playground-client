@@ -1,0 +1,42 @@
+.homeAuthContainer {
+  margin:2rem 2rem 0 2rem;
+  position: relative;
+}
+
+.homeAuthContainer form {
+  display: flex;
+}
+
+.homeAuthContainer form input {
+  border-radius: 3px;
+  padding: 1.2rem 1rem;
+  border: 1px solid var(--grey-color-2);
+  font-size: 1.4rem;
+  width: 100%;
+}
+
+.homeAuthContainer form input:focus {
+  border: 1px solid var(--blue-color-3);
+}
+
+.homeAuthContainer form input::placeholder {
+  font-size: 1.4rem;
+}
+
+.homeAuthContainer form input:not(:first-child) {
+  margin-left: 1rem;
+}
+
+.homeAuthContainer form button {
+  margin-left: 1rem;
+  width: 20rem;
+  border: 1px solid var(--blue-color-1);
+  color: var(--blue-color-1);
+  font-weight: 700;
+  border-radius: 2.5rem;
+  transition: background-color .2s ease-in;
+}
+
+.homeAuthContainer form button:hover {
+  background-color: var(--blue-color-2);
+}

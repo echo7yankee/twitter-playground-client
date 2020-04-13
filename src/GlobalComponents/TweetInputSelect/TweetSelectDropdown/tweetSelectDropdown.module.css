@@ -1,0 +1,61 @@
+.tweetSelectDropdown {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  background-color: var(--white-color);
+  z-index: 5000;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.tweetSelectDropdownShow {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  background-color: var(--white-color);
+  z-index: 5000;
+  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: none;
+  max-height: 20rem;
+    -webkit-animation: pollSelectAnimation .3s ease-in; /* Safari 4+ */
+  -moz-animation:    pollSelectAnimation .3s ease-in; /* Fx 5+ */
+  -o-animation:      pollSelectAnimation .3s ease-in; /* Opera 12+ */
+  animation:         pollSelectAnimation .3s ease-in; /* IE 10+, Fx 29+ */
+}
+
+.tweetSelectDropdownShow::-webkit-scrollbar {
+  width: 5px !important;
+  background-color: var(--blue-color-2);
+}
+
+.tweetSelectDropdownShow::-webkit-scrollbar-thumb {
+  background-color: var(--blue-color-3);
+}
+
+.tweetSelectDropdownItems {
+
+}
+
+.tweetSelectDropdownItems li {
+  list-style: none;
+  padding: .8rem;
+  cursor: pointer;
+}
+
+.tweetSelectDropdownItems li:hover {
+  background-color: var(--blue-color-2);
+}
+
+@keyframes pollSelectAnimation {
+  0% {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  100% {
+    max-height: 20rem;
+    opacity: 1;
+  }
+}

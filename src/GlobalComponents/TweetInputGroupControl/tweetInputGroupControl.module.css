@@ -1,0 +1,37 @@
+.tweetInputGroupControl {
+  width: 100%;
+  border-bottom: 2px solid var(--black-color-1);
+  background-color: var(--blue-color-5);
+  padding: 1rem;
+}
+
+.tweetInputGroupControl:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.tweetInputGroupControl label {
+  color: var(--blue-color-7);
+  font-size: 1.5rem;
+}
+
+.tweetInputGroupControl input,.tweetInputGroupControl textarea {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  margin-top: .5rem;
+  color: var(--blue-color-7);
+  font-size: 1.8rem;
+}
+
+.tweetInputGroupControl input:focus.tweetInputGroupControl label {
+  color: red;
+}
+
+.tweetInputGroupControl textarea {
+  resize: none;
+}
+
+.tweetInputGroupControl input::placeholder {
+  color: var(--blue-color-7);
+  font-size: 1.8rem;
+}

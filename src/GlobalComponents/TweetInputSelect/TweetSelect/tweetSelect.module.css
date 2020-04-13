@@ -1,0 +1,23 @@
+.tweetSelect {
+  border-bottom: 2px solid var(--black-color-1);
+  background-color: var(--blue-color-5);
+  padding: .8rem .8rem .2rem .8rem;
+  position: relative;
+}
+
+.tweetSelect:not(:first-child) {
+  margin-left: 2rem;
+}
+
+.tweetSelect label {
+  color: var(--blue-color-7);
+  font-size: 1.5rem;
+}
+
+.tweetCreatorPollSelectValueContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: .8rem;
+    cursor: pointer;
+}

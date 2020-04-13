@@ -1,0 +1,21 @@
+.profileModalForm {
+  padding: 0 1rem 1rem 1rem;
+  overflow: hidden;
+  transform: translateY(-3.5rem);
+}
+
+.profileModalForm span {
+  margin-top: .5rem;
+  color: var(--blue-color-7);
+}
+
+.profileModalFormGroupControl {
+  width: 100%;
+  border-bottom: 2px solid var(--black-color-1);
+  background-color: var(--blue-color-5);
+  padding: 1rem;
+}
+
+.profileModalFormGroupControl:not(:first-child) {
+  margin-top: 1rem;
+}

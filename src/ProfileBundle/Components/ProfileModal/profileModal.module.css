@@ -1,0 +1,66 @@
+.profileModal {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--white-color);
+  border-radius: 1rem;
+  padding: 0 .1rem;
+  max-width: 60rem;
+  overflow: hidden;
+}
+
+.profileModalContent {
+  overflow-y: scroll;
+  overflow-x: none;
+  max-height: 60rem;
+}
+
+.profileModalContent::-webkit-scrollbar {
+  width: 5px !important;
+  background-color: var(--blue-color-2);
+}
+
+.profileModalContent::-webkit-scrollbar-thumb {
+  background-color: var(--blue-color-3);
+}
+
+
+.profileModalTop {
+  padding: 1rem 1.2rem;
+}
+
+.profileModalTop svg {
+  fill: var(--blue-color-1);
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 3rem;
+  padding: .6rem;
+  box-sizing: content-box;
+  cursor: pointer;
+  transition: background-color .2s ease-in;
+  border-radius: 100%;
+}
+
+.profileModalTop svg:hover {
+  background-color: var(--blue-color-2);
+}
+
+.profileModalTop h1 {
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+.profileModalTop button {
+  padding: .7rem 1.5rem;
+  background-color: var(--blue-color-1);
+  color: var(--white-color);
+  border-radius: 2.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  transition: background-color .2s ease-in;
+}
+
+.profileModalTop button:hover {
+  background-color: var(--blue-color-1-darken);
+}

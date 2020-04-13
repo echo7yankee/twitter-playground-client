@@ -1,0 +1,33 @@
+.tweetCreatorContainer {
+  padding: 1rem 1.7rem;
+  border-bottom: 10px solid var(--blue-color-4);
+}
+
+.tweetCreatorHeader {
+  display: flex;
+  align-items: center;
+}
+
+.tweetCreatorTextarea {
+  min-height: 17px;
+  max-height: 150px;
+  overflow:hidden;
+  padding: 1.8rem 0;
+  border: none;
+}
+
+.tweetCreatorTextarea:focus {
+  outline: none;
+}
+.tweetCreatorTextarea[placeholder]:empty:before {
+    content: attr(placeholder);
+    color: #555; 
+}
+
+.tweetCreatorTextarea {
+  border: none;
+}
+
+.tweetCreatorFormButtons {
+  margin-top: 3.5rem;
+}

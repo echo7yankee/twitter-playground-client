@@ -1,0 +1,52 @@
+
+.homeGateContainer {
+  max-width: 35rem;
+}
+
+.homeGateTitleContainer {
+  margin-bottom: 4rem;
+}
+
+.homeGateTitleContainer svg{
+  fill: var(--blue-color-1);
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.homeGateTitleContainer h1 {
+  font-size: 3rem;
+}
+
+.homeGateLinksContainer h3{
+  font-size: 1.8rem;
+}
+
+.homeGateLinksContainer a {
+  width: 100%;
+  padding: 1rem 1rem;
+  font-weight: 500;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 2.5rem;
+  transition: background-color .2s ease-in;
+}
+
+.homeGateLinksContainer a:first-child {
+  background-color: var(--blue-color-1);
+  color: var(--white-color);
+  margin-bottom: 2rem;
+}
+
+.homeGateLinksContainer a:first-child:hover {
+ background-color: var(--blue-color-1-darken);
+}
+
+.homeGateLinksContainer a:last-child {
+  border: 1px solid var(--blue-color-1);
+  color: var(--blue-color-1);
+}
+
+.homeGateLinksContainer a:last-child:hover {
+  background-color: var(--blue-color-2);
+}

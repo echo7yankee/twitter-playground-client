@@ -1,0 +1,31 @@
+.modalButtons {
+  padding: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.modalButtons button {
+  padding: .8rem 1.6rem;
+  border-radius: 3px;
+  transition: .2s ease-in;
+}
+
+.modalButtons button:first-child {
+  background-color: var(--blue-color-1);
+  color: var(--white-color);
+}
+
+.modalButtons button:first-child:hover {
+  background-color: var(--blue-color-1-darken);
+}
+
+.modalButtons button:last-child {
+  background-color: var(--blue-color-7);
+  color: var(--white-color);
+  margin-left: 2rem;
+}
+
+.modalButtons button:last-child:hover {
+  background-color: var( --blue-color-7-lighten);
+}

@@ -1,0 +1,149 @@
+.authContainer {
+  margin-top: 6rem;
+  padding-top: 4rem;
+  background-color: var(--white-color);
+  border-radius: 5px;
+  border: 1px solid var(--grey-color-3);
+}
+
+.authContainer h1 {
+  font-size: 2.4rem;
+padding-left: 12rem;
+}
+
+.authContainer form input {
+  padding: .6rem .8rem;
+  border: 1px solid var(--grey-color-2);
+  font-size: 1.4rem;
+  border-radius: 3px;
+  width: 30%;
+}
+
+.authContainer form input::placeholder {
+  font-size: 1.4rem;
+}
+
+.authContainer form input:first-child {
+  margin-bottom: 2rem;
+}
+
+.formTop{
+  padding-left: 12rem;
+  margin-top: 1.8rem;
+}
+
+.formTop button {
+  padding: 1rem 1.8rem;
+  border-radius: 25px;
+  background-color: var(--blue-color-1);
+  border: 1px solid var(--blue-color-1);
+  color: var(--white-color);
+  transition: background-color .2s ease-in;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+
+.formTop button:hover {
+  background-color: var(--blue-color-1-darken);
+}
+
+.formBottom {
+  margin-top: 3rem;
+  padding: 2rem;
+  padding-left: 12rem;
+  background-color: var(--blue-color-5);
+}
+
+.formBottom a {
+  margin-left: .5rem;
+  color: var(--blue-color-6);
+  text-decoration: none;
+  font-size: 1.4rem;
+}
+
+.formBottom span {
+  font-size: 1.4rem;
+  color: var(--grey-color-4);
+}
+
+.formBottom a:hover {
+text-decoration: underline;
+}
+
+
+.authRegister {
+  background-color: var(--white-color);
+  padding: 1rem;
+  padding-bottom: 12rem;
+  width:65rem;
+  margin: 0rem auto;
+  margin-top: 6rem;
+  border-radius: 1rem;
+}
+
+.authRegisterInputContainer {
+  padding: 0 2.5rem;
+}
+
+.authRegisterInputContainer h1 {
+  font-size: 2.4rem;
+}
+
+.authRegisterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.authRegisterHeader svg {
+  fill: var(--blue-color-1);
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.authRegisterHeader button {
+  font-weight: 700;
+  font-size: 1.4rem;
+  padding: .7rem 1.3rem;
+  background-color: var(--blue-color-1);
+  border: 1px solid var(--blue-color-1);
+  border-radius: 2.5rem;
+  color: var(--white-color);
+  transition: background-color .2s ease-in-out;
+}
+
+.authRegisterHeader button:hover {
+  background-color: var(--blue-color-1-darken);
+  border: 1px solid var(--blue-color-1-darken);
+}
+
+.authRegister form {
+    position: relative;
+}
+
+.authRegister form input {
+  border: none;
+  border-bottom: 2px solid var(--black-color-1);
+  width: 100%;
+  margin-top: 2.5rem;
+  background-color: var(--blue-color-5);
+  padding: .5rem .5rem 3rem .5rem;
+  font-size: 1.4rem;
+  color: var(--blue-color-7);
+}
+
+.authRegister form input:focus {
+  border-bottom: 2px solid var(--blue-color-1);
+}
+
+.authRegister form input:focus::placeholder {
+    color: var(--blue-color-1);
+    font-weight: 700;
+}
+
+.authRegister form input::placeholder {
+  font-size: 1.4rem;
+  color: var(--blue-color-7);
+}

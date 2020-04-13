@@ -1,0 +1,37 @@
+.profileModalBirthSubtitle{
+  color: var(--blue-color-7);
+  font-size: 1.5rem;
+}
+
+.profileModalFormBirthBtn button {
+  color: var(--blue-color-1);
+  font-size: 1.5rem;
+}
+
+.profileModalFormBirthBtn button:hover {
+  text-decoration: underline;
+}
+
+.profileModalFormBirthTitle h2 {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  color: var(--blue-color-7);
+  font-size: 1.8rem;
+  margin-top: .5rem;
+}
+
+.profileModalBirthSelect {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.profileModalBirthPrivacy {
+  margin-top: 2rem;
+}
+
+.profileModalBirthPrivacy div {
+  margin-left: 0 !important;
+  margin-top: 2rem!important;
+}

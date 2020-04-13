@@ -1,0 +1,22 @@
+.filler {
+  background-color: var(--blue-color-4);
+  height: 100%;
+  border-radius: inherit;
+  transition: width .2s ease-in;
+}
+
+.filler span{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: var(--blue-color-7);
+}
+
+.filler span:first-child {
+left: 2rem;
+}
+
+.filler span:last-child {
+  right: 2rem;
+}

@@ -1,0 +1,22 @@
+
+.tweetItemReplyCreatorContainer {
+  position: relative;
+  background-color: var(--blue-color-4);
+  -webkit-animation: tweetItemReplyCreator .3s ease-in; /* Safari 4+ */
+  -moz-animation:    tweetItemReplyCreator .3s ease-in; /* Fx 5+ */
+  -o-animation:      tweetItemReplyCreator .3s ease-in; /* Opera 12+ */
+  animation:         tweetItemReplyCreator .3s ease-in; /* IE 10+, Fx 29+ */
+}
+
+@keyframes tweetItemReplyCreator {
+    0%   { 
+      opacity: 0;
+      transform: translateY(-100%);
+      visibility: hidden;
+    }
+  100% { 
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+}

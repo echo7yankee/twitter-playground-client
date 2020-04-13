@@ -1,0 +1,16 @@
+.progressBar {
+  position: relative;
+  height: 2.8rem;
+  width: 55rem;
+  border-radius: .3rem;
+  border: 1px solid var(--blue-color-4);
+}
+
+.progressBar span{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: var(--blue-color-7);
+  right: 2rem;
+}

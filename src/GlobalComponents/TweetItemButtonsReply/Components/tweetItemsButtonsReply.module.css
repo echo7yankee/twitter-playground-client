@@ -1,0 +1,10 @@
+.tweetItemReplyButton {
+  padding: .6rem;
+  transition: background-color .2s ease-in;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.tweetItemReplyButton:hover {
+  background-color: var(--blue-color-2);
+}

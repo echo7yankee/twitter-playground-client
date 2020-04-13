@@ -1,0 +1,65 @@
+.tweetCreatorFormButtonContainer {
+  display: flex;
+  align-items: center;
+}
+
+.tweetCreatorFormButtonContainer svg {
+  margin-right: 1.2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  transition: background-color .2s ease-in, fill .2s ease-in;
+  padding: .2rem;
+  box-sizing: content-box;
+  border: 1px solid var(--blue-color-1);
+  border-radius: 50%;
+  fill: var(--blue-color-1);
+}
+
+.tweetCreatorFormButtonContainer svg:hover {
+    background-color: var(--blue-color-2);
+}
+
+.tweetCreatorBtn,.buttonDisabled {
+  padding: 1.4rem 2.2rem;
+  border-radius: 2.5rem;
+  color: var(--white-color);
+  background-color: var(--blue-color-1);
+  transition: background-color .2s ease-in;
+  font-weight: 700;
+}
+
+.tweetCreatorBtn:hover {
+    background-color: var(--blue-color-1-darken);
+}
+
+.tweetCreatorCancelBtn {
+  padding: 1rem 1.6rem;
+  background-color: transparent;
+  color: var(--grey-color-4);
+}
+
+.tweetCreatorCancelBtn:hover {
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+
+.buttonDisabled {
+  background-color:var( --blue-color-1-alpha-half)!important;
+  cursor: default !important;
+}
+
+.buttonDisabled:hover {
+   background-color:var( --blue-color-1-alpha-half)!important;
+}
+
+.iconDisabled {
+  fill: var( --blue-color-1-alpha-half)!important;
+  border: 1px solid var(  --blue-color-1-alpha-half)!important;
+  cursor: default !important;
+}
+
+.iconDisabled:hover {
+  background-color: var( --white-color)!important;
+}

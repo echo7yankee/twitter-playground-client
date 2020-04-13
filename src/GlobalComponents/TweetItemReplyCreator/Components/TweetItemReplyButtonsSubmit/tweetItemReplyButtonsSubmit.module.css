@@ -1,0 +1,98 @@
+.tweetItemReplySubmitButtons {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+
+}
+
+.tweetItemReplySubmitButtons svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: var(--blue-color-1);
+  box-sizing: content-box;
+  padding: .5rem;
+  border-radius: 50%;
+  transition: .2s ease-in background-color;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.tweetItemReplySubmitButtons svg:hover {
+  background-color: var(--blue-color-5);
+}
+
+.tweetItemReplyEmoji,.tweetItemReplyEmojiShow {
+  position: absolute;
+  right: 20%;
+  top: 110%;
+  display: none;
+}
+
+.tweetItemReplyEmojiShow {
+  display: block;
+}
+
+.tweetItemReplyEmoji,.tweetItemReplyEmojiShow {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transition: .2s ease-in opacity;
+}
+
+.tweetItemReplyEmojiShow {
+    opacity: 1;
+  pointer-events: unset;
+  transition: .2s ease-in opacity;
+}
+
+.tweetItemReplyEmojiContainer svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  box-sizing: content-box;
+  padding: .5rem;
+  border-radius: 50%;
+  fill: var(--blue-color-1);
+    transition: background-color .2s ease-in;
+}
+
+.tweetItemReplyEmojiContainer svg:hover {
+  background-color: var(--blue-color-5);
+}
+
+.tweetItemReplySendButton,.tweetItemReplySendButtonDisabled {
+  padding: .6rem 1rem;
+  background-color: var(--blue-color-1);
+  color: var(--white-color);
+  font-weight: 500;
+  border-radius: 25px;
+  transition: background-color .2s ease-in;
+}
+
+.tweetItemReplyCancelButton {
+   padding: .6rem 1rem;
+  color: var(--grey-color-4);
+  font-weight: 500;
+  transition: background-color .2s ease-in;
+}
+
+.tweetItemReplyCancelButton:hover {
+  text-decoration: underline;
+}
+
+.tweetItemReplySendButtonDisabled {
+  background-color:var( --blue-color-1-alpha-half)!important;
+  cursor: default !important;
+}
+
+.tweetItemReplySendButtonDisabled:hover {
+   background-color:var( --blue-color-1-alpha-half)!important;
+}
+
+
+.tweetItemReplySendButton:hover {
+  background-color: var(--blue-color-1-darken);
+}

@@ -1,0 +1,30 @@
+.tweetPoll {
+  margin-top: 2rem;
+}
+
+.tweetPollVoteButton,.tweetPollVoteButtonDisabled {
+  margin-top: 2rem;
+}
+
+.tweetPollVoteButton button:first-child,
+.tweetPollVoteButtonDisabled button:first-child {
+  padding: .8rem 1.8rem;
+  background-color: var(--blue-color-1);
+  color: var(--white-color);
+  border-radius: 25px;
+  transition: background-color .2s ease-in;
+    margin-right: .8rem;
+}
+
+.tweetPollVoteButtonDisabled button:first-child {
+   background-color: var(--blue-color-1-alpha);
+   cursor: default;
+}
+
+.tweetPollVoteButton button:first-child:hover {
+  background-color: var(--blue-color-1-darken);
+}
+
+.tweetPollVoteButton button:last-child:hover {
+  text-decoration: underline;
+}

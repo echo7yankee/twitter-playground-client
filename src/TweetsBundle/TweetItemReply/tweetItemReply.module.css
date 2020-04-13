@@ -1,0 +1,57 @@
+.tweetItemReply {
+  padding: 1rem 2rem 1rem 0rem; 
+  border-bottom: 1px solid var(--blue-color-4);
+}
+
+.tweetItemReplyLeft {
+  text-align: left;
+  padding: 1rem;
+  border: 1px solid var(--blue-color-2);
+  border-radius: 10px;
+  background-color: var(--blue-color-2);
+}
+.tweetItemReply div div p {
+  margin: 0;
+}
+
+.tweetItemReply  div div p:first-child {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.tweetItemReply  div  div p:last-child {
+  font-size: 1.4rem;
+  font-weight: 400;
+  width: 30rem;
+  word-wrap: break-word;
+  margin-top: 1rem;
+}
+
+.tweetItemReplyLeft div p {
+  width: max-content;
+}
+
+.tweetItemReplyLeft div p:last-child {
+  margin:0 !important;
+  font-size: 1.2rem !important;
+}
+
+.tweetItemReplyBtns {
+  display: flex;
+  align-items: center;
+}
+
+.tweetItemReplyBtns button {
+  padding: .6rem .5rem;
+  transition: background-color .2s ease-in;
+  color: var(--blue-color-1);
+}
+
+.tweetItemReplyBtns button:hover {
+  color: var(--blue-color-1-alpha);
+  text-decoration: underline;
+}
+
+.tweetItemReplyBtns button:last-child {
+  margin-left: .5rem;
+}

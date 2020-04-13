@@ -1,0 +1,23 @@
+.homeContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+.homeHalf {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 95vh;
+}
+
+.homeHalf:first-child {
+   background-color: var(--blue-color-1-alpha);
+}
+
+.homeHalf:last-child {
+  background-color: var(--white-color);
+  flex-direction: column;
+  justify-content: space-between;
+}

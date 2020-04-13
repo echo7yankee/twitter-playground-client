@@ -1,0 +1,22 @@
+.homeInfoContainer {
+  max-width: 35rem;
+  margin-top: 2rem;
+}
+
+.homeInfoItem {
+  display: flex;
+  align-items: center;
+  color: var(--white-color);
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+.homeInfoItem:not(:first-child) {
+  margin-top: 4rem;
+}
+
+.homeInfoItem svg {
+  margin-right: 2rem;
+  width: 3rem;
+  height: 3rem;
+}

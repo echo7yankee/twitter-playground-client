@@ -1,0 +1,37 @@
+.Dropdown,.DropdownShow {
+  position: absolute;
+  right: 0;
+  top: 2rem;
+  background-color: var(--white-color);
+  border-radius: .5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  width: 22rem;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity .2s ease-in, max-height .2s ease-in;
+  z-index: 5000;
+}
+
+.DropdownShow {
+  max-height: 20rem;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity .2s ease-in, max-height .2s ease-in;
+}
+
+.DropdownItem {
+  cursor: pointer;
+  padding: 1.2rem;
+  transition: background-color .2s ease-in;
+  display: flex;
+  align-items: center;
+}
+
+.DropdownItem:hover {
+  background-color: var(--blue-color-5);
+}
+
+.DropdownItem:hover.DropdownItem span svg {
+  fill: var(--blue-color-6) !important;
+}

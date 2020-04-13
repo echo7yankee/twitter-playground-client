@@ -1,0 +1,20 @@
+.tweetPollItem {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.tweetPollItem:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.tweetPollItem input {
+  margin: 0;
+}
+
+.tweetPollItem label {
+  margin-left: 1rem;
+  padding: .6rem;
+  background-color: var(--blue-color-4);
+  width: 100%;
+}

@@ -1,0 +1,37 @@
+.pageTitleContainer {
+  padding: .8rem .4rem;
+  border-left: 1px solid var(--blue-color-4);
+  border-right: 1px solid var(--blue-color-4);
+  border-bottom: 1px solid var(--blue-color-4);
+  display: flex;
+  align-items: center;
+  height: 4.4rem;
+}
+
+.pageTitleContainer a:link, .pageTitleContainer a:visited {
+  text-decoration: none;
+  color: var(--blue-color-1);
+}
+
+.pageTitleContainer svg {
+  margin-right: .8rem;
+  width: 2rem;
+  height: 2rem;
+  box-sizing: content-box;
+  padding: .6rem;
+  transition: background-color .2s ease-in;
+  cursor: pointer;
+  fill: var(--blue-color-1);
+  border-radius: 50%;
+}
+
+.pageTitleContainer svg:hover {
+  background-color: var(--blue-color-2);
+}
+
+.pageTitleContainer h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+}

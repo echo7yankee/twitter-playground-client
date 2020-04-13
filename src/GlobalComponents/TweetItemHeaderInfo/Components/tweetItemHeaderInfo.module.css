@@ -1,0 +1,29 @@
+.tweetItemHeaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.tweetItemHeaderContainer span {
+  font-size: 1.2rem;
+  color: var(--blue-color-7);
+}
+
+.tweetItemHeaderContainer h3 {
+  font-size: 1.6rem;
+}
+
+.tweetItemHeaderContainer svg {
+  fill: var(--blue-color-7);
+  padding: .5rem;
+  box-sizing: content-box;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color .2s ease-in, fill .2s ease-in;
+}
+
+.tweetItemHeaderContainer svg:hover {
+  background-color: var(--blue-color-2);
+  fill: var(--blue-color-1);
+}

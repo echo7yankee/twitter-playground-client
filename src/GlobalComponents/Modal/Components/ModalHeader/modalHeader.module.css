@@ -1,0 +1,27 @@
+.modalHeader {
+  padding: 3rem 2rem 2rem 2rem;
+}
+
+.modalHeader p:first-child {
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.modalHeader svg {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  fill: var(--blue-color-1);
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: .6rem;
+  box-sizing: content-box;
+  cursor: pointer;
+  transition: background-color .2s ease-in;
+  border-radius: 100%;
+}
+
+
+.modalHeader svg:hover {
+  background-color: var(--blue-color-2);
+}

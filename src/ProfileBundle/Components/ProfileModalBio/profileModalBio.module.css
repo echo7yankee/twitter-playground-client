@@ -1,0 +1,42 @@
+.profileModalBio {
+    margin: 0rem 1.2rem;
+    transform: translateY(-40%);
+}
+
+
+.profileModalImgContainer {
+  position: relative;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 100%;
+  border: 4px solid var(--white-color);
+  overflow: hidden;
+}
+
+.profileModalImgContainer img, .profileModalImgContainer svg:first-child{
+  width: 100%;
+  height: auto;
+}
+
+.profileModalImgContainer svg:first-child {
+  fill: var(--white-color);
+  background-color: var(--blue-color-8);
+}
+
+
+.profileModalIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  fill: var(--white-color);
+  cursor: pointer;
+  padding: .7rem;
+  box-sizing: content-box;
+  border-radius: 100%;
+  transition: background-color .5s ease;
+}
+
+.profileModalIcon:hover {
+  background-color: var(--white-color-alpha);
+}

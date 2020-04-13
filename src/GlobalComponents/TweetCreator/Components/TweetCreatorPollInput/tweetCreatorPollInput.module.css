@@ -1,0 +1,44 @@
+.tweetCreatorPollInput {
+  width: 100%;
+}
+
+.tweetCreatorPollGroupControl {
+  background-color: var(--blue-color-5);
+  padding-top: .8rem;
+  position: relative;
+  margin: 1.5rem;
+}
+
+.tweetCreatorPollGroupControl label {
+  color: var(--blue-color-7);
+  position: absolute;
+  top: .8rem;
+  left: .8rem;
+}
+
+.tweetCreatorPollGroupControl input {
+  border: none;
+  border-bottom: 2px solid var(--black-color-1);
+  background-color: transparent;
+  padding: 0rem .8rem .8rem .8rem;
+  font-size: 1.6rem;
+  margin-top: 2rem;
+}
+
+.tweetCreatorPollGroupControl input:focus {
+  border-bottom-color: var(--blue-color-1);
+}
+
+input:focus + label {
+  color: var(--blue-color-1);
+}
+
+.tweetCreatorPollWordLength {
+  text-align: right;
+  margin-top: .8rem;
+  margin-right: 1.5rem;
+}
+
+.tweetCreatorPollWordLength span {
+  color: var(--blue-color-7);
+}

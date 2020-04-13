@@ -1,0 +1,62 @@
+
+.menuItems {
+  margin-top: 2rem;
+}
+
+.menuItem {
+  list-style: none;
+}
+
+.menuItem:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.menuItem a svg {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 2rem;
+  fill: var(--grey-color-5);
+  transition: fill .2s ease-in, border .2s ease-in;
+}
+
+.menuItem a:link, .menuItem a:visited,.isActive {
+  text-decoration: none;
+  padding: 1rem 1.4rem;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  border-radius: 2.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--grey-color-5);
+  transition: color .2s ease-in;
+    transition: background-color .2s ease-in;
+}
+
+.menuItem a:hover {
+  background-color: var(--blue-color-2);
+}
+
+.menuItem:hover.menuItem a svg {
+  fill: var(--blue-color-1);
+  border-color: var(--blue-color-1);
+}
+
+.menuItem:hover.menuItem a {
+  color: var(--blue-color-1);
+}
+
+.isActive {
+    background-color: var(--blue-color-2);
+    color: var(--blue-color-1);
+}
+
+.isActive svg {
+    fill: var(--blue-color-1) !important;
+    border-color: var(--blue-color-1);
+}
+
+.isActive div {
+  border: 2px solid var(--blue-color-1);
+  border-radius: 50%;
+}

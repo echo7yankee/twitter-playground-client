@@ -1,0 +1,57 @@
+.tweetCreatorPollContainer {
+  border-radius: 1.5rem;
+  border: 1px solid var(--blue-color-4);
+}
+
+.tweetCreatorPollInputContainer {
+  display: flex;
+  align-items: center;
+}
+
+.tweetCreatorPollPlusIcon {
+  margin-right: 1.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  fill: var(--blue-color-1);
+  cursor: pointer;
+  padding: .5rem;
+  box-sizing: content-box;
+  border-radius: 50%;
+  transition: background-color .2s ease-in;
+  margin-left: .5rem;
+}
+
+.tweetCreatorPollPlusIcon:hover {
+  background-color: var(--blue-color-2);
+}
+
+.tweetCreatorPollSelectContainer {
+  padding: .8rem 1.5rem;
+}
+
+.tweetCreatorPollSelectTitle span {
+  font-size: 1.4rem;
+  margin-bottom: .8rem;
+}
+
+.tweetCreatorPollSelect {
+  display: flex;
+  justify-content: space-between;
+  margin-top: .8rem;
+}
+
+.tweetCreatorPollRemoveBtn {
+  text-align: center;
+  padding: 1.5rem;
+  transition: background-color .2s ease-in;
+  cursor: pointer;
+}
+
+.tweetCreatorPollRemoveBtn button {
+  color: var(--red-color-4);
+  font-size: 1.4rem;
+}
+
+.tweetCreatorPollRemoveBtn:hover {
+  background-color: var(--red-color-4-alpha);
+}

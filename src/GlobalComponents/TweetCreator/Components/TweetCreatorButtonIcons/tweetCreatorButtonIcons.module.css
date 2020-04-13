@@ -1,0 +1,43 @@
+.tweetCreatorFormIcons {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.tweetCreatorFormIcon {
+  fill: var(--blue-color-1);
+}
+
+.tweetCreatorFormIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  transition: background-color .2s ease-in;
+  padding: .5rem;
+  box-sizing: content-box;
+  border-radius: 50%;
+}
+
+.tweetCreatorEmoticonContainer {
+  position: relative;
+}
+
+.tweetCreatorFormIcon:hover {
+  background-color: var(--blue-color-2);
+}
+
+.emoticonPickerContainer,.emoticonPickerContainerShow {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease-in;
+  position: absolute;
+  top: 110%;
+  left: -60%;
+  z-index: 2000;
+}
+
+.emoticonPickerContainerShow {
+  opacity: 1;
+  pointer-events: unset;
+  transition: opacity .2s ease-in;
+}
