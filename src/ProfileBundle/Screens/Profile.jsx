@@ -90,9 +90,7 @@ export const Profile = ({ match, history }) => {
             <ProfileImage
               user={user}
               setShowOverlayImage={setShowOverlayImage} />
-            {state.isOwner === null
-              ? <ProfileImageEditButton openModal={openModal} />
-              : null}
+            <ProfileImageEditButton isOwner={state.isOwner} openModal={openModal} />
           </div>
           <div>
             <ProfileBio user={user} />
