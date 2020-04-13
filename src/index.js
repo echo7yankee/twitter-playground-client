@@ -14,7 +14,7 @@ import { SET_AUTHENTICATED } from './Redux/types';
 //axios
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'https://mighty-atoll-48452.herokuapp.com/';
 
 const token = localStorage.FBIdToken;
 
