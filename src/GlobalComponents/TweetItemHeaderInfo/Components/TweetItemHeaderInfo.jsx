@@ -1,4 +1,6 @@
 import React, { useRef } from 'react';
+//react router dom
+import { Link } from 'react-router-dom';
 
 //utils
 import tweetItemDropdownArr from '../Services/getTweetItemDropdownArr'
@@ -28,7 +30,19 @@ export const TweetItemHeaderInfo = ({ post, isDropdown, closeDropdown, openDropd
     <div>
       <div className={style.tweetItemHeaderContainer}>
         <div className='dflex'>
-          <h3>{post.username}</h3>
+          <Link
+            to={{
+              pathname: `/dashboard/${post.userId}`,
+              state: {
+                owner: {
+                  isOwner: false,
+                  profileImg: user.profileImg
+                }
+              }
+            }}
+          >
+            <h3>{post.username}</h3>
+          </Link>
           <span className='ml-05'>-</span>
           <span className='ml-05'>{fromNowDate}</span>
           <span className='ml-05'>{`${postDay} ${postMonth}`}</span>

@@ -33,6 +33,7 @@ export const Dashboard = () => {
             <Switch>
               <Route path='/dashboard/' component={DashboardHome} exact />
               <Route path='/dashboard/profile' component={Profile} />
+              <Route path='/dashboard/:id' component={Profile} />
             </Switch>
           </div>
           <div className='container-column-medium'>

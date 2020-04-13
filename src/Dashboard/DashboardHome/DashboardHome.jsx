@@ -35,7 +35,6 @@ export const DashboardHome = () => {
     userId = jwt.decode(token).params.id;
   }
 
-
   useEffect(() => {
     dispatch(getAllPosts());
     dispatch(getUserDetails(userId));

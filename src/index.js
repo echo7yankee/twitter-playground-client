@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import './index.css';
 import { App } from './App.jsx';
+import { config } from './utils/constants/Environment';
 
 //jwt
 import jwt from 'jsonwebtoken';
@@ -14,7 +15,8 @@ import { SET_AUTHENTICATED } from './Redux/types';
 //axios
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://mighty-atoll-48452.herokuapp.com/';
+const { url } = config;
+axios.defaults.baseURL = url.API_URL;
 
 const token = localStorage.FBIdToken;
 

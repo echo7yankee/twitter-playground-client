@@ -14,6 +14,11 @@
   font-size: 1.6rem;
 }
 
+.tweetItemHeaderContainer a:link,.tweetItemHeaderContainer a:visited {
+  color: var(--black-color-1);
+  text-decoration: none;
+}
+
 .tweetItemHeaderContainer svg {
   fill: var(--blue-color-7);
   padding: .5rem;
