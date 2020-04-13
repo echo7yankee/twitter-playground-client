@@ -43,7 +43,6 @@ export const Profile = ({ match, history }) => {
   }, [userDetails, dispatch])
   useEffect(() => {
     if (visitorId) {
-      console.log('ce naiba?');
       dispatch(getUserDetails(visitorId));
       return;
     } else {
