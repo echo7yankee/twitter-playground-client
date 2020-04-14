@@ -18,10 +18,8 @@ export const Profile = ({ match, history }) => {
   const visitorId = match.params.id;
   const state = {
     ownerId: history.location.state && history.location.state.owner.ownerId,
-    profileImg: history.location.state && history.location.state.owner.profileImg,
     isOwner: history.location.state && history.location.state.owner.isOwner,
   }
-  localStorage.setItem('ownerProfileImg', state.profileImg);
   //redux 
   const userDetails = useSelector(state => state.user.userDetails);
   const dispatch = useDispatch();
