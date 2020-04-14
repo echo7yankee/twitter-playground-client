@@ -152,11 +152,11 @@ export const TweetItem = ({ post, user, setIsModal }) => {
       <div className={togglePostReply
         ? style.tweetItemReplyContainerShow
         : style.tweetItemReplyContainer}>
-        {post.postComments.map((postReply) => {
+        {post.postComments.map((postComment) => {
           return (
-            <div key={postReply.id}>
+            <div key={postComment.id}>
               {
-                postReply.isEdit && !isReplyInput
+                postComment.isEdit && !isReplyInput
                   ?
                   <TweetItemReplyCreator
                     placeholder=''
@@ -164,17 +164,17 @@ export const TweetItem = ({ post, user, setIsModal }) => {
                     innerRef={contentEditableEdit}
                     className={style.tweetItemReplyCreator}
                     onClick={handleEditButton}
-                    postReply={postReply}
+                    postComment={postComment}
                     hasReset={false}
                     isEdit={true}
-                    cancelButtonAction={() => dispatch(togglePostCommentEdit(postReply.id, post.id, false))}
+                    cancelButtonAction={() => dispatch(togglePostCommentEdit(postComment.id, post.id, false))}
                   />
                   : <TweetItemReply
-                    postReply={postReply}
-                    removeCommentFromPost={() => dispatch(removePostComment(postReply.id))}
+                    postComment={postComment}
+                    removeCommentFromPost={() => dispatch(removePostComment(postComment.id))}
                     togglePostCommentEdit={() => {
                       setIsReplyInput(false);
-                      dispatch(togglePostCommentEdit(postReply.id, post.id, true))
+                      dispatch(togglePostCommentEdit(postComment.id, post.id, true))
                     }}
                     user={user}
                   />
@@ -189,7 +189,7 @@ export const TweetItem = ({ post, user, setIsModal }) => {
             innerRef={contentEditableCreator}
             className={style.tweetItemReplyCreator}
             onClick={handleSendButton}
-            postReply={createPostReply()}
+            postComment={createPostReply()}
             hasReset={true}
             isEdit={false}
             cancelButtonAction={null}

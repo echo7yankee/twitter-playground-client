@@ -1,7 +1,7 @@
 export const createPostReply = () => {
   return {
     id: '',
-    postReply: '',
+    postComment: '',
     userId: '',
     postId: '',
     profileImg: '',

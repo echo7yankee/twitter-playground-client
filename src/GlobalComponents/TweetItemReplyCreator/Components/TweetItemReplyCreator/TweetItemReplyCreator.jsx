@@ -13,7 +13,7 @@ export const TweetItemReplyCreator = (
     onClick,
     innerRef,
     className,
-    postReply,
+    postComment,
     buttonText,
     isEdit,
     cancelButtonAction }
@@ -21,29 +21,29 @@ export const TweetItemReplyCreator = (
 
 
   //local state
-  const [postReplyObj, setPostReply] = useState(postReply)
+  const [postCommentObj, setPostReply] = useState(postComment)
   const [isEmoticonPicker, setIsEmoticonPicker] = useState(false);
 
   const handleChange = e => {
     setPostReply({
-      ...postReplyObj,
-      postReply: e.target.value
+      ...postCommentObj,
+      postComment: e.target.value
     })
   }
 
 
   const handleEmojiSelector = (emojiObj) => {
     setPostReply({
-      ...postReplyObj,
-      postReply: `${postReplyObj.postReply} ${emojiObj.native}`
+      ...postCommentObj,
+      postComment: `${postCommentObj.postComment} ${emojiObj.native}`
     })
   }
 
   const submit = (e) => {
     e.preventDefault();
-    onClick(postReplyObj)
+    onClick(postCommentObj)
     if (hasReset) {
-      setPostReply(postReply)
+      setPostReply(postComment)
     }
   }
 
@@ -54,10 +54,10 @@ export const TweetItemReplyCreator = (
         onChange={handleChange}
         innerRef={innerRef}
         className={className}
-        html={postReplyObj.postReply}
+        html={postCommentObj.postComment}
       />
       <TweetItemReplyButtonsSubmit
-        postReplyObj={postReplyObj}
+        postCommentObj={postCommentObj}
         submit={submit}
         buttonText={buttonText}
         isEdit={isEdit}

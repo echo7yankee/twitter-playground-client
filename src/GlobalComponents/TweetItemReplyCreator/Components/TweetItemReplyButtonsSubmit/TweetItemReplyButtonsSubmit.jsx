@@ -9,7 +9,7 @@ import { MdInsertEmoticon } from 'react-icons/md';
 import { Picker } from 'emoji-mart';
 
 export const TweetItemReplyButtonsSubmit = ({
-  postReplyObj,
+  postCommentObj,
   submit,
   buttonText,
   isEdit,
@@ -60,9 +60,9 @@ export const TweetItemReplyButtonsSubmit = ({
         />
       </div>
       <button
-        disabled={!postReplyObj.postReply && true}
+        disabled={!postCommentObj.postComment && true}
         onClick={submit}
-        className={postReplyObj.postReply === ''
+        className={postCommentObj.postComment === ''
           ? style.tweetItemReplySendButtonDisabled
           : style.tweetItemReplySendButton}>
         {buttonText}
