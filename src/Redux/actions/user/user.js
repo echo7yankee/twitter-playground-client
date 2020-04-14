@@ -1,8 +1,8 @@
 //axios
 import axios from 'axios';
 import { GET_USER_DETAILS } from '../../types';
-
 import { getAllPosts } from '../post/post';
+import { logoutUser } from '../auth/auth';
 
 export const getUserDetails = (userId) => {
   return async (dispatch) => {
@@ -15,6 +15,9 @@ export const getUserDetails = (userId) => {
         payload: data
       })
     } catch (error) {
+      if (error.response.status === 500) {
+        dispatch(logoutUser());
+      }
       console.log(error)
     }
   }
