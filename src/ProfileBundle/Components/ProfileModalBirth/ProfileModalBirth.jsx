@@ -66,9 +66,9 @@ export const ProfileModalBirth = ({
                 width: ProfileConstants.BIRTH_SELECT_WIDTH.YEAR_WIDTH
               }}
               array={ProfileConstants.BIRTH_ARRAY.YEAR}
-              type='year'
+              type='privacyYear'
               onChange={handleSelect}
-              value={age.year}
+              value={age.privacyYear}
             />
           </div>
           <div>
