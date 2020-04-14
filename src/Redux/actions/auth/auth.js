@@ -20,7 +20,7 @@ export function registerUser(credentials, history) {
       const response = await axios.post('/user/register', credentials);
       const { data } = response;
 
-      setAuthorizationHeader(data.token)
+      setAuthorizationHeader(data.token, data.profileImg)
 
       dispatch({
         type: SET_AUTHENTICATED

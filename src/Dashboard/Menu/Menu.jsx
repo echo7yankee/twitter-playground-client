@@ -48,7 +48,7 @@ export const Menu = () => {
         <li className={style.menuItem}>
           <NavLink to='/dashboard/profile' activeClassName={style.isActive}>
             {
-              profileImg === 'undefined'
+              profileImg === 'undefined' || profileImg === ''
                 ? <IoIosPerson className='placeholder-profile-img' />
                 : <div className='tweet-profile-img-container-menu mr-2'>
                   <img
