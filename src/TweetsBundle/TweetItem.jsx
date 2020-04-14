@@ -95,12 +95,12 @@ export const TweetItem = ({ post, user, setIsModal }) => {
     setIsReplyInput(false);
   }
 
-  const handleSendButton = (postReply) => {
-    dispatch(createPostComment(user.id, post.id, { postReply: postReply.postReply }))
+  const handleSendButton = (comment) => {
+    dispatch(createPostComment(user.id, post.id, comment))
   }
 
-  const handleEditButton = (postReply) => {
-    dispatch(editPostComment(postReply.id, { postReply: postReply.postReply }))
+  const handleEditButton = (updatedComment) => {
+    dispatch(editPostComment(updatedComment.id, updatedComment))
   }
 
   if (contentEditableCreator || contentEditableEdit) {

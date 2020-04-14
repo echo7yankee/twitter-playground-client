@@ -105,10 +105,10 @@ export function votePoll(postId, voteContainer) {
   }
 }
 
-export function createPostComment(userId, postId, postReply) {
+export function createPostComment(userId, postId, comment) {
   return async (dispatch) => {
     try {
-      await axios.post(`/postComment`, postReply, {
+      await axios.post(`/postComment`, comment, {
         params: {
           userId,
           postId
@@ -144,10 +144,10 @@ export function togglePostCommentEdit(postCommentId, postId, isEditable) {
   }
 }
 
-export function editPostComment(postCommentId, postReply) {
+export function editPostComment(updatedCommentId, updatedComment) {
   return async (dispatch) => {
     try {
-      await axios.put(`/postComment/${postCommentId}`, postReply);
+      await axios.put(`/postComment/${updatedCommentId}`, updatedComment);
       dispatch(getAllPosts())
     } catch (error) {
       console.log(error);
