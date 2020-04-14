@@ -53,7 +53,7 @@ export function loginUser(credentials, history) {
       const response = await axios.post('/user/login', credentials);
       const { data } = response;
 
-      setAuthorizationHeader(data.token)
+      setAuthorizationHeader(data.token, data.profileImg)
 
       dispatch({
         type: SET_AUTHENTICATED
@@ -90,8 +90,9 @@ export function logoutUser() {
   }
 }
 
-const setAuthorizationHeader = token => {
+const setAuthorizationHeader = (token, ownerProfileImg) => {
   const FBIdToken = token;
   localStorage.setItem('FBIdToken', FBIdToken);
+  localStorage.setItem('ownerProfileImg', ownerProfileImg);
   axios.defaults.headers.common.Authorization = FBIdToken;
 }

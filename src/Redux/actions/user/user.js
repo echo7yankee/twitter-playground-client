@@ -32,6 +32,23 @@ export const updateUserDetails = (newUserDetails, closeModal) => {
   }
 }
 
+export const followUser = (ownerId, visitorId) => {
+  return async (dispatch) => {
+    try {
+      await axios.post('/user/userDetails/follow', {}, {
+        params: {
+          ownerId,
+          visitorId
+        }
+      })
+      // dispatch(getUserDetails(ownerId));
+      dispatch(getUserDetails(visitorId));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
 export const uploadUserImg = (formData, config, userId) => {
   return async (dispatch) => {
     try {

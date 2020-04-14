@@ -34,6 +34,9 @@ export const Menu = () => {
 
   const profileImg = ownerProfileImg !== 'null' ? ownerProfileImg : user.profileImg
 
+  console.log('profile img', profileImg);
+  console.log('User', user);
+
   return (
     <div className={style.menuContainer}>
       <ul className={style.menuItems}>
@@ -46,7 +49,7 @@ export const Menu = () => {
         <li className={style.menuItem}>
           <NavLink to='/dashboard/profile' activeClassName={style.isActive}>
             {
-              user.profileImg === ''
+              user.profileImg === '' && user.profile || !profileImg
                 ? <IoIosPerson className='placeholder-profile-img' />
                 : <div className='tweet-profile-img-container-menu mr-2'>
                   <img

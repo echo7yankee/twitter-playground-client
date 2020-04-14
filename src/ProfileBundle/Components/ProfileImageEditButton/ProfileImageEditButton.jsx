@@ -1,14 +1,19 @@
 import React from 'react';
+import { getFollowButtonState } from '../../Services/getFollowButtonState';
 
 //style
 import style from './profileImageEditButton.module.css';
 
-export const ProfileImageEditButton = ({ openModal, isOwner }) => {
+export const ProfileImageEditButton = ({ openModal, handleFollowUser, state, user }) => {
   return (
     <button
       className={style.profileImageEditButton}
-      onClick={isOwner === null ? openModal : null}>
-      {isOwner === null ? 'Edit Profile' : 'Follow'}
+      onClick={state.isOwner === null
+        ? openModal
+        : () => handleFollowUser(state.ownerId, user.id)}>
+      {state.isOwner === null
+        ? 'Edit Profile'
+        : getFollowButtonState(state.ownerId, user) ? 'Unfollow' : 'Follow'}
     </button>
   )
 }

@@ -16,7 +16,13 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { DropdownItems } from '../../Dropdown/DropdownItems';
 import { useOutsideClose } from '../../CloseDropdown/CloseDropdown';
 
-export const TweetItemHeaderInfo = ({ post, isDropdown, closeDropdown, openDropdown, user, action }) => {
+export const TweetItemHeaderInfo = ({
+  post,
+  isDropdown,
+  closeDropdown,
+  openDropdown,
+  user,
+  action }) => {
 
   //date 
   const fromNowDate = moment(post.createdAt).fromNow();
@@ -35,8 +41,8 @@ export const TweetItemHeaderInfo = ({ post, isDropdown, closeDropdown, openDropd
               pathname: `/dashboard/${post.userId}`,
               state: {
                 owner: {
+                  ownerId: user.id,
                   isOwner: post.userId === user.id ? null : false,
-                  profileImg: user.profileImg
                 }
               }
             }}
