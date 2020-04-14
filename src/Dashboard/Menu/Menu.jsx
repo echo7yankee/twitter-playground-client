@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { config } from '../../utils/constants/Environment';
 import jwt from 'jsonwebtoken'
 //style
@@ -16,6 +16,7 @@ export const Menu = () => {
   const { url } = config;
   const user = useSelector(state => state.user.userDetails);
   const ownerProfileImg = localStorage.getItem('ownerProfileImg');
+  const [profileImg, setProfileImg] = useState('');
   //redux
   const dispatch = useDispatch();
 
@@ -31,11 +32,9 @@ export const Menu = () => {
       dispatch(getUserDetails(userId));
     }
   }, [userId, dispatch, ownerProfileImg])
-
-  const profileImg = ownerProfileImg !== 'null' ? ownerProfileImg : user.profileImg
-
-  console.log('profile img', profileImg);
-  console.log('User', user);
+  useEffect(() => {
+    setProfileImg(ownerProfileImg !== 'null' ? ownerProfileImg : user.profileImg)
+  }, [ownerProfileImg, user.profileImg])
 
   return (
     <div className={style.menuContainer}>
@@ -49,7 +48,7 @@ export const Menu = () => {
         <li className={style.menuItem}>
           <NavLink to='/dashboard/profile' activeClassName={style.isActive}>
             {
-              !profileImg
+              profileImg === 'undefined'
                 ? <IoIosPerson className='placeholder-profile-img' />
                 : <div className='tweet-profile-img-container-menu mr-2'>
                   <img

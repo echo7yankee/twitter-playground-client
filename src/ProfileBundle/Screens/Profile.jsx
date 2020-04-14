@@ -27,7 +27,6 @@ export const Profile = ({ match, history }) => {
   //react state
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState({});
-  const [file, setFile] = useState('');
   const [showOverlayImage, setShowOverlayImage] = useState(false);
 
   //token
@@ -61,7 +60,6 @@ export const Profile = ({ match, history }) => {
   //update user
 
   const selectImage = (e) => {
-    setFile(e.target.files[0])
     const formData = new FormData();
     formData.append('file', e.target.files[0])
     const config = {
@@ -69,6 +67,7 @@ export const Profile = ({ match, history }) => {
         'content-type': 'multipart/form-data'
       }
     }
+    localStorage.setItem('ownerProfileImg', e.target.files[0].name);
     dispatch(uploadUserImg(formData, config, user.id))
   }
 
@@ -106,7 +105,6 @@ export const Profile = ({ match, history }) => {
         {isOpen && <ProfileModal
           closeModal={closeModal}
           user={user}
-          file={file}
           updateUser={updateUser}
           selectImage={selectImage}
         />}
