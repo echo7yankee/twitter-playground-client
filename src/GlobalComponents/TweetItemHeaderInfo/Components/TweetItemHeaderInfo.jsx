@@ -35,6 +35,7 @@ export const TweetItemHeaderInfo = ({ post, isDropdown, closeDropdown, openDropd
               pathname: `/dashboard/${post.userId}`,
               state: {
                 owner: {
+                  ownerId: user.id,
                   isOwner: post.userId === user.id ? null : false,
                   profileImg: user.profileImg
                 }

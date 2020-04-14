@@ -26,10 +26,10 @@ export const ProfileBio = ({ user }) => {
         </div>
         <div className={style.profileBioFollow}>
           <span>
-            <b className='mr-05'>49</b> Following
+            <b className='mr-05'>{user.social.followingCount}</b> Following
           </span>
           <span>
-            <b className='mr-05'>5</b> Following
+            <b className='mr-05'>{user.social.followersCount}</b> Followers
         </span>
         </div>
       </div>

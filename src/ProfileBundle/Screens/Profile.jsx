@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 //redux
 import { useSelector, useDispatch } from 'react-redux';
-import { getUserDetails, updateUserDetails, uploadUserImg } from '../../Redux/actions/user/user';
+import { getUserDetails, updateUserDetails, uploadUserImg, followUser } from '../../Redux/actions/user/user';
 
 //Components
 import { ProfileModal } from '../Components/ProfileModal/ProfileModal';
@@ -17,6 +17,7 @@ import { ProfileBio } from '../Components/ProfileBio/ProfileBio';
 export const Profile = ({ match, history }) => {
   const visitorId = match.params.id;
   const state = {
+    ownerId: history.location.state && history.location.state.owner.ownerId,
     profileImg: history.location.state && history.location.state.owner.profileImg,
     isOwner: history.location.state && history.location.state.owner.isOwner,
   }
@@ -77,6 +78,10 @@ export const Profile = ({ match, history }) => {
     dispatch(updateUserDetails(newUserDetails, closeModal))
   }
 
+  const handleFollowUser = (ownerId, visitorId) => {
+    dispatch(followUser(ownerId, visitorId));
+  }
+
   return (
     user.fName ?
       <>
@@ -90,7 +95,11 @@ export const Profile = ({ match, history }) => {
             <ProfileImage
               user={user}
               setShowOverlayImage={setShowOverlayImage} />
-            <ProfileImageEditButton isOwner={state.isOwner} openModal={openModal} />
+            <ProfileImageEditButton
+              state={state}
+              user={user}
+              handleFollowUser={handleFollowUser}
+              openModal={openModal} />
           </div>
           <div>
             <ProfileBio user={user} />
