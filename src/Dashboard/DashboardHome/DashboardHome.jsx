@@ -12,9 +12,7 @@ import { getUserDetails } from '../../Redux/actions/user/user';
 //Dashboard constants
 import { DashboardHomeConstants } from './Constants/DashboardHomeConstants';
 //components
-import { Menu } from '../Menu/Menu';
 import { Tweets } from '../../TweetsBundle/Tweets';
-import { Trends } from '../Trends/Trends';
 import { PageTitle } from '../../GlobalComponents/PageTitle/PageTitle';
 
 export const DashboardHome = () => {
