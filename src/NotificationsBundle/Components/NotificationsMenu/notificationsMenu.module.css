@@ -1,0 +1,33 @@
+.notificationsMenu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notificationsMenuItem {
+  text-align: center;
+  width: 50%;
+}
+
+.notificationsMenu a:link,
+.notificationsMenu a:visited{
+  padding: 2rem 0;
+  width: 100%;
+  display: block;
+  text-decoration: none;
+  color: var(--blue-color-7);
+  font-size: 1.6rem;
+  font-weight: 700;
+  transition: background-color .2s ease-in, color .2s ease-in;
+  border-bottom: 2px solid var(--blue-color-4);
+}
+
+.notificationsMenu a:hover {
+  background-color: var(--blue-color-2);
+  color: var(--blue-color-1);
+}
+
+.notificationsMenu a.activeLink {
+  border-bottom: 2px solid var(--blue-color-6) ;
+  color: var(--blue-color-1);
+}

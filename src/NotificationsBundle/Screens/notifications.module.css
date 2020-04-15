@@ -1,0 +1,4 @@
+.notificationsBorderSide {
+  border-left: 1px solid var(--blue-color-4);
+  border-right: 1px solid var(--blue-color-4);
+}

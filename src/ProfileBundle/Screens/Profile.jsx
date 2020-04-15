@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import jwt from 'jsonwebtoken';
 
+//style
+import style from './profile.module.css';
+
 //redux
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserDetails, updateUserDetails, uploadUserImg, followUser } from '../../Redux/actions/user/user';
@@ -81,7 +84,7 @@ export const Profile = ({ match, history }) => {
 
   return (
     user.fName ?
-      <>
+      <div className={style.profile}>
         <div>
           <PageTitle
             name={`${user.fName} ${user.lName}`}
@@ -113,6 +116,6 @@ export const Profile = ({ match, history }) => {
             user={user}
             setShowOverlayImage={setShowOverlayImage}
           />}
-      </> : null
+      </div> : null
   )
 }

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { config } from '../../utils/constants/Environment';
 import jwt from 'jsonwebtoken'
 //style
-import style from './menu.module.css';
-import { IoMdHome, IoIosPerson } from 'react-icons/io';
+import style from './sideMenu.module.css';
+import { IoMdHome, IoIosPerson, IoMdNotificationsOutline } from 'react-icons/io';
 
 //redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,7 +12,7 @@ import { getUserDetails } from '../../Redux/actions/user/user';
 //react router dom
 import { NavLink } from 'react-router-dom';
 
-export const Menu = () => {
+export const SideMenu = () => {
   const { url } = config;
   const user = useSelector(state => state.user.userDetails);
   const ownerProfileImg = localStorage.getItem('ownerProfileImg');
@@ -43,6 +43,12 @@ export const Menu = () => {
           <NavLink to='/dashboard/' exact={true} activeClassName={style.isActive}>
             <IoMdHome />
             <span>Home</span>
+          </NavLink>
+        </li>
+        <li className={style.menuItem}>
+          <NavLink to='/dashboard/notifications' activeClassName={style.isActive}>
+            <IoMdNotificationsOutline />
+            <span>Notifications</span>
           </NavLink>
         </li>
         <li className={style.menuItem}>

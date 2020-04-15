@@ -11,18 +11,12 @@ import { IoMdArrowBack } from 'react-icons/io';
 export const PageTitle = ({ name, hasBackButton }) => {
 
   const lastLocation = useLastLocation();
-
   let pathname = lastLocation && lastLocation.pathname;
-  if (pathname === null) {
-    pathname = localStorage.getItem('previousPathname');
-  } else {
-    localStorage.setItem('previousPathname', lastLocation && lastLocation.pathname);
-  }
 
   return (
     <div className={style.pageTitleContainer}>
       {hasBackButton
-        && <Link to={pathname}><IoMdArrowBack /></Link>}
+        && <Link to={pathname === null ? '/dashboard' : pathname}><IoMdArrowBack /></Link>}
       <h1>{name}</h1>
     </div>
   )
