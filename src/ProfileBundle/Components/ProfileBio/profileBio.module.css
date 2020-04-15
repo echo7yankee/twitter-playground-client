@@ -32,10 +32,24 @@
   fill: var(--blue-color-7);
 }
 
+.locationBio {
+  margin-bottom: 1rem;
+  color: var(--blue-color-7);
+}
+
 .profileBioFollow span:last-child {
   margin-left: 2rem;
 }
 
 .profileBioFollow span {
   color: var(--blue-color-7);
+}
+
+.websiteBio {
+  margin-top: 1rem;
+}
+
+.websiteBio a:link,.websiteBio a:visited {
+  color: var(--blue-color-6);
+  text-decoration: none;
 }

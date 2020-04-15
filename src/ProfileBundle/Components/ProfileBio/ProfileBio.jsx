@@ -24,6 +24,9 @@ export const ProfileBio = ({ user }) => {
             {' '}{getUserCreatedDate(user.createdAt).year}
           </span>
         </div>
+        <div className={style.locationBio}>
+          <span>{user.location}</span>
+        </div>
         <div className={style.profileBioFollow}>
           <span>
             <b className='mr-05'>{user.social.followingCount}</b> Following
@@ -31,6 +34,9 @@ export const ProfileBio = ({ user }) => {
           <span>
             <b className='mr-05'>{user.social.followersCount}</b> Followers
         </span>
+        </div>
+        <div className={style.websiteBio}>
+          <a href={user.website}>{user.website}</a>
         </div>
       </div>
     </div>
