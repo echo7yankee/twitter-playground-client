@@ -35,7 +35,7 @@ export const updateUserDetails = (newUserDetails, closeModal) => {
   }
 }
 
-export const followUser = (ownerId, visitorId) => {
+export const followUser = (ownerId, visitorId, actionFrom) => {
   return async (dispatch) => {
     try {
       await axios.post('/user/userDetails/follow', {}, {
@@ -44,7 +44,12 @@ export const followUser = (ownerId, visitorId) => {
           visitorId
         }
       })
-      // dispatch(getUserDetails(ownerId));
+      if (actionFrom === 'dropdown') {
+        dispatch(getUserDetails(ownerId));
+        dispatch(getAllPosts());
+        return;
+      }
+
       dispatch(getUserDetails(visitorId));
     } catch (error) {
       console.log(error);

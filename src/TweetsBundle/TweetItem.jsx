@@ -13,6 +13,7 @@ import {
   editPostComment,
   votePoll,
 } from '../Redux/actions/post/post';
+import { followUser } from '../Redux/actions/user/user';
 
 //utils
 import { createPostReply } from '../utils/services/createPostReply';
@@ -65,6 +66,7 @@ export const TweetItem = ({ post, user, setIsModal }) => {
       modalAction: () => dispatch(removePost(post.id))
     }),
     edit: () => dispatch(toggleEdit(post.id, true)),
+    follow: () => dispatch(followUser(user.id, post.userId, 'dropdown')),
   }
 
   const handlePollInputRadioChange = (e) => {

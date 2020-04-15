@@ -76,7 +76,7 @@ export const Profile = ({ match, history }) => {
   }
 
   const handleFollowUser = (ownerId, visitorId) => {
-    dispatch(followUser(ownerId, visitorId));
+    dispatch(followUser(ownerId, visitorId, 'profile'));
   }
 
   return (

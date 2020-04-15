@@ -1,5 +1,5 @@
 import React from 'react';
-import { getFollowButtonState } from '../../Services/getFollowButtonState';
+import { getFollowButtonState } from '../../../utils/services/getFollowButtonState';
 
 //style
 import style from './profileImageEditButton.module.css';
