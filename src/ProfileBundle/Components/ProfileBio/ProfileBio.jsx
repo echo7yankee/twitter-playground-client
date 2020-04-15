@@ -36,7 +36,7 @@ export const ProfileBio = ({ user }) => {
         </span>
         </div>
         <div className={style.websiteBio}>
-          <a href={user.website}>{user.website}</a>
+          <a href={`https://${user.website}`}>{user.website}</a>
         </div>
       </div>
     </div>
