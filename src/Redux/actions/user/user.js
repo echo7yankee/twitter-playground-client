@@ -46,7 +46,7 @@ export const followUser = (ownerId, visitorId, actionFrom) => {
       })
       if (actionFrom === 'dropdown') {
         dispatch(getUserDetails(ownerId));
-        dispatch(getAllPosts());
+        dispatch(getAllPosts({}));
         return;
       }
 

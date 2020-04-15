@@ -9,7 +9,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { PageTitle } from '../../GlobalComponents/PageTitle/PageTitle'
 import { NotificationsMenu } from '../Components/NotificationsMenu/NotificationsMenu'
 import { NotificationsItems } from '../Components/NotificationsItems/NotificationsItems';
-import { NotificationItem } from '../Components/NotificationsItems/NotificationItem';
 
 export const Notifications = () => {
   return (
@@ -20,7 +19,7 @@ export const Notifications = () => {
           <NotificationsMenu />
           <Switch>
             <Route path='/dashboard/notifications' component={NotificationsItems} exact />
-            <Route path='/dashboard/notifications/mentions' component={NotificationItem} />
+            <Route path='/dashboard/notifications/mentions' component={NotificationsItems} />
           </Switch>
         </BrowserRouter>
       </div>

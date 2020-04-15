@@ -34,7 +34,7 @@ export const DashboardHome = () => {
   }
 
   useEffect(() => {
-    dispatch(getAllPosts());
+    dispatch(getAllPosts({}));
     dispatch(getUserDetails(userId));
   }, [dispatch, userId])
 

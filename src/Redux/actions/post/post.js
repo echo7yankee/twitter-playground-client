@@ -12,7 +12,7 @@ export function addPost(post, userData) {
         }
       })
 
-      dispatch(getAllPosts());
+      dispatch(getAllPosts({}));
 
     } catch (error) {
       console.log(error)
@@ -20,7 +20,7 @@ export function addPost(post, userData) {
   }
 }
 
-export function getAllPosts() {
+export function getAllPosts(params) {
   return async (dispatch) => {
     try {
 
@@ -28,7 +28,9 @@ export function getAllPosts() {
         type: SET_POSTS_LOADING
       })
 
-      const response = await axios.get('/post/all');
+      const response = await axios.get('/post/all', {
+        params
+      });
       const { data } = response;
 
       dispatch({
@@ -47,7 +49,7 @@ export function removePost(postId) {
     try {
       await axios.delete(`/post/${postId}`);
 
-      dispatch(getAllPosts());
+      dispatch(getAllPosts({}));
     } catch (error) {
       console.log(error);
     }
@@ -68,7 +70,7 @@ export function editPost(postId, newPost) {
   return async (dispatch) => {
     try {
       await axios.put(`/post/${postId}`, newPost)
-      dispatch(getAllPosts());
+      dispatch(getAllPosts({}));
     } catch (error) {
       console.log(error);
     }
@@ -84,7 +86,7 @@ export function likePost(postId, userWhoLikedPostId) {
         }
       })
 
-      dispatch(getAllPosts());
+      dispatch(getAllPosts({}));
 
     } catch (error) {
       console.log(error)
@@ -97,7 +99,7 @@ export function votePoll(postId, voteContainer) {
     try {
       await axios.put(`/post/${postId}/poll-vote`, voteContainer)
 
-      dispatch(getAllPosts());
+      dispatch(getAllPosts({}));
 
     } catch (error) {
       console.log(error)
@@ -115,7 +117,7 @@ export function createPostComment(userId, postId, comment) {
         }
       })
 
-      dispatch(getAllPosts());
+      dispatch(getAllPosts({}));
     } catch (error) {
       console.log(error);
     }
@@ -126,7 +128,7 @@ export function removePostComment(postCommentId) {
   return async (dispatch) => {
     try {
       await axios.delete(`/postComment/${postCommentId}`)
-      dispatch(getAllPosts());
+      dispatch(getAllPosts({}));
     } catch (error) {
       console.log(error);
     }
@@ -148,7 +150,7 @@ export function editPostComment(updatedCommentId, updatedComment) {
   return async (dispatch) => {
     try {
       await axios.put(`/postComment/${updatedCommentId}`, updatedComment);
-      dispatch(getAllPosts())
+      dispatch(getAllPosts({}))
     } catch (error) {
       console.log(error);
     }
