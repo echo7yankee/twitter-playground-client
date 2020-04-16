@@ -32,6 +32,7 @@ export const SideMenu = () => {
       dispatch(getUserDetails(userId));
     }
   }, [userId, dispatch, ownerProfileImg])
+
   useEffect(() => {
     setProfileImg(ownerProfileImg !== 'null' ? ownerProfileImg : user.profileImg)
   }, [ownerProfileImg, user.profileImg])

@@ -26,7 +26,7 @@ export const Profile = ({ match, history }) => {
     userId = jwt.decode(token).params.id;
   }
 
-  const id = match.params.id || userId;
+  const id = match.params.userId || userId;
   const state = {
     ownerId: history.location.state && history.location.state.owner.ownerId,
     isOwner: history.location.state && history.location.state.owner.isOwner,

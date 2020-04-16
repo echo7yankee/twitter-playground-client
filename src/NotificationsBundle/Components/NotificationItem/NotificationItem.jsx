@@ -1,5 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { config } from '../../../utils/constants/Environment';
+import ContentEditable from 'react-contenteditable';
+//react router dom
+import { Link } from 'react-router-dom';
 //services
 import { getNotificationDropdownItems } from '../../Services/getNotificationDropdownItems';
 //style
@@ -7,6 +10,7 @@ import style from './notificationItem.module.css';
 import { IoIosStar, IoIosArrowDown, IoIosPerson } from 'react-icons/io';
 import { DropdownItems } from '../../../GlobalComponents/Dropdown/DropdownItems';
 import { useOutsideClose } from '../../../GlobalComponents/CloseDropdown/CloseDropdown';
+
 
 export const NotificationItem = ({ post }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -20,7 +24,11 @@ export const NotificationItem = ({ post }) => {
 
   const { url } = config;
   return (
-    <div className={style.notificationItem}>
+    <Link
+      to={{
+        pathname: `/dashboard/status/${post.id}`,
+      }}
+      className={style.notificationItem}>
       <div className={style.notificationItemIcon}>
         <IoIosStar />
       </div>
@@ -40,12 +48,10 @@ export const NotificationItem = ({ post }) => {
       <div className={style.notificationItemSubtitle}>
         <span>Recent Tweet from <b>{post.username}</b></span>
       </div>
-      <div
+      <ContentEditable
         className={style.notificationItemContent}
-        dangerouslySetInnerHTML={{
-          __html: post.comment
-        }}
-      ></div>
-    </div>
+        html={post.comment}
+      />
+    </Link>
   )
 }

@@ -116,7 +116,7 @@ export const TweetItem = ({ post, user, setIsModal }) => {
     <>
       <div className={style.tweet}>
         <TweetItemHeaderInfoProfile post={post} />
-        <div style={{ width: '100%' }}>
+        <div style={{ width: '61rem' }}>
           <TweetItemHeaderInfo
             post={post}
             action={action}

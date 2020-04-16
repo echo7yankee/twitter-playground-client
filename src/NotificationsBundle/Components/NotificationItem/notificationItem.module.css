@@ -1,4 +1,4 @@
-.notificationItem {
+.notificationItem:link,.notificationItem:visited {
   padding: 1rem 2rem 1rem 4rem;
   display: grid;
   grid-template-columns: max-content 1fr;
@@ -6,6 +6,7 @@
   grid-gap:1rem;
   cursor: pointer;
   transition: background-color .2s ease-in;
+  text-decoration: none;
 }
 
 .notificationItem:hover {
@@ -77,13 +78,11 @@
   grid-row: 3;
   grid-column: 2;
   align-self: center;
+  color: var(--blue-color-7);
+  font-size: 1.5rem;
+  outline: none;
 }
 
 .notificationItemSubtitle {
   grid-row: 2;
-}
-
-.notificationItemSubtitle span {
-  font-size: 1.5rem;
-  color: var(--blue-color-7);
 }

@@ -4,7 +4,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 //react router dom
-import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { LastLocationProvider } from 'react-router-last-location';
 
 //components
@@ -14,6 +14,7 @@ import { Trends } from '../TrendsBundle/Screens/Trends';
 import { Profile } from '../ProfileBundle/Screens/Profile';
 import { Notifications } from '../NotificationsBundle/Screens/Notifications';
 
+
 export const Dashboard = () => {
   //redux
   const authenticated = useSelector(state => state.auth.authenticated);
@@ -21,27 +22,25 @@ export const Dashboard = () => {
   if (!authenticated) { return <Redirect to='/' /> }
 
   return <div>
-    <BrowserRouter>
-      <LastLocationProvider>
-        <div className="dashboard">
-          <div className="container-large">
-            <div className='container-column-small'>
-              <SideMenu />
-            </div>
-            <div className="container-column-large">
-              <Switch>
-                <Route path='/dashboard/' component={DashboardHome} exact />
-                <Route path='/dashboard/notifications' component={Notifications} />
-                <Route path='/dashboard/profile' component={Profile} />
-                <Route path='/dashboard/:id' component={Profile} />
-              </Switch>
-            </div>
-            <div className='container-column-medium mt-05'>
-              <Trends />
-            </div>
+    <LastLocationProvider>
+      <div className="dashboard">
+        <div className="container-large">
+          <div className='container-column-small'>
+            <SideMenu />
+          </div>
+          <div className="container-column-large">
+            <Switch>
+              <Route path='/dashboard' component={DashboardHome} exact />
+              <Route path='/dashboard/notifications' component={Notifications} />
+              <Route path='/dashboard/profile/' component={Profile} />
+              <Route path='/dashboard/:userId' component={Profile} />
+            </Switch>
+          </div>
+          <div className='container-column-medium mt-05'>
+            <Trends />
           </div>
         </div>
-      </LastLocationProvider>
-    </BrowserRouter>
+      </div>
+    </LastLocationProvider>
   </div>
 }

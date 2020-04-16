@@ -130,7 +130,7 @@ export const TweetCreator = ({
     <div className={style.tweetCreatorContainer}>
       <div className={style.tweetCreatorHeader}>
         <TweetCreatorProfileImg user={user} />
-        <div style={{ width: '55rem' }}>
+        <div style={{ width: '61rem' }}>
           <div>
             <ContentEditable
               placeholder={placeholder}

@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import ContentEditable from 'react-contenteditable';
 //react router dom
 import { Link } from 'react-router-dom';
 
@@ -62,11 +63,10 @@ export const TweetItemHeaderInfo = ({
           />
         </div>
       </div>
-      <div dangerouslySetInnerHTML={{
-        __html:
-          post.comment
-      }}>
-      </div>
+      <ContentEditable
+        className={style.tweetItemContent}
+        html={post.comment}
+      />
     </div>
   )
 }
