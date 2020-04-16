@@ -15,10 +15,6 @@ import { Profile } from '../ProfileBundle/Screens/Profile';
 import { Notifications } from '../NotificationsBundle/Screens/Notifications';
 
 export const Dashboard = () => {
-
-  // * TODO:
-  // * STYLE SideMenu AS TWITTER
-
   //redux
   const authenticated = useSelector(state => state.auth.authenticated);
 

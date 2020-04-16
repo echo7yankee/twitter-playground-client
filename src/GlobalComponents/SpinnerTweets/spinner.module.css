@@ -1,0 +1,11 @@
+.spinnerTweetsContainer {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.spinnerTweetsContainer img {
+  width: 3.2rem;
+  height: 3.2rem;
+}

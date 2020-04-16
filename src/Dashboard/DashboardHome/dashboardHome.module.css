@@ -1,15 +1,3 @@
 .dashboardHome {
   position: relative;
 }
-
-.dashboardHomeSpinnerContainer {
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.dashboardHomeSpinnerContainer img {
-  width: 3.2rem;
-  height: 3.2rem;
-}

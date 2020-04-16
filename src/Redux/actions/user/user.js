@@ -1,12 +1,14 @@
 //axios
 import axios from 'axios';
-import { GET_USER_DETAILS } from '../../types';
+import { GET_USER_DETAILS, RESET_USER_DETAILS, SET_USER_DETAILS_LOADING } from '../../types';
 import { getAllPosts } from '../post/post';
 import { logoutUser } from '../auth/auth';
 
 export const getUserDetails = (userId) => {
   return async (dispatch) => {
     try {
+      dispatch({ type: SET_USER_DETAILS_LOADING })
+
       const response = await axios.get(`/user/userDetails/${userId}`);
       const { data } = response;
 
@@ -20,6 +22,12 @@ export const getUserDetails = (userId) => {
       }
       console.log(error)
     }
+  }
+}
+
+export const resetUserDetails = () => {
+  return {
+    type: RESET_USER_DETAILS
   }
 }
 

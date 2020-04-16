@@ -2,19 +2,20 @@ import React, { useEffect } from 'react';
 import jwt from 'jsonwebtoken';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllPosts } from '../../../Redux/actions/post/post';
+import { getAllPosts, resetPosts } from '../../../Redux/actions/post/post';
 import { getUserDetails } from '../../../Redux/actions/user/user';
 
 //style
 import style from './notificationsItems.module.css';
 //Components
 import { NotificationItem } from '../NotificationItem/NotificationItem';
+import { SpinnerTweets } from '../../../GlobalComponents/SpinnerTweets/SpinnerTweets';
 
 export const NotificationsItems = () => {
-
   //redux
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.post.posts)
+  const posts = useSelector((state) => state.post.posts);
+  const isLoading = useSelector(state => state.post.isLoading);
   const user = useSelector((state) => state.user.userDetails);
   //token
   const token = localStorage.FBIdToken;
@@ -29,20 +30,28 @@ export const NotificationsItems = () => {
     dispatch(getUserDetails(userId))
   }, [dispatch, userId,]);
   useEffect(() => {
-    dispatch(getAllPosts({
-      userId: userFollows
-    }));
+    if (userFollows && userFollows.length) {
+      dispatch(getAllPosts({
+        userId: userFollows
+      }));
+    }
+
+    return () => {
+      dispatch(resetPosts());
+    }
   }, [dispatch, userFollows]);
 
   return (
-    <div className={style.notificationsItems}>
-      {
-        posts.length > 0
-          ? posts.map((post) => {
-            return <NotificationItem key={post.id} post={post} />
-          })
-          : null
-      }
-    </div>
+    isLoading
+      ? <SpinnerTweets />
+      : <div className={style.notificationsItems}>
+        {
+          posts.length > 0
+            ? posts.map((post) => {
+              return <NotificationItem key={post.id} post={post} />
+            })
+            : null
+        }
+      </div>
   )
 }

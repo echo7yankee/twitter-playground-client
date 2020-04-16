@@ -6,7 +6,7 @@ import style from './profile.module.css';
 
 //redux
 import { useSelector, useDispatch } from 'react-redux';
-import { getUserDetails, updateUserDetails, uploadUserImg, followUser } from '../../Redux/actions/user/user';
+import { getUserDetails, updateUserDetails, uploadUserImg, followUser, resetUserDetails } from '../../Redux/actions/user/user';
 
 //Components
 import { ProfileModal } from '../Components/ProfileModal/ProfileModal';
@@ -16,22 +16,9 @@ import { ProfileImage } from '../Components/ProfileImage/ProfileImage';
 import { ProfileImageEditButton } from '../Components/ProfileImageEditButton/ProfileImageEditButton';
 import { ProfileOverlayImage } from '../Components/ProfileOverlayImage/ProfileOverlayImage';
 import { ProfileBio } from '../Components/ProfileBio/ProfileBio';
+import { SpinnerTweets } from '../../GlobalComponents/SpinnerTweets/SpinnerTweets';
 
 export const Profile = ({ match, history }) => {
-  const visitorId = match.params.id;
-  const state = {
-    ownerId: history.location.state && history.location.state.owner.ownerId,
-    isOwner: history.location.state && history.location.state.owner.isOwner,
-  }
-  //redux 
-  const userDetails = useSelector(state => state.user.userDetails);
-  const dispatch = useDispatch();
-
-  //react state
-  const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState({});
-  const [showOverlayImage, setShowOverlayImage] = useState(false);
-
   //token
   const token = localStorage.FBIdToken;
   let userId;
@@ -39,17 +26,26 @@ export const Profile = ({ match, history }) => {
     userId = jwt.decode(token).params.id;
   }
 
+  const id = match.params.id || userId;
+  const state = {
+    ownerId: history.location.state && history.location.state.owner.ownerId,
+    isOwner: history.location.state && history.location.state.owner.isOwner,
+  }
+  //redux 
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.userDetails);
+  const isLoading = useSelector((state) => state.user.isLoading);
+
+  //react state
+  const [isOpen, setIsOpen] = useState(false);
+  const [showOverlayImage, setShowOverlayImage] = useState(false);
   useEffect(() => {
-    setUser(userDetails)
-  }, [userDetails, dispatch])
-  useEffect(() => {
-    if (visitorId) {
-      dispatch(getUserDetails(visitorId));
-      return;
-    } else {
-      dispatch(getUserDetails(userId));
+    dispatch(getUserDetails(id));
+
+    return () => {
+      dispatch(resetUserDetails());
     }
-  }, [dispatch, visitorId, userId])
+  }, [dispatch, id])
 
   //modal manipulation
   const openModal = () => {
@@ -83,8 +79,9 @@ export const Profile = ({ match, history }) => {
   }
 
   return (
-    user.fName ?
-      <div className={style.profile}>
+    isLoading || !user.id
+      ? <SpinnerTweets />
+      : <div className={style.profile}>
         <div>
           <PageTitle
             name={`${user.fName} ${user.lName}`}
@@ -116,6 +113,6 @@ export const Profile = ({ match, history }) => {
             user={user}
             setShowOverlayImage={setShowOverlayImage}
           />}
-      </div> : null
+      </div>
   )
 }

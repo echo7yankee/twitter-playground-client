@@ -11,6 +11,9 @@ import { NotificationsMenu } from '../Components/NotificationsMenu/Notifications
 import { NotificationsItems } from '../Components/NotificationsItems/NotificationsItems';
 
 export const Notifications = () => {
+
+  // TODO: Add in All and MENTIONS message if there are no items
+
   return (
     <div className={style.notifications}>
       <PageTitle name={NotificationsConstants.PAGE_TITLE} hasBackButton={true} />

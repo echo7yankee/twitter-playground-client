@@ -1,7 +1,8 @@
-import { GET_USER_DETAILS } from "../../types";
+import { GET_USER_DETAILS, RESET_USER_DETAILS, SET_USER_DETAILS_LOADING } from "../../types";
 
 const initState = {
-  userDetails: {}
+  userDetails: {},
+  isLoading: false,
 }
 
 export function userReducer(state, action) {
@@ -10,7 +11,9 @@ export function userReducer(state, action) {
   }
 
   switch (action.type) {
-    case GET_USER_DETAILS: return { ...state, userDetails: action.payload };
+    case SET_USER_DETAILS_LOADING: return { ...state, isLoading: true }
+    case GET_USER_DETAILS: return { ...state, userDetails: action.payload, isLoading: false };
+    case RESET_USER_DETAILS: return { ...state, userDetails: {} }
     default: return state;
   }
 }

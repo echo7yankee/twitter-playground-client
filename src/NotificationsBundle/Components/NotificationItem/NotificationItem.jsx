@@ -10,6 +10,7 @@ export const NotificationItem = ({ post }) => {
   // TODO: ADD LINK TOWARDS USER WHEN CLICKING ON PHOTO
   // TODO: ADD DROPDOWN
   // TODO: ADD POSTS LENGTH IN THE NOTIFICATION ICON IN SIDE MENU
+  // TODO: ADD DEFAULT PROFILE ICON IF THERE'S NO PROFILE IMG
 
   const { url } = config;
   return (

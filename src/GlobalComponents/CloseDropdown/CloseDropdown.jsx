@@ -8,7 +8,6 @@ export function useOutsideClose(ref, closeDropdown) {
   }
 
   useEffect(() => {
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
