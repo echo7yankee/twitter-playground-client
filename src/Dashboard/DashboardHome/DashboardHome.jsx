@@ -9,7 +9,7 @@ import { getUserDetails, resetUserDetails } from '../../Redux/actions/user/user'
 //Dashboard constants
 import { DashboardHomeConstants } from './Constants/DashboardHomeConstants';
 //components
-import { Tweets } from '../../TweetsBundle/Tweets';
+import { Tweets } from '../../TweetsBundle/Components/Tweets/Tweets';
 import { PageTitle } from '../../GlobalComponents/PageTitle/PageTitle';
 import { SpinnerTweets } from '../../GlobalComponents/SpinnerTweets/SpinnerTweets';
 

@@ -69,6 +69,7 @@
   align-items: center;
   justify-content: center;
   transition: background-color .2s ease-in;
+  z-index: 500;
 }
 .notificationItemDropdownIcon:hover {
   background-color: var(--blue-color-2)

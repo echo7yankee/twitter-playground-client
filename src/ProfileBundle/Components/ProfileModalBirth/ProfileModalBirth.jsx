@@ -7,7 +7,7 @@ import style from './profileModalBirth.module.css';
 import { ProfileConstants } from '../../Constants/ProfileConstants';
 
 //Components
-import { TweetSelect } from '../../../GlobalComponents/TweetInputSelect/TweetSelect/TweetSelect';
+import { TweetSelect } from '../../../TweetsBundle/Components/TweetInputSelect/TweetSelect/TweetSelect';
 
 export const ProfileModalBirth = ({
   showBirth,

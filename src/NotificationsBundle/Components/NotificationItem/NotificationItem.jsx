@@ -41,7 +41,10 @@ export const NotificationItem = ({ post }) => {
       <div
         ref={wrapperRef}
         className={style.notificationItemDropdownIcon}
-        onClick={() => setShowDropdown((prevState) => !prevState)} >
+        onClick={(e) => {
+          e.preventDefault();
+          setShowDropdown((prevState) => !prevState)
+        }}>
         <IoIosArrowDown className={showDropdown ? 'rotate-0' : 'rotate-90'} />
         <DropdownItems dropdownItems={getNotificationDropdownItems()} isDropdown={showDropdown} />
       </div>

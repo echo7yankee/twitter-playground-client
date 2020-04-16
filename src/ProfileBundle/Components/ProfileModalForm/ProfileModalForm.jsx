@@ -7,8 +7,8 @@ import style from './profileModalForm.module.css';
 import { ProfileConstants } from '../../Constants/ProfileConstants';
 
 //Components
-import { TweetInputGroupControl } from '../../../GlobalComponents/TweetInputGroupControl/TweetInputGroupControl';
-import { TweetTextareaGroupControl } from '../../../GlobalComponents/TweetTextareaGroupControl/TweetTextareaGroupControl';
+import { TweetInputGroupControl } from '../../../TweetsBundle/Components/TweetInputGroupControl/TweetInputGroupControl';
+import { TweetTextareaGroupControl } from '../../../TweetsBundle/Components/TweetTextareaGroupControl/TweetTextareaGroupControl';
 import { ProfileModalBirth } from '../ProfileModalBirth/ProfileModalBirth';
 
 export const ProfileModalForm = ({

@@ -13,7 +13,7 @@ import { SideMenu } from './SideMenu/SideMenu';
 import { Trends } from '../TrendsBundle/Screens/Trends';
 import { Profile } from '../ProfileBundle/Screens/Profile';
 import { Notifications } from '../NotificationsBundle/Screens/Notifications';
-import { SingleTweet } from '../TweetsBundle/SingleTweet/SingleTweet';
+import { SingleTweet } from '../TweetsBundle/Components/SingleTweet/SingleTweet';
 
 export const Dashboard = () => {
   //redux
