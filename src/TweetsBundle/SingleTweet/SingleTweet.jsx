@@ -1,7 +1,7 @@
 import React from 'react'
 
-export const SingleTweet = ({ params }) => {
-  console.log(params);
+export const SingleTweet = ({ history }) => {
+  console.log(history);
   return (
     <div>
       Single tweet

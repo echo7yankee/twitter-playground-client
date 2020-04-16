@@ -13,7 +13,7 @@ import { SideMenu } from './SideMenu/SideMenu';
 import { Trends } from '../TrendsBundle/Screens/Trends';
 import { Profile } from '../ProfileBundle/Screens/Profile';
 import { Notifications } from '../NotificationsBundle/Screens/Notifications';
-
+import { SingleTweet } from '../TweetsBundle/SingleTweet/SingleTweet';
 
 export const Dashboard = () => {
   //redux
@@ -32,8 +32,9 @@ export const Dashboard = () => {
             <Switch>
               <Route path='/dashboard' component={DashboardHome} exact />
               <Route path='/dashboard/notifications' component={Notifications} />
-              <Route path='/dashboard/profile/' component={Profile} />
-              <Route path='/dashboard/:userId' component={Profile} />
+              <Route path='/dashboard/profile' component={Profile} exact />
+              <Route path='/dashboard/user/:name' component={Profile} exact />
+              <Route path='/dashboard/status/:postId' component={SingleTweet} />
             </Switch>
           </div>
           <div className='container-column-medium mt-05'>

@@ -39,8 +39,9 @@ export const TweetItemHeaderInfo = ({
         <div className='dflex'>
           <Link
             to={{
-              pathname: `/dashboard/${post.userId}`,
+              pathname: `/dashboard/user/${post.username.split(' ').join('')}`,
               state: {
+                userId: post.userId,
                 owner: {
                   ownerId: user.id,
                   isOwner: post.userId === user.id ? null : false,

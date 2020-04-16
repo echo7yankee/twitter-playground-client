@@ -56,7 +56,9 @@ export const SideMenu = () => {
           </NavLink>
         </li>
         <li className={style.menuItem}>
-          <NavLink to='/dashboard/profile' activeClassName={style.isActive}>
+          <NavLink
+            to='/dashboard/profile'
+            activeClassName={style.isActive}>
             {
               profileImg === 'undefined' || profileImg === ''
                 ? <IoIosPerson className='placeholder-profile-img' />

@@ -9,7 +9,6 @@ import { Route, Switch } from 'react-router-dom';
 import { PageTitle } from '../../GlobalComponents/PageTitle/PageTitle'
 import { NotificationsMenu } from '../Components/NotificationsMenu/NotificationsMenu'
 import { NotificationsItems } from '../Components/NotificationsItems/NotificationsItems';
-import { SingleTweet } from '../../TweetsBundle/SingleTweet/SingleTweet';
 
 export const Notifications = () => {
 
@@ -23,7 +22,6 @@ export const Notifications = () => {
         <Switch>
           <Route path='/dashboard/notifications' component={NotificationsItems} />
           <Route path='/dashboard/notifications/mentions' component={NotificationsItems} />
-          <Route path='/dashboard/status/:postId' component={SingleTweet} exact />
         </Switch>
       </div>
     </div>

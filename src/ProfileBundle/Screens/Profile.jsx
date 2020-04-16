@@ -18,7 +18,7 @@ import { ProfileOverlayImage } from '../Components/ProfileOverlayImage/ProfileOv
 import { ProfileBio } from '../Components/ProfileBio/ProfileBio';
 import { SpinnerTweets } from '../../GlobalComponents/SpinnerTweets/SpinnerTweets';
 
-export const Profile = ({ match, history }) => {
+export const Profile = ({ history }) => {
   //token
   const token = localStorage.FBIdToken;
   let userId;
@@ -26,11 +26,13 @@ export const Profile = ({ match, history }) => {
     userId = jwt.decode(token).params.id;
   }
 
-  const id = match.params.userId || userId;
   const state = {
     ownerId: history.location.state && history.location.state.owner.ownerId,
     isOwner: history.location.state && history.location.state.owner.isOwner,
+    userId: history.location.state && history.location.state.userId
   }
+  const id = state.userId || userId;
+
   //redux 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userDetails);
