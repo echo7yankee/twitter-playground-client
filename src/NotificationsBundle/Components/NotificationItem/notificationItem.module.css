@@ -1,6 +1,4 @@
 .notificationItem {
-  border-left: 1px solid var(--blue-color-5);
-  border-right: 1px solid var(--blue-color-5);
   padding: 1rem 2rem 1rem 4rem;
   display: grid;
   grid-template-columns: max-content 1fr;
@@ -15,11 +13,11 @@
 }
 
 .notificationItem:not(:first-child) {
-  border-top: 2px solid var(--blue-color-5);
+  border-top: 1px solid var(--blue-color-4);
 }
 
 .notificationItem:last-child {
-  border-bottom: 2px solid var(--blue-color-5);
+  border-bottom: 1px solid var(--blue-color-4);
 }
 
 .notificationItemIcon {
@@ -41,7 +39,7 @@
   align-self: center;
 }
 
-.notificationItemImage img {
+.notificationItemImage img,.notificationItemImage svg {
   width: 100%;
   height: auto;
   object-fit: fill;
@@ -49,8 +47,30 @@
   cursor: pointer;
 }
 
-.notificationItemImage img:hover {
+.notificationItemImage img:hover,.notificationItemImage svg:hover {
   filter: brightness(75%);
+}
+
+.notificationItemImage svg{
+  fill: var(--blue-color-6);
+  border-color: var(--blue-color-4);
+}
+
+.notificationItemDropdownIcon {
+  position: relative;
+  grid-row: 1;
+  grid-column: 3;
+  align-self: center;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: .6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color .2s ease-in;
+}
+.notificationItemDropdownIcon:hover {
+  background-color: var(--blue-color-2)
 }
 
 .notificationItemContent,.notificationItemSubtitle {

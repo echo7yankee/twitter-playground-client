@@ -6,8 +6,7 @@ import style from './dropdown.module.css';
 //components
 import { DropdownItem } from './DropdownItem';
 
-export const DropdownItems = ({ isDropdown, dropdownItems, closeDropdown }) => {
-
+export const DropdownItems = ({ isDropdown, dropdownItems }) => {
   return (
     <div className={isDropdown ? style.DropdownShow : style.Dropdown}>
       <ul className={style.DropdownItems}>

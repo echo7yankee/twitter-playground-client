@@ -10,13 +10,13 @@ import { MdModeEdit } from 'react-icons/md';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { getFollowButtonState } from '../../../utils/services/getFollowButtonState';
 
-const volumeMuteIcon = <TiVolumeMute />;
-const trashIcon = <FaRegTrashAlt />;
-const editIcon = <MdModeEdit />;
-const followUser = <AiOutlineUserAdd />
-
-
 export default (post, userId, action) => {
+
+  const volumeMuteIcon = <TiVolumeMute />;
+  const trashIcon = <FaRegTrashAlt />;
+  const editIcon = <MdModeEdit />;
+  const followUser = <AiOutlineUserAdd />
+
   return [{
     name: post.userId === userId ? 'Remove Tweet' : null,
     icon: trashIcon,
