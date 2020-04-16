@@ -14,7 +14,7 @@ import { NavLink } from 'react-router-dom';
 
 export const SideMenu = () => {
   const { url } = config;
-  const user = useSelector(state => state.user.userDetails);
+  const user = useSelector((state) => state.user.userDetails);
   const ownerProfileImg = localStorage.getItem('ownerProfileImg');
   const [profileImg, setProfileImg] = useState('');
   //redux
@@ -47,7 +47,10 @@ export const SideMenu = () => {
         </li>
         <li className={style.menuItem}>
           <NavLink to='/dashboard/notifications' activeClassName={style.isActive}>
-            <IoMdNotificationsOutline />
+            <div className='pos-relative '>
+              <IoMdNotificationsOutline />
+              <span className={style.menuNotificationLength}>5</span>
+            </div>
             <span>Notifications</span>
           </NavLink>
         </li>

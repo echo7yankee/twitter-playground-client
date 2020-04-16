@@ -6,6 +6,12 @@
   grid-template-columns: max-content 1fr;
   grid-template-rows: 1fr;
   grid-gap:1rem;
+  cursor: pointer;
+  transition: background-color .2s ease-in;
+}
+
+.notificationItem:hover {
+  background-color: var(--white-color-darken);
 }
 
 .notificationItem:not(:first-child) {
