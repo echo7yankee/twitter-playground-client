@@ -5,7 +5,7 @@ import style from './singleTweet.module.css';
 import { userIdFromToken } from '../../../utils/services/userIdFromToken';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
-import { votePoll, getPost, resetPost } from '../../../Redux/actions/post/post';
+import { getPost, resetPost } from '../../../Redux/actions/post/post';
 
 //Components
 import { PageTitle } from '../../../GlobalComponents/PageTitle/PageTitle';
@@ -22,10 +22,6 @@ export const SingleTweet = ({ match }) => {
   const user = useSelector((state) => state.user.userDetails);
   //use state
   const singlePost = useSelector((state) => state.post.singlePost);
-
-  const handleVotePoll = (voteContainer) => {
-    dispatch(votePoll(singlePost.id, voteContainer))
-  }
 
   useEffect(() => {
     dispatch(getPost(postId));
@@ -67,7 +63,7 @@ export const SingleTweet = ({ match }) => {
                 && getPollChoicesFiltered(singlePost.poll.choices).length > 0
                 ? <TweetPollItems
                   poll={singlePost.poll}
-                  handleVotePoll={handleVotePoll}
+                  post={singlePost}
                   user={user}
                 />
                 : null}

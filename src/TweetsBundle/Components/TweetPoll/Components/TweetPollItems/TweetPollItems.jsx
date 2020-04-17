@@ -5,17 +5,21 @@ import style from './tweetPollItems.module.css';
 
 //utils
 import { getPersonWhoVoted } from '../../../../Services/getPersonWhoVoted';
-
+//redux
+import { useDispatch } from 'react-redux';
+import { votePoll } from '../../../../../Redux/actions/post/post';
 //Components
 import { TweetPollItem } from '../TweetPollItem/TweetPollItem';
 import { getVotesForOneItem } from '../../Services/getVotesForOneItem';
 import { getProgressBarPercentage } from '../../Services/getProgressBarPercentage';
 
+
 export const TweetPollItems = ({
   poll,
-  handleVotePoll,
+  post,
   user }) => {
-
+  //redux
+  const dispatch = useDispatch();
   //use state
   const [voteContainer, setVoteContainer] = useState({ userId: '', voteItem: '' })
 
@@ -39,6 +43,10 @@ export const TweetPollItems = ({
       ...voteContainer,
       voteItem: ''
     })
+  }
+
+  const handleVotePoll = (voteContainer) => {
+    dispatch(votePoll(post.id, voteContainer))
   }
 
   const personWhoVoted = getPersonWhoVoted(poll, user);

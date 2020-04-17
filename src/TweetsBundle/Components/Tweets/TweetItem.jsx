@@ -10,7 +10,6 @@ import {
   removePostComment,
   togglePostCommentEdit,
   editPostComment,
-  votePoll,
 } from '../../../Redux/actions/post/post';
 import { followUser } from '../../../Redux/actions/user/user';
 
@@ -60,10 +59,6 @@ export const TweetItem = ({ post, user, setIsModal }) => {
     follow: () => dispatch(followUser(user.id, post.userId, 'dropdown')),
   }
 
-  const handleVotePoll = (voteContainer) => {
-    dispatch(votePoll(post.id, voteContainer))
-  }
-
   const handleReplyButton = () => {
     setTogglePostReply(true);
     setIsReplyInput(true);
@@ -110,7 +105,7 @@ export const TweetItem = ({ post, user, setIsModal }) => {
             && getPollChoicesFiltered(post.poll.choices).length > 0
             ? <TweetPollItems
               poll={post.poll}
-              handleVotePoll={handleVotePoll}
+              post={post}
               user={user}
             />
             : null}
