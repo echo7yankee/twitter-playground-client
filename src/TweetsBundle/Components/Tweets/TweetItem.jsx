@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-
+import React, { useState, useRef } from 'react';
 
 //redux
 import style from './tweets.module.css';
@@ -28,8 +27,8 @@ import { TweetItemReplyCreator } from '../TweetItemReplyCreator/Components/Tweet
 import { TweetItemsButtonsReply } from '../TweetItemButtonsReply/Components/TweetItemsButtonsReply';
 import { TweetItemSocialButtons } from '../TweetItemSocialButtons/Components/TweetItemSocialButtons';
 import { TweetItemHeaderInfo } from '../TweetItemHeaderInfo/Components/TweetItemHeaderInfo';
-import { TweetItemHeaderInfoProfile } from '../TweetItemHeaderInfo/Components/TweetItemHeaderInfoProfile';
 import { TweetPollItems } from '../TweetPoll/Components/TweetPollItems/TweetPollItems';
+import { TweetProfileImg } from '../TweetProfileImg/TweetProfileImg';
 
 export const TweetItem = ({ post, user, setIsModal }) => {
 
@@ -40,17 +39,9 @@ export const TweetItem = ({ post, user, setIsModal }) => {
   const [isDropdown, setIsDropdown] = useState(false);
   const [togglePostReply, setTogglePostReply] = useState(false);
   const [isReplyInput, setIsReplyInput] = useState(false);
-  const [voteContainer, setVoteContainer] = useState({ userId: '', voteItem: '' })
 
   const contentEditableCreator = useRef(null);
   const contentEditableEdit = useRef(null);
-
-  useEffect(() => {
-    setVoteContainer({
-      voteItem: '',
-      userId: user.id
-    })
-  }, [user.id])
 
   const openDropdown = () => {
     setIsDropdown((prevState) => !prevState);
@@ -69,21 +60,7 @@ export const TweetItem = ({ post, user, setIsModal }) => {
     follow: () => dispatch(followUser(user.id, post.userId, 'dropdown')),
   }
 
-  const handlePollInputRadioChange = (e) => {
-    setVoteContainer({
-      ...voteContainer,
-      voteItem: e.target.value
-    })
-  }
-
-  const resetPollInputs = () => {
-    setVoteContainer({
-      ...voteContainer,
-      voteItem: ''
-    })
-  }
-
-  const handleVotePoll = () => {
+  const handleVotePoll = (voteContainer) => {
     dispatch(votePoll(post.id, voteContainer))
   }
 
@@ -115,7 +92,11 @@ export const TweetItem = ({ post, user, setIsModal }) => {
   return (
     <>
       <div className={style.tweet}>
-        <TweetItemHeaderInfoProfile post={post} />
+        <TweetProfileImg
+          profileImg={post.profileImg}
+          classNameIcon='placeholder-profile-img'
+          classNameDiv='tweet-profile-img-container mr-1'
+        />
         <div style={{ width: '61rem' }}>
           <TweetItemHeaderInfo
             post={post}
@@ -129,10 +110,6 @@ export const TweetItem = ({ post, user, setIsModal }) => {
             && getPollChoicesFiltered(post.poll.choices).length > 0
             ? <TweetPollItems
               poll={post.poll}
-              handlePollInputRadioChange={handlePollInputRadioChange}
-              isVoteItem={voteContainer.voteItem.length ? true : false}
-              resetPollInputs={resetPollInputs}
-              voteItem={voteContainer.voteItem}
               handleVotePoll={handleVotePoll}
               user={user}
             />

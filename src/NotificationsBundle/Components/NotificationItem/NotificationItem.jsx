@@ -11,8 +11,7 @@ import { IoIosStar, IoIosArrowDown, IoIosPerson } from 'react-icons/io';
 import { DropdownItems } from '../../../GlobalComponents/Dropdown/DropdownItems';
 import { useOutsideClose } from '../../../GlobalComponents/CloseDropdown/CloseDropdown';
 
-
-export const NotificationItem = ({ post }) => {
+export const NotificationItem = ({ history, post, user }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   // TODO: ADD LINK TOWARDS SINGLE POST WHEN CLICKING ON POST
@@ -27,12 +26,28 @@ export const NotificationItem = ({ post }) => {
     <Link
       to={{
         pathname: `/dashboard/status/${post.id}`,
+        state: post
       }}
       className={style.notificationItem}>
       <div className={style.notificationItemIcon}>
         <IoIosStar />
       </div>
-      <div className={style.notificationItemImage}>
+      <div
+        className={style.notificationItemImage}
+        onClick={(e) => {
+          e.preventDefault();
+          history.push({
+            pathname: `/dashboard/user/${post.username.split(' ').join('')}`,
+            state: {
+              userId: post.userId,
+              owner: {
+                ownerId: user.id,
+                isOwner: post.userId === user.id ? null : false,
+              }
+            }
+          })
+        }}
+      >
         {post.profileImg
           ? <img src={`${url.API_URL}image/${post.profileImg}`} alt="" />
           : <IoIosPerson className='placeholder-profile-img' />

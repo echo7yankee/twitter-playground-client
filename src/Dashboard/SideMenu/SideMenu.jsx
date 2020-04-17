@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { config } from '../../utils/constants/Environment';
-import jwt from 'jsonwebtoken'
 //style
 import style from './sideMenu.module.css';
 import { IoMdHome, IoIosPerson, IoMdNotificationsOutline } from 'react-icons/io';
@@ -11,6 +10,7 @@ import { getUserDetails } from '../../Redux/actions/user/user';
 
 //react router dom
 import { NavLink } from 'react-router-dom';
+import { userIdFromToken } from '../../utils/services/userIdFromToken';
 
 export const SideMenu = () => {
   const { url } = config;
@@ -20,18 +20,11 @@ export const SideMenu = () => {
   //redux
   const dispatch = useDispatch();
 
-  //token
-  const token = localStorage.FBIdToken;
-  let userId;
-  if (token) {
-    userId = jwt.decode(token).params.id;
-  }
-
   useEffect(() => {
     if (ownerProfileImg === 'null') {
-      dispatch(getUserDetails(userId));
+      dispatch(getUserDetails(userIdFromToken()));
     }
-  }, [userId, dispatch, ownerProfileImg])
+  }, [dispatch, ownerProfileImg])
 
   useEffect(() => {
     setProfileImg(ownerProfileImg !== 'null' ? ownerProfileImg : user.profileImg)

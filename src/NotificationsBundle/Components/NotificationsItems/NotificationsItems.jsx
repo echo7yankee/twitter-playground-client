@@ -1,34 +1,32 @@
 import React, { useEffect } from 'react';
-import jwt from 'jsonwebtoken';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts, resetPosts } from '../../../Redux/actions/post/post';
-import { getUserDetails } from '../../../Redux/actions/user/user';
+import { getUserDetails, resetUserDetails } from '../../../Redux/actions/user/user';
 
 //style
 import style from './notificationsItems.module.css';
 //Components
 import { NotificationItem } from '../NotificationItem/NotificationItem';
 import { SpinnerTweets } from '../../../GlobalComponents/SpinnerTweets/SpinnerTweets';
+import { userIdFromToken } from '../../../utils/services/userIdFromToken';
 
-export const NotificationsItems = () => {
+export const NotificationsItems = ({ history }) => {
   //redux
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.post.posts);
   const isLoading = useSelector(state => state.post.isLoading);
   const user = useSelector((state) => state.user.userDetails);
-  //token
-  const token = localStorage.FBIdToken;
-  let userId;
-  if (token) {
-    userId = jwt.decode(token).params.id;
-  }
 
   const userFollows = user.social && user.social.following
 
   useEffect(() => {
-    dispatch(getUserDetails(userId))
-  }, [dispatch, userId,]);
+    dispatch(getUserDetails(userIdFromToken()))
+
+    return () => {
+      dispatch(resetUserDetails());
+    }
+  }, [dispatch]);
   useEffect(() => {
     if (userFollows && userFollows.length) {
       dispatch(getAllPosts({
@@ -48,7 +46,12 @@ export const NotificationsItems = () => {
         {
           posts.length > 0
             ? posts.map((post) => {
-              return <NotificationItem key={post.id} post={post} />
+              return <NotificationItem
+                key={post.id}
+                post={post}
+                user={user}
+                history={history}
+              />
             })
             : null
         }

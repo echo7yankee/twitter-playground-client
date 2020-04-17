@@ -13,6 +13,7 @@ export const RESET_USER_DETAILS = 'RESET_USER_DETAILS';
 
 //POSTS
 export const GET_POSTS = 'GET_POSTS';
+export const GET_POST = 'GET_POST';
 export const SET_POSTS_LOADING = 'SET_POSTS_LOADING';
 export const SET_POST_IS_EDIT = 'SET_POST_IS_EDIT';
 export const SET_POST_COMMENT_IS_EDIT = 'SET_POST_COMMENT_IS_EDIT';

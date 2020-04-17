@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 //style
 import style from './tweetPollItems.module.css';
@@ -13,14 +13,37 @@ import { getProgressBarPercentage } from '../../Services/getProgressBarPercentag
 
 export const TweetPollItems = ({
   poll,
-  handlePollInputRadioChange,
-  isVoteItem,
-  resetPollInputs,
-  voteItem,
   handleVotePoll,
   user }) => {
 
-  const personWhoVoted = getPersonWhoVoted(poll, user)[0]
+  //use state
+  const [voteContainer, setVoteContainer] = useState({ userId: '', voteItem: '' })
+
+  useEffect(() => {
+    setVoteContainer({
+      voteItem: '',
+      userId: user.id
+    })
+  }, [user.id])
+
+
+  const handlePollInputRadioChange = (e) => {
+    setVoteContainer({
+      ...voteContainer,
+      voteItem: e.target.value
+    })
+  }
+
+  const resetPollInputs = () => {
+    setVoteContainer({
+      ...voteContainer,
+      voteItem: ''
+    })
+  }
+
+  const personWhoVoted = getPersonWhoVoted(poll, user);
+  const isVoteItem = voteContainer.voteItem.length ? true : false
+  const { voteItem } = voteContainer;
 
   return (
     <div className={style.tweetPoll}>
@@ -47,7 +70,7 @@ export const TweetPollItems = ({
           : style.tweetPollVoteButtonDisabled}>
           <button
             disabled={!isVoteItem}
-            onClick={handleVotePoll}>Vote</button>
+            onClick={() => handleVotePoll(voteContainer)}>Vote</button>
           {isVoteItem && <button onClick={resetPollInputs}>Cancel</button>}
         </div>}
     </div>

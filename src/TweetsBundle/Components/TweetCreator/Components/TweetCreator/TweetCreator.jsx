@@ -12,8 +12,8 @@ import { createPoll } from '../../../../../utils/services/createPoll';
 import ContentEditable from 'react-contenteditable'
 import { TweetCreatorButtonIcons } from '../TweetCreatorButtonIcons/TweetCreatorButtonIcons';
 import { TweetCreatorButton } from '../TweetCreatorButton/TweetCreatorButton';
-import { TweetCreatorProfileImg } from '../TweetCreatorProfileImg/TweetCreatorProfileImg';
 import { TweetCreatorPoll } from '../TweetCreatorPoll/TweetCreatorPoll';
+import { TweetProfileImg } from '../../../TweetProfileImg/TweetProfileImg';
 
 
 export const TweetCreator = ({
@@ -129,7 +129,11 @@ export const TweetCreator = ({
   return (
     <div className={style.tweetCreatorContainer}>
       <div className={style.tweetCreatorHeader}>
-        <TweetCreatorProfileImg user={user} />
+        <TweetProfileImg
+          profileImg={user.profileImg}
+          classNameIcon='placeholder-profile-img'
+          classNameDiv='tweet-profile-img-container mr-1'
+        />
         <div style={{ width: '61rem' }}>
           <div>
             <ContentEditable

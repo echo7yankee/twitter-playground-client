@@ -3,7 +3,7 @@ import moment from 'moment';
 
 //style
 import style from './tweetItemReply.module.css';
-import { IoIosPerson } from 'react-icons/io'
+import { TweetProfileImg } from '../TweetProfileImg/TweetProfileImg';
 
 
 export const TweetItemReply = ({ postComment, removeCommentFromPost, togglePostCommentEdit, user }) => {
@@ -15,13 +15,11 @@ export const TweetItemReply = ({ postComment, removeCommentFromPost, togglePostC
     <div className={style.tweetItemReply}>
       <div className='dflex space-between ml-6'>
         <div className="dflex">
-          {postComment.profileImg === ''
-            ? <IoIosPerson className='placeholder-profile-img-reply' />
-            : <div className='tweet-profile-img-container-reply  mr-1'>
-              <img
-                className='tweet-profile-img align-self-start '
-                src={`http://localhost:5000/image/${postComment.profileImg}`} alt="profile" />
-            </div>}
+          <TweetProfileImg
+            profileImg={postComment.profileImg}
+            classNameIcon='placeholder-profile-img-reply'
+            classNameDiv='tweet-profile-img-container-reply mr-1'
+          />
           <div className={style.tweetItemReplyLeft}>
             <div className="dflex">
               <p>

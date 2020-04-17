@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import jwt from 'jsonwebtoken';
 
 //style
 import style from './profile.module.css';
@@ -17,21 +16,15 @@ import { ProfileImageEditButton } from '../Components/ProfileImageEditButton/Pro
 import { ProfileOverlayImage } from '../Components/ProfileOverlayImage/ProfileOverlayImage';
 import { ProfileBio } from '../Components/ProfileBio/ProfileBio';
 import { SpinnerTweets } from '../../GlobalComponents/SpinnerTweets/SpinnerTweets';
+import { userIdFromToken } from '../../utils/services/userIdFromToken';
 
 export const Profile = ({ history }) => {
-  //token
-  const token = localStorage.FBIdToken;
-  let userId;
-  if (token) {
-    userId = jwt.decode(token).params.id;
-  }
-
   const state = {
     ownerId: history.location.state && history.location.state.owner.ownerId,
     isOwner: history.location.state && history.location.state.owner.isOwner,
     userId: history.location.state && history.location.state.userId
   }
-  const id = state.userId || userId;
+  const id = state.userId || userIdFromToken();
 
   //redux 
   const dispatch = useDispatch();

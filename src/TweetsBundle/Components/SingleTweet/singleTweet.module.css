@@ -1,0 +1,19 @@
+.singlePost {
+  padding: 1.5rem;
+  border-left: 1px solid var(--blue-color-4);
+  border-right: 1px solid var(--blue-color-4);
+  border-bottom: 1px solid var(--blue-color-4);
+}
+
+.singlePostHeader {
+  display: flex;
+  align-items: center;
+}
+
+.singlePostHeader h3 {
+  font-size: 1.5rem;
+}
+
+.singlePostContent {
+  margin-top: 1.5rem;
+}

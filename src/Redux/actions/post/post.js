@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_POSTS, SET_POSTS_LOADING, SET_POST_IS_EDIT, SET_POST_COMMENT_IS_EDIT, RESET_POSTS } from '../../types';
+import { GET_POSTS, SET_POSTS_LOADING, SET_POST_IS_EDIT, SET_POST_COMMENT_IS_EDIT, RESET_POSTS, GET_POST } from '../../types';
 
 export function addPost(post, userData) {
   return async (dispatch) => {
@@ -40,6 +40,23 @@ export function getAllPosts(params) {
 
     } catch (error) {
       console.log(error)
+    }
+  }
+}
+
+export function getPost(postId) {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/post/${postId}`);
+      const { data } = response;
+
+      dispatch({
+        type: GET_POST,
+        payload: data
+      })
+
+    } catch (error) {
+      console.log(error);
     }
   }
 }
@@ -107,7 +124,7 @@ export function votePoll(postId, voteContainer) {
       await axios.put(`/post/${postId}/poll-vote`, voteContainer)
 
       dispatch(getAllPosts({}));
-
+      dispatch(getPost(postId))
     } catch (error) {
       console.log(error)
     }

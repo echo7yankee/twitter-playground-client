@@ -1,7 +1,5 @@
 import React, { useRef } from 'react';
 import ContentEditable from 'react-contenteditable';
-//react router dom
-import { Link } from 'react-router-dom';
 
 //utils
 import tweetItemDropdownArr from '../Services/getTweetItemDropdownArr'
@@ -16,6 +14,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 //Components
 import { DropdownItems } from '../../../../GlobalComponents/Dropdown/DropdownItems';
 import { useOutsideClose } from '../../../../GlobalComponents/CloseDropdown/CloseDropdown';
+import { CustomLink } from '../../../../GlobalComponents/CustomLink/CustomLink';
 
 export const TweetItemHeaderInfo = ({
   post,
@@ -37,7 +36,7 @@ export const TweetItemHeaderInfo = ({
     <div>
       <div className={style.tweetItemHeaderContainer}>
         <div className='dflex'>
-          <Link
+          <CustomLink
             to={{
               pathname: `/dashboard/user/${post.username.split(' ').join('')}`,
               state: {
@@ -50,7 +49,7 @@ export const TweetItemHeaderInfo = ({
             }}
           >
             <h3>{post.username}</h3>
-          </Link>
+          </CustomLink>
           <span className='ml-05'>-</span>
           <span className='ml-05'>{fromNowDate}</span>
           <span className='ml-05'>{`${postDay} ${postMonth}`}</span>

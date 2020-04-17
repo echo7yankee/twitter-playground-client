@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import jwt from 'jsonwebtoken';
 //style
 import style from './dashboardHome.module.css';
 //redux
@@ -12,6 +11,7 @@ import { DashboardHomeConstants } from './Constants/DashboardHomeConstants';
 import { Tweets } from '../../TweetsBundle/Components/Tweets/Tweets';
 import { PageTitle } from '../../GlobalComponents/PageTitle/PageTitle';
 import { SpinnerTweets } from '../../GlobalComponents/SpinnerTweets/SpinnerTweets';
+import { userIdFromToken } from '../../utils/services/userIdFromToken';
 
 export const DashboardHome = () => {
   //redux
@@ -20,22 +20,15 @@ export const DashboardHome = () => {
   const posts = useSelector(state => state.post.posts);
   const isLoading = useSelector(state => state.post.isLoading);
 
-  //token
-  const token = localStorage.FBIdToken;
-  let userId;
-  if (token) {
-    userId = jwt.decode(token).params.id;
-  }
-
   useEffect(() => {
     dispatch(getAllPosts({}));
-    dispatch(getUserDetails(userId));
+    dispatch(getUserDetails(userIdFromToken()));
 
     return () => {
       dispatch(resetPosts());
       dispatch(resetUserDetails());
     }
-  }, [dispatch, userId])
+  }, [dispatch])
 
   const handleAddPost = (post) => {
     const userData = {
