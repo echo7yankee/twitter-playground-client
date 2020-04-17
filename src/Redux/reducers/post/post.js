@@ -1,4 +1,4 @@
-import { SET_POSTS_LOADING, GET_POSTS, SET_POST_IS_EDIT, SET_POST_COMMENT_IS_EDIT, RESET_POSTS, GET_POST } from "../../types";
+import { SET_POSTS_LOADING, GET_POSTS, SET_POST_IS_EDIT, SET_POST_COMMENT_IS_EDIT, RESET_POSTS, GET_POST, RESET_POST } from "../../types";
 
 const initState = {
   isLoading: false,
@@ -15,7 +15,8 @@ export function postReducer(state, action) {
     case SET_POSTS_LOADING: return { ...state, isLoading: true };
     case GET_POSTS: return { ...state, isLoading: false, posts: action.payload };
     case GET_POST: return { ...state, singlePost: action.payload };
-    case RESET_POSTS: return { ...state, posts: [] }
+    case RESET_POSTS: return { ...state, posts: [] };
+    case RESET_POST: return { ...state, singlePost: {} };
     case SET_POST_IS_EDIT: return {
       ...state,
       posts: state.posts.map((post) => {

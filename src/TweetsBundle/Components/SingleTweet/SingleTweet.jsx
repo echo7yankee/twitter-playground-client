@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 //style
 import style from './singleTweet.module.css';
-
+//services
+import { userIdFromToken } from '../../../utils/services/userIdFromToken';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
-import { votePoll, getPost } from '../../../Redux/actions/post/post';
+import { votePoll, getPost, resetPost } from '../../../Redux/actions/post/post';
 
 //Components
 import { PageTitle } from '../../../GlobalComponents/PageTitle/PageTitle';
@@ -12,7 +13,7 @@ import { TweetProfileImg } from '../TweetProfileImg/TweetProfileImg';
 import { getPollChoicesFiltered } from '../../../utils/services/getPollChoicesFiltered';
 import { TweetPollItems } from '../TweetPoll/Components/TweetPollItems/TweetPollItems';
 import { getUserDetails, resetUserDetails } from '../../../Redux/actions/user/user';
-import { userIdFromToken } from '../../../utils/services/userIdFromToken';
+import { SpinnerTweets } from '../../../GlobalComponents/SpinnerTweets/SpinnerTweets';
 
 export const SingleTweet = ({ match }) => {
   const postId = match.params.postId;
@@ -28,6 +29,10 @@ export const SingleTweet = ({ match }) => {
 
   useEffect(() => {
     dispatch(getPost(postId));
+
+    return () => {
+      dispatch(resetPost());
+    }
   }, [dispatch, postId]);
 
   useEffect(() => {
@@ -69,6 +74,6 @@ export const SingleTweet = ({ match }) => {
             </div>
           </div>
         </div>
-      </div> : null
+      </div> : <SpinnerTweets />
   )
 }

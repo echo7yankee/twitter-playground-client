@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_POSTS, SET_POSTS_LOADING, SET_POST_IS_EDIT, SET_POST_COMMENT_IS_EDIT, RESET_POSTS, GET_POST } from '../../types';
+import { GET_POSTS, SET_POSTS_LOADING, SET_POST_IS_EDIT, SET_POST_COMMENT_IS_EDIT, RESET_POSTS, GET_POST, RESET_POST } from '../../types';
 
 export function addPost(post, userData) {
   return async (dispatch) => {
@@ -66,6 +66,13 @@ export function resetPosts() {
     type: RESET_POSTS
   }
 }
+
+export function resetPost() {
+  return {
+    type: RESET_POST
+  }
+}
+
 
 
 export function removePost(postId) {
