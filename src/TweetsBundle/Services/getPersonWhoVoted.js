@@ -1,5 +1,6 @@
 export const getPersonWhoVoted = (poll, user) => {
-  const personWhoVoted = poll.whoVoted.find(item => {
+  // console.log(poll);
+  const personWhoVoted = poll.whoVoted && poll.whoVoted.find(item => {
     return item.userId === user.id;
   })
   return personWhoVoted;

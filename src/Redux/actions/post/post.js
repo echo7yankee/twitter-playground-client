@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { GET_POSTS, SET_POSTS_LOADING, SET_POST_IS_EDIT, SET_POST_COMMENT_IS_EDIT, RESET_POSTS, GET_POST, RESET_POST } from '../../types';
+import { GET_POSTS, SET_POSTS_LOADING, RESET_POSTS, GET_POST, RESET_POST } from '../../types';
 
 export function addPost(post, userData) {
-  return async (dispatch) => {
+  return async (_dispatch) => {
     try {
       await axios.post('/post', post, {
         params: {
@@ -11,8 +11,6 @@ export function addPost(post, userData) {
           profileImg: userData.profileImg
         }
       })
-
-      dispatch(getAllPosts({}));
 
     } catch (error) {
       console.log(error)
@@ -73,35 +71,20 @@ export function resetPost() {
   }
 }
 
-
-
 export function removePost(postId) {
-  return async (dispatch) => {
+  return async (_dispatch) => {
     try {
       await axios.delete(`/post/${postId}`);
-
-      dispatch(getAllPosts({}));
     } catch (error) {
       console.log(error);
     }
   }
 }
 
-export function toggleEdit(postId, isEditable) {
-  return {
-    type: SET_POST_IS_EDIT,
-    payload: {
-      id: postId,
-      isEditable
-    },
-  }
-}
-
 export function editPost(postId, newPost) {
-  return async (dispatch) => {
+  return async (_dispatch) => {
     try {
       await axios.put(`/post/${postId}`, newPost)
-      dispatch(getAllPosts({}));
     } catch (error) {
       console.log(error);
     }
@@ -124,12 +107,9 @@ export function likePost(postId, userWhoLikedPostId) {
 }
 
 export function votePoll(postId, voteContainer) {
-  return async (dispatch) => {
+  return async (_dispatch) => {
     try {
       await axios.put(`/post/${postId}/poll-vote`, voteContainer)
-
-      dispatch(getAllPosts({}));
-      dispatch(getPost(postId))
     } catch (error) {
       console.log(error)
     }
@@ -137,7 +117,7 @@ export function votePoll(postId, voteContainer) {
 }
 
 export function createPostComment(userId, postId, comment) {
-  return async (dispatch) => {
+  return async (_dispatch) => {
     try {
       await axios.post(`/postComment`, comment, {
         params: {
@@ -145,8 +125,6 @@ export function createPostComment(userId, postId, comment) {
           postId
         }
       })
-
-      dispatch(getAllPosts({}));
     } catch (error) {
       console.log(error);
     }
@@ -154,32 +132,19 @@ export function createPostComment(userId, postId, comment) {
 }
 
 export function removePostComment(postCommentId) {
-  return async (dispatch) => {
+  return async (_dispatch) => {
     try {
-      await axios.delete(`/postComment/${postCommentId}`)
-      dispatch(getAllPosts({}));
+      await axios.delete(`/postComment/${postCommentId}`);
     } catch (error) {
       console.log(error);
     }
   }
 }
 
-export function togglePostCommentEdit(postCommentId, postId, isEditable) {
-  return {
-    type: SET_POST_COMMENT_IS_EDIT,
-    payload: {
-      postCommentId,
-      postId,
-      isEditable
-    }
-  }
-}
-
 export function editPostComment(updatedCommentId, updatedComment) {
-  return async (dispatch) => {
+  return async (_dispatch) => {
     try {
       await axios.put(`/postComment/${updatedCommentId}`, updatedComment);
-      dispatch(getAllPosts({}))
     } catch (error) {
       console.log(error);
     }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import uuidv4 from 'uuid/v4';
 //style
 import style from './tweetCreator.module.css';
 //utils
@@ -103,7 +103,9 @@ export const TweetCreator = ({
       }
     }
 
-    handleSubmit(processedPostObj)
+    isEdit
+      ? handleSubmit(processedPostObj)
+      : handleSubmit({ ...processedPostObj, uuid: uuidv4() })
     if (hasReset) {
       setPost(post)
     }

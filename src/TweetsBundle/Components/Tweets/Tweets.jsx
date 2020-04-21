@@ -17,9 +17,10 @@ export const Tweets = ({
   handleEditPost,
   user,
   posts,
-  cancelButtonAction
+  remove,
+  cancelButtonAction,
+  setPostOnEdit
 }) => {
-
   //state
   const [isModal, setIsModal] = useState({
     modalState: false,
@@ -50,9 +51,9 @@ export const Tweets = ({
           />
         </div>
         <div className={style.tweets}>
-          {posts && posts.map(post => {
+          {posts.map(post => {
             return (
-              <div key={post.id}>
+              <div key={post.uuid}>
                 {post.isEdit ?
                   <TweetCreator
                     handleSubmit={handleEditPost}
@@ -62,13 +63,15 @@ export const Tweets = ({
                     buttonText='Edit'
                     isEdit={true}
                     hasReset={false}
-                    cancelButtonAction={() => cancelButtonAction(post.id, false)}
+                    cancelButtonAction={() => cancelButtonAction(post.uuid, false)}
                     post={post}
                   />
                   : <TweetItem
                     post={post}
                     user={user}
                     setIsModal={setIsModal}
+                    setPostOnEdit={setPostOnEdit}
+                    remove={remove}
                   />}
               </div>
             )

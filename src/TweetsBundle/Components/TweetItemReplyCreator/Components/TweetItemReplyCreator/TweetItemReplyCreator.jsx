@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import uuidv4 from 'uuid/v4';
 //style
 import style from './tweetItemReplyCreator.module.css';
 
@@ -41,7 +41,12 @@ export const TweetItemReplyCreator = (
 
   const submit = (e) => {
     e.preventDefault();
-    onClick(postCommentObj)
+    isEdit
+      ? onClick(postCommentObj)
+      : onClick({
+        ...postCommentObj,
+        uuid: uuidv4()
+      })
     if (hasReset) {
       setPostReply(postComment)
     }

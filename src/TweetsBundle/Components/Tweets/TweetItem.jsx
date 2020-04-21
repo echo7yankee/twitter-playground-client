@@ -1,14 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 
 //redux
 import style from './tweets.module.css';
 import { useDispatch } from 'react-redux';
 import {
-  removePost,
-  toggleEdit,
   createPostComment,
   removePostComment,
-  togglePostCommentEdit,
   editPostComment,
   likePost,
 } from '../../../Redux/actions/post/post';
@@ -33,9 +30,12 @@ import { TweetItemSocialButtons } from '../TweetItemSocialButtons/Components/Twe
 import { TweetItemHeaderInfo } from '../TweetItemHeaderInfo/Components/TweetItemHeaderInfo';
 import { TweetPollItems } from '../TweetPoll/Components/TweetPollItems/TweetPollItems';
 import { TweetProfileImg } from '../TweetProfileImg/TweetProfileImg';
+import { addPostCommentToPost } from './Services/addPostCommentToPost';
+import { editPostCommentFromPost } from './Services/editPostCommentFromPost';
+import { setPostCommentOnEdit } from './Services/setPostCommentOnEdit';
+import { cancelPostCommentEdit } from './Services/cancelPostCommentEdit';
 
-export const TweetItem = ({ post, user, setIsModal }) => {
-
+export const TweetItem = ({ post, user, setIsModal, remove, setPostOnEdit }) => {
   //redux
   const dispatch = useDispatch();
 
@@ -43,14 +43,10 @@ export const TweetItem = ({ post, user, setIsModal }) => {
   const [isDropdown, setIsDropdown] = useState(false);
   const [togglePostReply, setTogglePostReply] = useState(false);
   const [isReplyInput, setIsReplyInput] = useState(false);
-  const [postObj, setPost] = useState({});
+  const [postObj, setPost] = useState(post);
 
   const contentEditableCreator = useRef(null);
   const contentEditableEdit = useRef(null);
-
-  useEffect(() => {
-    setPost(post);
-  }, [post])
 
   const handleLikePost = () => {
     const personWhoLiked = getPersonWhoLiked(postObj, user);
@@ -81,9 +77,9 @@ export const TweetItem = ({ post, user, setIsModal }) => {
   const action = {
     remove: () => setIsModal({
       modalState: true,
-      modalAction: () => dispatch(removePost(post.id))
+      modalAction: () => remove(post.uuid)
     }),
-    edit: () => dispatch(toggleEdit(post.id, true)),
+    edit: () => setPostOnEdit(post.uuid, true),
     follow: () => {
 
       const isFollowed = getFollowButtonState(user.id, post.user)
@@ -109,11 +105,21 @@ export const TweetItem = ({ post, user, setIsModal }) => {
   }
 
   const handleSendButton = (comment) => {
+    setPost(addPostCommentToPost(postObj, comment, user))
     dispatch(createPostComment(user.id, post.id, comment))
   }
 
   const handleEditButton = (updatedComment) => {
-    dispatch(editPostComment(updatedComment.id, updatedComment))
+    setPost(editPostCommentFromPost(postObj, updatedComment))
+    dispatch(editPostComment(updatedComment.uuid, updatedComment))
+  }
+
+  const setEdit = (id) => {
+    setPost(setPostCommentOnEdit(postObj, id))
+  }
+
+  const cancelCommentEdit = (id) => {
+    setPost(cancelPostCommentEdit(postObj, id))
   }
 
   if (contentEditableCreator || contentEditableEdit) {
@@ -124,7 +130,7 @@ export const TweetItem = ({ post, user, setIsModal }) => {
   }
 
   return (
-    postObj.id ?
+    postObj.uuid ?
       <>
         <div className={style.tweet}>
           <TweetProfileImg
@@ -145,7 +151,7 @@ export const TweetItem = ({ post, user, setIsModal }) => {
               && getPollChoicesFiltered(postObj.poll.choices).length > 0
               ? <TweetPollItems
                 poll={postObj.poll}
-                postObj={postObj}
+                post={postObj}
                 user={user}
               />
               : null}
@@ -169,7 +175,7 @@ export const TweetItem = ({ post, user, setIsModal }) => {
           : style.tweetItemReplyContainer}>
           {postObj.postComments.map((postComment) => {
             return (
-              <div key={postComment.id}>
+              <div key={postComment.uuid}>
                 {
                   postComment.isEdit && !isReplyInput
                     ?
@@ -182,14 +188,20 @@ export const TweetItem = ({ post, user, setIsModal }) => {
                       postComment={postComment}
                       hasReset={false}
                       isEdit={true}
-                      cancelButtonAction={() => dispatch(togglePostCommentEdit(postComment.id, postObj.id, false))}
+                      cancelButtonAction={() => cancelCommentEdit(postComment.uuid)}
                     />
                     : <TweetItemReply
                       postComment={postComment}
-                      removeCommentFromPost={() => dispatch(removePostComment(postComment.id))}
+                      removeCommentFromPost={() => {
+                        setPost({
+                          ...postObj,
+                          postComments: postObj.postComments.filter((comment) => comment.uuid !== postComment.uuid)
+                        })
+                        dispatch(removePostComment(postComment.uuid))
+                      }}
                       togglePostCommentEdit={() => {
                         setIsReplyInput(false);
-                        dispatch(togglePostCommentEdit(postComment.id, postObj.id, true))
+                        setEdit(postComment.uuid);
                       }}
                       user={user}
                     />

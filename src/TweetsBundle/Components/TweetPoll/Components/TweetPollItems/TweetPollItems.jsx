@@ -22,13 +22,15 @@ export const TweetPollItems = ({
   const dispatch = useDispatch();
   //use state
   const [voteContainer, setVoteContainer] = useState({ userId: '', voteItem: '' })
+  const [pollObj, setPoll] = useState({});
 
   useEffect(() => {
     setVoteContainer({
       voteItem: '',
       userId: user.id
     })
-  }, [user.id])
+    setPoll(poll)
+  }, [user.id, poll])
 
 
   const handlePollInputRadioChange = (e) => {
@@ -46,41 +48,46 @@ export const TweetPollItems = ({
   }
 
   const handleVotePoll = (voteContainer) => {
-    dispatch(votePoll(post.id, voteContainer))
+    setPoll({
+      ...poll,
+      whoVoted: [...pollObj.whoVoted, voteContainer],
+    })
+    dispatch(votePoll(post.uuid, voteContainer))
   }
 
-  const personWhoVoted = getPersonWhoVoted(poll, user);
+  const personWhoVoted = getPersonWhoVoted(pollObj, user);
   const isVoteItem = voteContainer.voteItem.length ? true : false
   const { voteItem } = voteContainer;
 
   return (
-    <div className={style.tweetPoll}>
-      <ul className={style.tweetPollItems}>
-        {poll.choices.map((choice) => {
-          const votesForOneItem = getVotesForOneItem(poll, choice)
-          const percentage = getProgressBarPercentage(votesForOneItem, poll)
-          return <TweetPollItem
-            key={choice.id}
-            choice={choice}
-            voteItem={voteItem}
-            handlePollInputRadioChange={handlePollInputRadioChange}
-            personWhoVoted={personWhoVoted}
-            user={user}
-            percentage={percentage}
-            votesForOneItem={votesForOneItem}
-          />
-        })}
-      </ul>
-      {personWhoVoted
-        && personWhoVoted.userId === user.id ? null
-        : <div className={isVoteItem
-          ? style.tweetPollVoteButton
-          : style.tweetPollVoteButtonDisabled}>
-          <button
-            disabled={!isVoteItem}
-            onClick={() => handleVotePoll(voteContainer)}>Vote</button>
-          {isVoteItem && <button onClick={resetPollInputs}>Cancel</button>}
-        </div>}
-    </div>
+    pollObj.choices && pollObj.choices.length ?
+      <div className={style.tweetPoll}>
+        <ul className={style.tweetPollItems}>
+          {pollObj.choices.map((choice) => {
+            const votesForOneItem = getVotesForOneItem(pollObj, choice)
+            const percentage = getProgressBarPercentage(votesForOneItem, pollObj)
+            return <TweetPollItem
+              key={choice.id}
+              choice={choice}
+              voteItem={voteItem}
+              handlePollInputRadioChange={handlePollInputRadioChange}
+              personWhoVoted={personWhoVoted}
+              user={user}
+              percentage={percentage}
+              votesForOneItem={votesForOneItem}
+            />
+          })}
+        </ul>
+        {personWhoVoted
+          && personWhoVoted.userId === user.id ? null
+          : <div className={isVoteItem
+            ? style.tweetPollVoteButton
+            : style.tweetPollVoteButtonDisabled}>
+            <button
+              disabled={!isVoteItem}
+              onClick={() => handleVotePoll(voteContainer)}>Vote</button>
+            {isVoteItem && <button onClick={resetPollInputs}>Cancel</button>}
+          </div>}
+      </div> : null
   )
 }
