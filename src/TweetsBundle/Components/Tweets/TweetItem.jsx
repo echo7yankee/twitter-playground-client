@@ -36,6 +36,9 @@ import { setPostCommentOnEdit } from './Services/setPostCommentOnEdit';
 import { cancelPostCommentEdit } from './Services/cancelPostCommentEdit';
 
 export const TweetItem = ({ post, user, setIsModal, remove, setPostOnEdit }) => {
+
+  // TODO: Add a link on each tweet to singleTweet
+
   //redux
   const dispatch = useDispatch();
 

@@ -16,6 +16,9 @@ import { getUserDetails, resetUserDetails } from '../../../Redux/actions/user/us
 import { SpinnerTweets } from '../../../GlobalComponents/SpinnerTweets/SpinnerTweets';
 
 export const SingleTweet = ({ match }) => {
+
+  // TODO: Display the other items too: likes, comments  etc.
+
   const postId = match.params.postId;
   //redux
   const dispatch = useDispatch();
