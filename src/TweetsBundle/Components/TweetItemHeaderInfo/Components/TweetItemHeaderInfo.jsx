@@ -17,7 +17,7 @@ import { useOutsideClose } from '../../../../GlobalComponents/CloseDropdown/Clos
 import { CustomLink } from '../../../../GlobalComponents/CustomLink/CustomLink';
 
 export const TweetItemHeaderInfo = ({
-  post,
+  postObj,
   isDropdown,
   closeDropdown,
   openDropdown,
@@ -25,9 +25,9 @@ export const TweetItemHeaderInfo = ({
   action }) => {
 
   //date 
-  const fromNowDate = moment(post.createdAt).fromNow();
-  const postMonth = new Date(post.createdAt).toDateString().split(" ")[1];
-  const postDay = new Date(post.createdAt).toDateString().split(" ")[2];
+  const fromNowDate = moment(postObj.createdAt).fromNow();
+  const postMonth = new Date(postObj.createdAt).toDateString().split(" ")[1];
+  const postDay = new Date(postObj.createdAt).toDateString().split(" ")[2];
 
   const wrapperRef = useRef(null);
   useOutsideClose(wrapperRef, closeDropdown);
@@ -38,17 +38,17 @@ export const TweetItemHeaderInfo = ({
         <div className='dflex'>
           <CustomLink
             to={{
-              pathname: `/dashboard/user/${post.username.split(' ').join('')}`,
+              pathname: `/dashboard/user/${postObj.username.split(' ').join('')}`,
               state: {
-                userId: post.userId,
+                userId: postObj.userId,
                 owner: {
                   ownerId: user.id,
-                  isOwner: post.userId === user.id ? null : false,
+                  isOwner: postObj.userId === user.id ? null : false,
                 }
               }
             }}
           >
-            <h3>{post.username}</h3>
+            <h3>{postObj.username}</h3>
           </CustomLink>
           <span className='ml-05'>-</span>
           <span className='ml-05'>{fromNowDate}</span>
@@ -59,13 +59,13 @@ export const TweetItemHeaderInfo = ({
           <DropdownItems
             isDropdown={isDropdown}
             closeDropdown={closeDropdown}
-            dropdownItems={tweetItemDropdownArr(post, user.id, action)}
+            dropdownItems={tweetItemDropdownArr(postObj, user.id, action)}
           />
         </div>
       </div>
       <ContentEditable
         className={style.tweetItemContent}
-        html={post.comment}
+        html={postObj.comment}
       />
     </div>
   )

@@ -109,15 +109,13 @@ export function editPost(postId, newPost) {
 }
 
 export function likePost(postId, userWhoLikedPostId) {
-  return async (dispatch) => {
+  return async (_dispatch) => {
     try {
       await axios.put(`/post/${postId}/like`, {}, {
         params: {
           userId: userWhoLikedPostId
         }
       })
-
-      dispatch(getAllPosts({}));
 
     } catch (error) {
       console.log(error)
