@@ -70,6 +70,7 @@ export const Tweets = ({
                   : <TweetItem
                     post={post}
                     user={user}
+                    isSingleTweet={false}
                     setIsModal={setIsModal}
                     setPostOnEdit={setPostOnEdit}
                     remove={remove}

@@ -20,10 +20,11 @@ export const TweetItemSocialButtons = ({ postObj, user, setTogglePostReply, hand
             onClick={handleLikePost} />}
         <span className={style.tweetItemCount}>{likes === 0 ? null : likes}</span>
       </div>
-      <div className="dflex">
+      <div className="dflex ml-1">
         <FaRegComment
           className={`${style.tweetIcon} ${style.tweetIconOutline}`}
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             if (!postObj.postComments.length) return;
             setTogglePostReply((prevState) => !prevState)
           }}

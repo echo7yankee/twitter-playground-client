@@ -1,6 +1,8 @@
 .tweetCreatorContainer {
   padding: 1rem 1.7rem;
   border-bottom: 10px solid var(--blue-color-4);
+  border-left: 1px solid var(--blue-color-4);
+  border-right: 1px solid var(--blue-color-4);
 }
 
 .tweetCreatorHeader {

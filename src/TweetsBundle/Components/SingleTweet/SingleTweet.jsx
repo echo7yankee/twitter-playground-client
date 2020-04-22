@@ -9,16 +9,11 @@ import { getPost, resetPost } from '../../../Redux/actions/post/post';
 
 //Components
 import { PageTitle } from '../../../GlobalComponents/PageTitle/PageTitle';
-import { TweetProfileImg } from '../TweetProfileImg/TweetProfileImg';
-import { getPollChoicesFiltered } from '../../../utils/services/getPollChoicesFiltered';
-import { TweetPollItems } from '../TweetPoll/Components/TweetPollItems/TweetPollItems';
 import { getUserDetails, resetUserDetails } from '../../../Redux/actions/user/user';
 import { SpinnerTweets } from '../../../GlobalComponents/SpinnerTweets/SpinnerTweets';
+import { TweetItem } from '../Tweets/TweetItem';
 
-export const SingleTweet = ({ match }) => {
-
-  // TODO: Display the other items too: likes, comments  etc.
-
+export const SingleTweet = ({ match, history }) => {
   const postId = match.params.postId;
   //redux
   const dispatch = useDispatch();
@@ -42,36 +37,19 @@ export const SingleTweet = ({ match }) => {
     }
   }, [dispatch])
 
+  console.log(singlePost);
+
   return (
-    user.id ?
+    user.id && singlePost.id ?
       <div>
         <PageTitle name='Thread' hasBackButton={true} />
         <div className={style.singlePost}>
-          <div className={style.singlePostHeader}>
-            <TweetProfileImg
-              profileImg={singlePost.profileImg}
-              classNameIcon='placeholder-profile-img'
-              classNameDiv='tweet-profile-img-container mr-1'
-            />
-            <h3>{singlePost.username}</h3>
-          </div>
-          <div className={style.singlePostContent}>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: singlePost.comment
-              }}
-            />
-            <div>
-              {singlePost.poll
-                && getPollChoicesFiltered(singlePost.poll.choices).length > 0
-                ? <TweetPollItems
-                  poll={singlePost.poll}
-                  post={singlePost}
-                  user={user}
-                />
-                : null}
-            </div>
-          </div>
+          <TweetItem
+            post={singlePost}
+            user={user}
+            isSingleTweet={true}
+            history={history}
+          />
         </div>
       </div> : <SpinnerTweets />
   )

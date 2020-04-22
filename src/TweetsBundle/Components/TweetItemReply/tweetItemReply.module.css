@@ -1,6 +1,8 @@
 .tweetItemReply {
   padding: 1rem 2rem 1rem 0rem; 
   border-bottom: 1px solid var(--blue-color-4);
+  border-left: 1px solid var(--blue-color-4);
+  border-right: 1px solid var(--blue-color-4);
 }
 
 .tweetItemReplyLeft {

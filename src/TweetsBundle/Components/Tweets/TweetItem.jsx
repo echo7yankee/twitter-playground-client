@@ -34,21 +34,29 @@ import { TweetPollItems } from '../TweetPoll/Components/TweetPollItems/TweetPoll
 import { TweetProfileImg } from '../TweetProfileImg/TweetProfileImg';
 import { CustomLink } from '../../../GlobalComponents/CustomLink/CustomLink';
 
-export const TweetItem = ({ post, user, setIsModal, remove, setPostOnEdit, history }) => {
+export const TweetItem = ({
+  post,
+  user,
+  setIsModal,
+  remove,
+  setPostOnEdit,
+  isSingleTweet,
+  history }) => {
   //redux
   const dispatch = useDispatch();
 
   //useState
   const [isDropdown, setIsDropdown] = useState(false);
-  const [togglePostReply, setTogglePostReply] = useState(false);
-  const [isReplyInput, setIsReplyInput] = useState(false);
+  const [togglePostReply, setTogglePostReply] = useState(isSingleTweet ? true : false);
+  const [isReplyInput, setIsReplyInput] = useState(isSingleTweet ? true : false);
   const [postObj, setPost] = useState(post);
 
   const contentEditableCreator = useRef(null);
   const contentEditableEdit = useRef(null);
   const linkRef = useRef(null);
 
-  const handleLikePost = () => {
+  const handleLikePost = (e) => {
+    e.preventDefault();
     const personWhoLiked = getPersonWhoLiked(postObj, user);
     if (personWhoLiked === user.id) {
       setPost({
@@ -95,13 +103,15 @@ export const TweetItem = ({ post, user, setIsModal, remove, setPostOnEdit, histo
     },
   }
 
-  const handleReplyButton = () => {
+  const handleReplyButton = (e) => {
+    e.preventDefault();
     setTogglePostReply(true);
     setIsReplyInput(true);
     contentEditableCreator.current && contentEditableCreator.current.focus();
   }
 
-  const cancelReply = () => {
+  const cancelReply = (e) => {
+    e.preventDefault();
     setIsReplyInput(false);
   }
 
@@ -165,24 +175,26 @@ export const TweetItem = ({ post, user, setIsModal, remove, setPostOnEdit, histo
                 />
               </div>
               : null}
-            <div className='mt-1 dflex space-between' onClick={(e) => e.preventDefault()}>
+            <div className='mt-1 dflex space-between'>
               <TweetItemSocialButtons
                 postObj={postObj}
                 user={user}
                 setTogglePostReply={setTogglePostReply}
                 handleLikePost={handleLikePost}
               />
-              <TweetItemsButtonsReply
+              {!isSingleTweet && <TweetItemsButtonsReply
                 handleReplyButton={handleReplyButton}
                 isReplyInput={isReplyInput}
                 cancelReply={cancelReply}
-              />
+              />}
             </div>
           </div>
         </CustomLink>
         <div className={togglePostReply
           ? style.tweetItemReplyContainerShow
-          : style.tweetItemReplyContainer}>
+          : style.tweetItemReplyContainer}
+          style={isSingleTweet ? { overflow: 'initial', minHeight: '60vh' } : {}}
+        >
           {postObj.postComments.map((postComment) => {
             return (
               <div key={postComment.uuid}>
