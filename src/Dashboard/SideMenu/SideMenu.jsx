@@ -3,10 +3,12 @@ import { config } from '../../utils/constants/Environment';
 //style
 import style from './sideMenu.module.css';
 import { IoMdHome, IoIosPerson, IoMdNotificationsOutline } from 'react-icons/io';
-
+//utils
+import spinner from '../../assets/gifs/spinner.gif';
 //redux
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserDetails } from '../../Redux/actions/user/user';
+import { getNotifications, resetNotifications } from '../../Redux/actions/notification/notification';
 
 //react router dom
 import { NavLink } from 'react-router-dom';
@@ -14,17 +16,29 @@ import { userIdFromToken } from '../../utils/services/userIdFromToken';
 
 export const SideMenu = () => {
   const { url } = config;
-  const user = useSelector((state) => state.user.userDetails);
   const ownerProfileImg = localStorage.getItem('ownerProfileImg');
+  //use State
   const [profileImg, setProfileImg] = useState('');
   //redux
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.userDetails);
+  const notifications = useSelector((state) => state.notification.notifications);
+  const notificationsLength = useSelector((state) => state.notification.notificationsLength);
+  const userFollows = user.social && user.social.following
 
   useEffect(() => {
     if (ownerProfileImg === 'null') {
       dispatch(getUserDetails(userIdFromToken()));
     }
-  }, [dispatch, ownerProfileImg])
+    if (userFollows && userFollows.length) {
+      dispatch(getNotifications({ userId: userFollows }));
+    }
+
+    return () => {
+      dispatch(resetNotifications());
+    }
+
+  }, [dispatch, ownerProfileImg, userFollows])
 
   useEffect(() => {
     setProfileImg(ownerProfileImg !== 'null' ? ownerProfileImg : user.profileImg)
@@ -43,7 +57,9 @@ export const SideMenu = () => {
           <NavLink to='/dashboard/notifications' activeClassName={style.isActive}>
             <div className='pos-relative '>
               <IoMdNotificationsOutline />
-              <span className={style.menuNotificationLength}>5</span>
+              {notificationsLength ? <span className={style.menuNotificationLength}>
+                {notificationsLength}
+              </span> : <img className={style.menuNotificationSpinner} src={spinner} alt="spinner" />}
             </div>
             <span>Notifications</span>
           </NavLink>

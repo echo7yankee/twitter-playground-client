@@ -15,8 +15,6 @@ import { pushToProfilePage } from '../../../utils/services/pushToProfilePage';
 export const NotificationItem = ({ history, post, user }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
-  // TODO: ADD LINK TOWARDS SINGLE POST WHEN CLICKING ON POST
-  // TODO: ADD LINK TOWARDS USER WHEN CLICKING ON PHOTO
   // TODO: ADD NOTIFICATION SYSTEM
 
   const linkRef = useRef(null);
