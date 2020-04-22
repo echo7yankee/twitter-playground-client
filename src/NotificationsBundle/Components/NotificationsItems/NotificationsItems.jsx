@@ -44,7 +44,7 @@ export const NotificationsItems = ({ history }) => {
       ? <SpinnerTweets />
       : <div className={style.notificationsItems}>
         {
-          posts.length > 0
+          posts.length
             ? posts.map((post) => {
               return <NotificationItem
                 key={post.id}
@@ -53,7 +53,13 @@ export const NotificationsItems = ({ history }) => {
                 history={history}
               />
             })
-            : null
+            :
+            <div className={style.notificationItemWarningMessage}>
+              <p>
+                Nothing to see here - yet
+             </p>
+              <p>When you follow someone, you will see their posts here</p>
+            </div>
         }
       </div>
   )

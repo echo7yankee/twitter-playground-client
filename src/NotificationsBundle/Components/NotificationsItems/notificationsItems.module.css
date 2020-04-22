@@ -1,3 +1,19 @@
 .notificationsItems {
 
 }
+
+.notificationItemWarningMessage {
+  text-align: center;
+  margin-top: 2rem;
+  color: var(--blue-color-7);
+}
+
+.notificationItemWarningMessage p:first-child {
+  display: inline;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.notificationItemWarningMessage p:last-child {
+  font-size: 1.6rem;
+}
