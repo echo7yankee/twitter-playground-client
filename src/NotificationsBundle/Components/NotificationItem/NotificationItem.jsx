@@ -16,7 +16,7 @@ export const NotificationItem = ({ history, post, user }) => {
 
   // TODO: ADD LINK TOWARDS SINGLE POST WHEN CLICKING ON POST
   // TODO: ADD LINK TOWARDS USER WHEN CLICKING ON PHOTO
-  // TODO: ADD POSTS LENGTH IN THE NOTIFICATION ICON IN SIDE MENU
+  // TODO: ADD NOTIFICATION SYSTEM
 
   const wrapperRef = useRef(null);
   useOutsideClose(wrapperRef, () => setShowDropdown(false));

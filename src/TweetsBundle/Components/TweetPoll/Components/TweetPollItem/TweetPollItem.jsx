@@ -16,6 +16,8 @@ export const TweetPollItem = ({ choice,
   votesForOneItem,
 }) => {
 
+  //TODO: Fix flicker between voted and having to vote states
+
   return (
     <li className={style.tweetPollItem}>
       {personWhoVoted
