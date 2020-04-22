@@ -35,9 +35,6 @@ import { TweetProfileImg } from '../TweetProfileImg/TweetProfileImg';
 import { CustomLink } from '../../../GlobalComponents/CustomLink/CustomLink';
 
 export const TweetItem = ({ post, user, setIsModal, remove, setPostOnEdit, history }) => {
-
-  // TODO: Add a link on each tweet to singleTweet
-
   //redux
   const dispatch = useDispatch();
 
