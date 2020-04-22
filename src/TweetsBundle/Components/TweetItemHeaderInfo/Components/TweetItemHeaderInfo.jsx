@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import ContentEditable from 'react-contenteditable';
 
 //utils
-import tweetItemDropdownArr from '../Services/getTweetItemDropdownArr'
+import { filterDropdownItems } from '../Services/filterDropdownItems'
 
 //moment
 import moment from "moment";
@@ -15,6 +15,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { DropdownItems } from '../../../../GlobalComponents/Dropdown/DropdownItems';
 import { useOutsideClose } from '../../../../GlobalComponents/CloseDropdown/CloseDropdown';
 import { CustomLink } from '../../../../GlobalComponents/CustomLink/CustomLink';
+
 
 export const TweetItemHeaderInfo = ({
   postObj,
@@ -59,7 +60,7 @@ export const TweetItemHeaderInfo = ({
           <DropdownItems
             isDropdown={isDropdown}
             closeDropdown={closeDropdown}
-            dropdownItems={tweetItemDropdownArr(postObj, user.id, action)}
+            dropdownItems={filterDropdownItems(postObj, user.id, action)}
           />
         </div>
       </div>
