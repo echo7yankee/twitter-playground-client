@@ -11,15 +11,17 @@ import {
 } from '../../../Redux/actions/post/post';
 import { followUser } from '../../../Redux/actions/user/user';
 
-//utils
+//utils/constants/services
 import { createPostReply } from '../../../utils/services/createPostReply';
 import { getPollChoicesFiltered } from '../../../utils/services/getPollChoicesFiltered';
 import { getPersonWhoLiked } from '../TweetItemSocialButtons/Services/getPersonWhoLiked';
 import { filterPostsFollowers } from './Services/filterPostsFollowers';
 import { addFollowerToPost } from './Services/addFollowerToPost';
 import { getFollowButtonState } from '../../../utils/services/getFollowButtonState';
-
-//Constants
+import { addPostCommentToPost } from './Services/addPostCommentToPost';
+import { editPostCommentFromPost } from './Services/editPostCommentFromPost';
+import { setPostCommentOnEdit } from './Services/setPostCommentOnEdit';
+import { cancelPostCommentEdit } from './Services/cancelPostCommentEdit';
 import { TweetsConstants } from '../../Constants/Constants';
 
 //Components
@@ -30,12 +32,9 @@ import { TweetItemSocialButtons } from '../TweetItemSocialButtons/Components/Twe
 import { TweetItemHeaderInfo } from '../TweetItemHeaderInfo/Components/TweetItemHeaderInfo';
 import { TweetPollItems } from '../TweetPoll/Components/TweetPollItems/TweetPollItems';
 import { TweetProfileImg } from '../TweetProfileImg/TweetProfileImg';
-import { addPostCommentToPost } from './Services/addPostCommentToPost';
-import { editPostCommentFromPost } from './Services/editPostCommentFromPost';
-import { setPostCommentOnEdit } from './Services/setPostCommentOnEdit';
-import { cancelPostCommentEdit } from './Services/cancelPostCommentEdit';
+import { CustomLink } from '../../../GlobalComponents/CustomLink/CustomLink';
 
-export const TweetItem = ({ post, user, setIsModal, remove, setPostOnEdit }) => {
+export const TweetItem = ({ post, user, setIsModal, remove, setPostOnEdit, history }) => {
 
   // TODO: Add a link on each tweet to singleTweet
 
@@ -50,6 +49,7 @@ export const TweetItem = ({ post, user, setIsModal, remove, setPostOnEdit }) => 
 
   const contentEditableCreator = useRef(null);
   const contentEditableEdit = useRef(null);
+  const linkRef = useRef(null);
 
   const handleLikePost = () => {
     const personWhoLiked = getPersonWhoLiked(postObj, user);
@@ -71,6 +71,7 @@ export const TweetItem = ({ post, user, setIsModal, remove, setPostOnEdit }) => 
 
   const openDropdown = () => {
     setIsDropdown((prevState) => !prevState);
+    linkRef.current.focus();
   }
 
   const closeDropdown = () => {
@@ -135,7 +136,13 @@ export const TweetItem = ({ post, user, setIsModal, remove, setPostOnEdit }) => 
   return (
     postObj.uuid ?
       <>
-        <div className={style.tweet}>
+        <CustomLink
+          to={{
+            pathname: `/dashboard/status/${post.id}`,
+            state: post
+          }}
+          linkRef={linkRef}
+          className={style.tweet}>
           <TweetProfileImg
             profileImg={postObj.profileImg}
             classNameIcon='placeholder-profile-img'
@@ -149,16 +156,19 @@ export const TweetItem = ({ post, user, setIsModal, remove, setPostOnEdit }) => 
               openDropdown={openDropdown}
               closeDropdown={closeDropdown}
               user={user}
+              history={history}
             />
             {postObj.poll
               && getPollChoicesFiltered(postObj.poll.choices).length > 0
-              ? <TweetPollItems
-                poll={postObj.poll}
-                post={postObj}
-                user={user}
-              />
+              ? <div onClick={(e) => e.stopPropagation()}>
+                <TweetPollItems
+                  poll={postObj.poll}
+                  post={postObj}
+                  user={user}
+                />
+              </div>
               : null}
-            <div className='mt-1 dflex space-between'>
+            <div className='mt-1 dflex space-between' onClick={(e) => e.preventDefault()}>
               <TweetItemSocialButtons
                 postObj={postObj}
                 user={user}
@@ -172,7 +182,7 @@ export const TweetItem = ({ post, user, setIsModal, remove, setPostOnEdit }) => 
               />
             </div>
           </div>
-        </div>
+        </CustomLink>
         <div className={togglePostReply
           ? style.tweetItemReplyContainerShow
           : style.tweetItemReplyContainer}>

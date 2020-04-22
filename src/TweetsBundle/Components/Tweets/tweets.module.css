@@ -3,10 +3,22 @@
   border-top: none;
 }
 
-.tweet {
+.tweet:link,.tweet:visited {
   display: flex;
-   border-bottom: 1px solid var(--blue-color-4);
-   padding: 2rem 1.7rem;
+  border-bottom: 1px solid var(--blue-color-4);
+  padding: 2rem 1.7rem;
+  cursor: pointer;
+  transition: .2s ease-in background-color;
+  text-decoration: none;
+  color: var(--blue-color-7);
+}
+
+.tweet:hover {
+    background-color: var(--white-color-darken);
+}
+
+.tweet:focus {
+  background-color: transparent;
 }
 
 .tweetItemReplyContainer {

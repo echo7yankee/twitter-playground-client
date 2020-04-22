@@ -62,7 +62,7 @@ export const TweetPollItems = ({
 
   return (
     pollObj.choices && pollObj.choices.length ?
-      <div className={style.tweetPoll}>
+      <div className={style.tweetPoll} >
         <ul className={style.tweetPollItems}>
           {pollObj.choices.map((choice) => {
             const votesForOneItem = getVotesForOneItem(pollObj, choice)
@@ -83,11 +83,16 @@ export const TweetPollItems = ({
           && personWhoVoted.userId === user.id ? null
           : <div className={isVoteItem
             ? style.tweetPollVoteButton
-            : style.tweetPollVoteButtonDisabled}>
+            : style.tweetPollVoteButtonDisabled}
+            onClick={(e) => e.preventDefault()}
+          >
             <button
               disabled={!isVoteItem}
               onClick={() => handleVotePoll(voteContainer)}>Vote</button>
-            {isVoteItem && <button onClick={resetPollInputs}>Cancel</button>}
+            {isVoteItem && <button onClick={(e) => {
+              e.preventDefault()
+              resetPollInputs()
+            }}>Cancel</button>}
           </div>}
       </div> : null
   )

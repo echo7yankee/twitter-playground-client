@@ -17,7 +17,7 @@ export const TweetPollItem = ({ choice,
 }) => {
   return (
     <li className={style.tweetPollItem}>
-      {personWhoVoted.userId === user.id ?
+      {personWhoVoted && personWhoVoted.userId === user.id ?
         <div>
           <ProgressBar
             percentage={percentage}
@@ -29,13 +29,13 @@ export const TweetPollItem = ({ choice,
           type='radio'
           id={choice.value}
           name='poll'
-          checked={choice.value === voteItem}
+          checked={voteItem === choice.value}
           value={choice.value}
           onChange={handlePollInputRadioChange}
         />
       }
       {
-        personWhoVoted.userId === user.id
+        personWhoVoted && personWhoVoted.userId === user.id
           ? null
           : <label htmlFor={choice.value}>{choice.value}</label>}
     </li>

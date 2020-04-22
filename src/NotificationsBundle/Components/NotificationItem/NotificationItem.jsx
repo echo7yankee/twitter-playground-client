@@ -1,8 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { config } from '../../../utils/constants/Environment';
 import ContentEditable from 'react-contenteditable';
-//react router dom
-import { Link } from 'react-router-dom';
 //services
 import { getNotificationDropdownItems } from '../../Services/getNotificationDropdownItems';
 //style
@@ -10,6 +8,9 @@ import style from './notificationItem.module.css';
 import { IoIosStar, IoIosArrowDown, IoIosPerson } from 'react-icons/io';
 import { DropdownItems } from '../../../GlobalComponents/Dropdown/DropdownItems';
 import { useOutsideClose } from '../../../GlobalComponents/CloseDropdown/CloseDropdown';
+import { CustomLink } from '../../../GlobalComponents/CustomLink/CustomLink';
+import { customLinkHistory } from '../../../utils/services/customLinkHistory';
+import { pushToProfilePage } from '../../../utils/services/pushToProfilePage';
 
 export const NotificationItem = ({ history, post, user }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -18,16 +19,18 @@ export const NotificationItem = ({ history, post, user }) => {
   // TODO: ADD LINK TOWARDS USER WHEN CLICKING ON PHOTO
   // TODO: ADD NOTIFICATION SYSTEM
 
+  const linkRef = useRef(null);
   const wrapperRef = useRef(null);
   useOutsideClose(wrapperRef, () => setShowDropdown(false));
 
   const { url } = config;
   return (
-    <Link
+    <CustomLink
       to={{
         pathname: `/dashboard/status/${post.id}`,
         state: post
       }}
+      linkRef={linkRef}
       className={style.notificationItem}>
       <div className={style.notificationItemIcon}>
         <IoIosStar />
@@ -36,16 +39,7 @@ export const NotificationItem = ({ history, post, user }) => {
         className={style.notificationItemImage}
         onClick={(e) => {
           e.preventDefault();
-          history.push({
-            pathname: `/dashboard/user/${post.username.split(' ').join('')}`,
-            state: {
-              userId: post.userId,
-              owner: {
-                ownerId: user.id,
-                isOwner: post.userId === user.id ? null : false,
-              }
-            }
-          })
+          customLinkHistory(() => pushToProfilePage(history, post, user));
         }}
       >
         {post.profileImg
@@ -59,9 +53,13 @@ export const NotificationItem = ({ history, post, user }) => {
         onClick={(e) => {
           e.preventDefault();
           setShowDropdown((prevState) => !prevState)
+          linkRef.current.focus();
         }}>
-        <IoIosArrowDown className={showDropdown ? 'rotate-0' : 'rotate-90'} />
-        <DropdownItems dropdownItems={getNotificationDropdownItems()} isDropdown={showDropdown} />
+        <IoIosArrowDown
+          className={showDropdown ? 'rotate-0' : 'rotate-90'} />
+        <DropdownItems
+          dropdownItems={getNotificationDropdownItems()}
+          isDropdown={showDropdown} />
       </div>
       <div className={style.notificationItemSubtitle}>
         <span>Recent Tweet from <b>{post.username}</b></span>
@@ -70,6 +68,6 @@ export const NotificationItem = ({ history, post, user }) => {
         className={style.notificationItemContent}
         html={post.comment}
       />
-    </Link>
+    </CustomLink>
   )
 }

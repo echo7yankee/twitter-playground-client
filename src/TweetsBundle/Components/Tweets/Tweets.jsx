@@ -19,7 +19,8 @@ export const Tweets = ({
   posts,
   remove,
   cancelButtonAction,
-  setPostOnEdit
+  setPostOnEdit,
+  history
 }) => {
   //state
   const [isModal, setIsModal] = useState({
@@ -72,6 +73,7 @@ export const Tweets = ({
                     setIsModal={setIsModal}
                     setPostOnEdit={setPostOnEdit}
                     remove={remove}
+                    history={history}
                   />}
               </div>
             )

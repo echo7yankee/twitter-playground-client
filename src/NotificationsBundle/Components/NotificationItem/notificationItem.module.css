@@ -1,4 +1,4 @@
-.notificationItem,.notificationItem {
+.notificationItem:link,.notificationItem:visited {
   padding: 1rem 2rem 1rem 4rem;
   display: grid;
   grid-template-columns: max-content 1fr;
@@ -7,10 +7,14 @@
   cursor: pointer;
   transition: background-color .2s ease-in;
   text-decoration: none;
+  color: var(--blue-color-7);
 }
 
 .notificationItem:hover {
   background-color: var(--white-color-darken);
+}
+.notificationItem:focus {
+  background-color: transparent;
 }
 
 .notificationItem:not(:first-child) {

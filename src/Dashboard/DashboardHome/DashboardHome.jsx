@@ -15,7 +15,7 @@ import { userIdFromToken } from '../../utils/services/userIdFromToken';
 import { addNewPost } from '../Services/addNewPost';
 import { getUpdatedPost } from '../Services/getUpdatedPost';
 
-export const DashboardHome = () => {
+export const DashboardHome = ({ history }) => {
   //redux
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userDetails);
@@ -97,6 +97,7 @@ export const DashboardHome = () => {
           remove={remove}
           cancelButtonAction={cancelButtonAction}
           setPostOnEdit={setPostOnEdit}
+          history={history}
         />
       </div>
     )
