@@ -11,6 +11,8 @@ export const TweetItemReply = ({ postComment, removeCommentFromPost, togglePostC
   const postMonth = new Date(postComment.createdAt).toDateString().split(" ")[1];
   const postDay = new Date(postComment.createdAt).toDateString().split(" ")[2];
 
+  // TODO: ADD A MODAL CONFIRMATION WHEN REMOVING A POST REPLY
+
   return (
     <div className={style.tweetItemReply}>
       <div className='dflex space-between ml-6'>

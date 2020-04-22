@@ -26,6 +26,10 @@ export const SideMenu = () => {
   const notificationsLength = useSelector((state) => state.notification.notificationsLength);
   const userFollows = user.social && user.social.following
 
+  // TODO: FINISH NOTIFICATION SYSTEM, RESET TO NONE WHEN CLICKING THE NOTIFICATION AND 
+  // RESTART WHEN ADDING NEW NOTIFICATION AGAIN (MIGHT NEED EVERY OR UPDATE MANY HERE)
+
+
   useEffect(() => {
     if (ownerProfileImg === 'null') {
       dispatch(getUserDetails(userIdFromToken()));

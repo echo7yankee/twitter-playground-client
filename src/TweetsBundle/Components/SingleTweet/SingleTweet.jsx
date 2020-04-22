@@ -39,6 +39,9 @@ export const SingleTweet = ({ match, history }) => {
 
   console.log(singlePost);
 
+  // TODO: ADD FUNCTIONALITY TO SINGLE TWEET DROPDOWN TOO. MIGHT HAVE TO
+  // REDESIGN THE LOGIC A BIT AND CRAM IT INSIDE TWEETITEM (remove for example)
+
   return (
     user.id && singlePost.id ?
       <div>
