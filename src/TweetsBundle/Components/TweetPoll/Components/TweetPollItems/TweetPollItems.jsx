@@ -5,6 +5,7 @@ import style from './tweetPollItems.module.css';
 
 //utils
 import { getPersonWhoVoted } from '../../../../Services/getPersonWhoVoted';
+import { createPoll } from '../../../../../utils/services/createPoll';
 //redux
 import { useDispatch } from 'react-redux';
 import { votePoll } from '../../../../../Redux/actions/post/post';
@@ -22,7 +23,7 @@ export const TweetPollItems = ({
   const dispatch = useDispatch();
   //use state
   const [voteContainer, setVoteContainer] = useState({ userId: '', voteItem: '' })
-  const [pollObj, setPoll] = useState({});
+  const [pollObj, setPoll] = useState(createPoll);
 
   useEffect(() => {
     setVoteContainer({
@@ -55,7 +56,7 @@ export const TweetPollItems = ({
     dispatch(votePoll(post.uuid, voteContainer))
   }
 
-  const personWhoVoted = getPersonWhoVoted(pollObj, user);
+  const personWhoVoted = pollObj.whoVoted.length && getPersonWhoVoted(pollObj, user);
   const isVoteItem = voteContainer.voteItem.length ? true : false
   const { voteItem } = voteContainer;
 

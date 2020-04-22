@@ -81,7 +81,7 @@ export const DashboardHome = () => {
     }))
   }
 
-  return isLoading
+  return !user.id && isLoading
     ? <SpinnerTweets />
     : (
       <div className={style.dashboardHome}>

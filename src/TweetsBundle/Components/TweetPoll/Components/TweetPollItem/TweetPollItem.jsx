@@ -15,13 +15,9 @@ export const TweetPollItem = ({ choice,
   percentage,
   votesForOneItem,
 }) => {
-
-  //TODO: Fix flicker between voted and having to vote states
-
   return (
     <li className={style.tweetPollItem}>
-      {personWhoVoted
-        && personWhoVoted.userId === user.id ?
+      {personWhoVoted.userId === user.id ?
         <div>
           <ProgressBar
             percentage={percentage}
@@ -38,10 +34,10 @@ export const TweetPollItem = ({ choice,
           onChange={handlePollInputRadioChange}
         />
       }
-      {personWhoVoted &&
+      {
         personWhoVoted.userId === user.id
-        ? null
-        : <label htmlFor={choice.value}>{choice.value}</label>}
+          ? null
+          : <label htmlFor={choice.value}>{choice.value}</label>}
     </li>
   )
 }
