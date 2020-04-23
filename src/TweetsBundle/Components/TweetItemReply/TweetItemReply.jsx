@@ -6,12 +6,10 @@ import style from './tweetItemReply.module.css';
 import { TweetProfileImg } from '../TweetProfileImg/TweetProfileImg';
 
 
-export const TweetItemReply = ({ postComment, removeCommentFromPost, togglePostCommentEdit, user }) => {
+export const TweetItemReply = ({ postComment, setConfirm, togglePostCommentEdit, user }) => {
   const fromNowDate = moment(postComment.createdAt).fromNow();
   const postMonth = new Date(postComment.createdAt).toDateString().split(" ")[1];
   const postDay = new Date(postComment.createdAt).toDateString().split(" ")[2];
-
-  // TODO: ADD A MODAL CONFIRMATION WHEN REMOVING A POST REPLY
 
   return (
     <div className={style.tweetItemReply}>
@@ -42,7 +40,11 @@ export const TweetItemReply = ({ postComment, removeCommentFromPost, togglePostC
         </div>
         {postComment.userId === user.id && <div className={style.tweetItemReplyBtns}>
           <button type='button' onClick={togglePostCommentEdit}>Edit</button>
-          <button type='button' onClick={removeCommentFromPost}>Remove</button>
+          <button type='button' onClick={() => setConfirm((prevState) => ({
+            ...prevState,
+            item: postComment,
+            action: !prevState.action
+          }))}>Remove</button>
         </div>}
       </div>
     </div>

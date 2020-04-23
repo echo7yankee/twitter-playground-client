@@ -23,6 +23,7 @@ import { editPostCommentFromPost } from './Services/editPostCommentFromPost';
 import { setPostCommentOnEdit } from './Services/setPostCommentOnEdit';
 import { cancelPostCommentEdit } from './Services/cancelPostCommentEdit';
 import { TweetsConstants } from '../../Constants/Constants';
+import { GlobalConstants } from '../../../utils/constants/GlobalConstants';
 
 //Components
 import { TweetItemReply } from '../TweetItemReply/TweetItemReply';
@@ -33,6 +34,7 @@ import { TweetItemHeaderInfo } from '../TweetItemHeaderInfo/Components/TweetItem
 import { TweetPollItems } from '../TweetPoll/Components/TweetPollItems/TweetPollItems';
 import { TweetProfileImg } from '../TweetProfileImg/TweetProfileImg';
 import { CustomLink } from '../../../GlobalComponents/CustomLink/CustomLink';
+import { Modal } from '../../../GlobalComponents/Modal/Components/Modal/Modal';
 
 export const TweetItem = ({
   post,
@@ -47,6 +49,10 @@ export const TweetItem = ({
 
   //useState
   const [isDropdown, setIsDropdown] = useState(false);
+  const [confirm, setConfirm] = useState({
+    action: false,
+    item: '',
+  });
   const [togglePostReply, setTogglePostReply] = useState(isSingleTweet ? true : false);
   const [isReplyInput, setIsReplyInput] = useState(isSingleTweet ? true : false);
   const [postObj, setPost] = useState(post);
@@ -133,6 +139,14 @@ export const TweetItem = ({
     setPost(cancelPostCommentEdit(postObj, id))
   }
 
+  const removePostReply = (postComment) => {
+    setPost({
+      ...postObj,
+      postComments: postObj.postComments.filter((comment) => comment.uuid !== postComment.uuid)
+    })
+    dispatch(removePostComment(postComment.uuid))
+  }
+
   if (contentEditableCreator || contentEditableEdit) {
     setTimeout(() => {
       contentEditableCreator.current && contentEditableCreator.current.focus();
@@ -214,13 +228,7 @@ export const TweetItem = ({
                     />
                     : <TweetItemReply
                       postComment={postComment}
-                      removeCommentFromPost={() => {
-                        setPost({
-                          ...postObj,
-                          postComments: postObj.postComments.filter((comment) => comment.uuid !== postComment.uuid)
-                        })
-                        dispatch(removePostComment(postComment.uuid))
-                      }}
+                      setConfirm={setConfirm}
                       togglePostCommentEdit={() => {
                         setIsReplyInput(false);
                         setEdit(postComment.uuid);
@@ -242,6 +250,17 @@ export const TweetItem = ({
               hasReset={true}
               isEdit={false}
               cancelButtonAction={null}
+            />
+          }
+          {
+            confirm.action && <Modal
+              text={GlobalConstants.REMOVE_MODAL.TEXT}
+              styleModal={{ width: '60rem' }}
+              question={GlobalConstants.REMOVE_MODAL.QUESTION}
+              buttonOneText={GlobalConstants.REMOVE_MODAL.BUTTON_ONE}
+              buttonOneAction={() => removePostReply(confirm.item)}
+              buttonTwoText={GlobalConstants.REMOVE_MODAL.BUTTON_TWO}
+              destroyModal={() => setConfirm((prevState) => ({ ...prevState, action: false }))}
             />
           }
         </div>
