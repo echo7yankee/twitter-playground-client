@@ -178,6 +178,7 @@ export const TweetItem = ({
               closeDropdown={closeDropdown}
               user={user}
               history={history}
+              isSingleTweet={isSingleTweet}
             />
             {postObj.poll
               && getPollChoicesFiltered(postObj.poll.choices).length > 0

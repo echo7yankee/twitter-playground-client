@@ -21,7 +21,8 @@ export const TweetItemHeaderInfo = ({
   openDropdown,
   user,
   action,
-  history
+  history,
+  isSingleTweet
 }) => {
 
   //date 
@@ -48,20 +49,22 @@ export const TweetItemHeaderInfo = ({
           <span className='ml-05'>{fromNowDate}</span>
           <span className='ml-05'>{`${postDay} ${postMonth}`}</span>
         </div>
-        <div
-          ref={wrapperRef}
-          className='pos-relative'
-          onClick={(e) => {
-            e.preventDefault()
-            openDropdown()
-          }}>
-          <IoIosArrowDown className={isDropdown ? 'rotate-0' : 'rotate-90'} />
-          <DropdownItems
-            isDropdown={isDropdown}
-            closeDropdown={closeDropdown}
-            dropdownItems={filterDropdownItems(postObj, user.id, action)}
-          />
-        </div>
+        {!isSingleTweet
+          && <div
+            ref={wrapperRef}
+            className='pos-relative'
+            onClick={(e) => {
+              e.preventDefault()
+              openDropdown()
+            }}>
+            <IoIosArrowDown className={isDropdown ? 'rotate-0' : 'rotate-90'} />
+            <DropdownItems
+              isDropdown={isDropdown}
+              closeDropdown={closeDropdown}
+              dropdownItems={filterDropdownItems(postObj, user.id, action)}
+            />
+          </div>
+        }
       </div>
       <ContentEditable
         className={style.tweetItemContent}
