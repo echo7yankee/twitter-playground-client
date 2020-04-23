@@ -3,7 +3,7 @@ import { GET_NOTIFICATIONS, RESET_NOTIFICATIONS, SET_NOTIFICATIONS_LOADING } fro
 const initState = {
   isLoading: false,
   notifications: [],
-  notificationsLength: null,
+  notificationsLength: 0,
 }
 
 export function notificationReducer(state, action) {
@@ -18,7 +18,7 @@ export function notificationReducer(state, action) {
       notificationsLength: action.payload.notificationsLength,
       isLoading: false,
     }
-    case RESET_NOTIFICATIONS: return { ...state, notifications: [], notificationsLength: null }
+    case RESET_NOTIFICATIONS: return { ...state, notifications: [], notificationsLength: 0 }
     default: return state;
   }
 }

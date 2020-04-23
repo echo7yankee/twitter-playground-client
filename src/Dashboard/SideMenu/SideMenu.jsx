@@ -84,8 +84,8 @@ export const SideMenu = () => {
                     {notificationsLength > 0 && notificationsLength}
                   </span>
               } */}
-              {notificationsLength && <span className={notificationsLength === 0 ? '' : style.menuNotificationLength}>
-                {notificationsLength > 0 && notificationsLength}
+              {notificationsLength > 0 && <span className={notificationsLength === 0 ? '' : style.menuNotificationLength}>
+                {notificationsLength}
               </span>}
             </div>
             <span>Notifications</span>
