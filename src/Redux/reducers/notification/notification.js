@@ -1,4 +1,4 @@
-import { GET_NOTIFICATIONS, RESET_NOTIFICATIONS } from "../../types";
+import { GET_NOTIFICATIONS, RESET_NOTIFICATIONS, SET_NOTIFICATIONS_LOADING } from "../../types";
 
 const initState = {
   isLoading: false,
@@ -12,9 +12,11 @@ export function notificationReducer(state, action) {
   }
 
   switch (action.type) {
+    case SET_NOTIFICATIONS_LOADING: return { ...state, isLoading: true }
     case GET_NOTIFICATIONS: return {
       ...state, notifications: action.payload.notifications,
-      notificationsLength: action.payload.notificationsLength
+      notificationsLength: action.payload.notificationsLength,
+      isLoading: false,
     }
     case RESET_NOTIFICATIONS: return { ...state, notifications: [], notificationsLength: null }
     default: return state;

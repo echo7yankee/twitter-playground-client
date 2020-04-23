@@ -1,9 +1,10 @@
 import axios from 'axios';
-import { GET_NOTIFICATIONS, RESET_NOTIFICATIONS } from '../../types';
+import { GET_NOTIFICATIONS, RESET_NOTIFICATIONS, SET_NOTIFICATIONS_LOADING } from '../../types';
 
 export const getNotifications = (params) => {
   return async (dispatch) => {
     try {
+      dispatch({ type: SET_NOTIFICATIONS_LOADING })
       const response = await axios.get('/notification', {
         params
       })

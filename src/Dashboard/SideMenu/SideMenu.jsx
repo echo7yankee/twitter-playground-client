@@ -24,6 +24,7 @@ export const SideMenu = () => {
   const user = useSelector((state) => state.user.userDetails);
   const notifications = useSelector((state) => state.notification.notifications);
   const notificationsLength = useSelector((state) => state.notification.notificationsLength);
+  const isLoading = useSelector((state) => state.notification.isLoading);
   const userFollows = user.social && user.social.following
 
   // TODO: FINISH NOTIFICATION SYSTEM, RESET TO NONE WHEN CLICKING THE NOTIFICATION AND 
@@ -61,9 +62,12 @@ export const SideMenu = () => {
           <NavLink to='/dashboard/notifications' activeClassName={style.isActive}>
             <div className='pos-relative '>
               <IoMdNotificationsOutline />
-              {notificationsLength ? <span className={style.menuNotificationLength}>
-                {notificationsLength}
-              </span> : <img className={style.menuNotificationSpinner} src={spinner} alt="spinner" />}
+              {notificationsLength === null
+                ? <img className={style.menuNotificationSpinner} src={spinner} alt="spinner" />
+                : <span className={notificationsLength === 0 ? '' : style.menuNotificationLength}>
+                  {notificationsLength > 0 && notificationsLength}
+                </span>
+              }
             </div>
             <span>Notifications</span>
           </NavLink>
