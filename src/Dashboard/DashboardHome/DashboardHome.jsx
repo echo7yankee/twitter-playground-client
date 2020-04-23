@@ -25,11 +25,15 @@ export const DashboardHome = ({ history }) => {
 
   useEffect(() => {
     dispatch(getAllPosts({}));
+    let postsInterval = setInterval(() => {
+      dispatch(getAllPosts({}));
+    }, 30000)
     dispatch(getUserDetails(userIdFromToken()));
 
     return () => {
       dispatch(resetPosts());
       dispatch(resetUserDetails());
+      window.clearInterval(postsInterval)
     }
   }, [dispatch])
 

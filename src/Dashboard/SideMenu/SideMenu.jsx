@@ -32,15 +32,20 @@ export const SideMenu = () => {
 
 
   useEffect(() => {
+    let notificationsInterval;
     if (ownerProfileImg === 'null') {
       dispatch(getUserDetails(userIdFromToken()));
     }
     if (userFollows && userFollows.length) {
       dispatch(getNotifications({ userId: userFollows }));
+      notificationsInterval = setTimeout(() => {
+        dispatch(getNotifications({ userId: userFollows }));
+      }, 30000);
     }
 
     return () => {
       dispatch(resetNotifications());
+      window.clearInterval(notificationsInterval);
     }
 
   }, [dispatch, ownerProfileImg, userFollows])
