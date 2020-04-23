@@ -12,7 +12,6 @@ import { NotificationsItems } from '../Components/NotificationsItems/Notificatio
 
 export const Notifications = () => {
   //TODO: THINK ABOUT MENTIONS, HOW TO ADD NAME TAGS IN POSTS TO REFLECT THE MENTIONS
-  //TODO: CLOSE ON EMOJI SELECT AND REPAIR EMOJIS PLACING UNDER TEXT/ CLOSE EMOJI WHEN CLICKING OUTSIDE
   //TODO: CROP PICTURE
   return (
     <div className={style.notifications}>

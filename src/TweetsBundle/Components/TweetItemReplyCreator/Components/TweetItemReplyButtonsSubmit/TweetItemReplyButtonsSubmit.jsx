@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 //style
 import style from './tweetItemReplyButtonsSubmit.module.css';
@@ -7,6 +7,7 @@ import { MdInsertEmoticon } from 'react-icons/md';
 
 //Components
 import { Picker } from 'emoji-mart';
+import { useOutsideClose } from '../../../../../GlobalComponents/CloseDropdown/CloseDropdown';
 
 export const TweetItemReplyButtonsSubmit = ({
   postCommentObj,
@@ -18,8 +19,12 @@ export const TweetItemReplyButtonsSubmit = ({
   setIsEmoticonPicker,
   isEmoticonPicker
 }) => {
+
+  const wrapperRef = useRef(null);
+  useOutsideClose(wrapperRef, () => setIsEmoticonPicker(false));
+
   return (
-    <div className={style.tweetItemReplySubmitButtons}>
+    <div ref={wrapperRef} className={style.tweetItemReplySubmitButtons}>
       <MdInsertEmoticon onClick={() => setIsEmoticonPicker((prevState) => !prevState)} />
       <div className={!isEmoticonPicker
         ? style.tweetItemReplyEmoji
