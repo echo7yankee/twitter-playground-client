@@ -97,13 +97,12 @@ export const TweetItem = ({
     edit: () => setPostOnEdit(post.uuid, true),
     follow: () => {
 
-      const isFollowed = getFollowButtonState(user.id, post.user)
+      const isFollowed = getFollowButtonState(user.id, post.user);
       if (isFollowed) {
         setPost(filterPostsFollowers(postObj, user.id));
         dispatch(followUser(user.id, post.userId, 'dropdown'))
         return;
       }
-
       setPost(addFollowerToPost(postObj, user.id))
       dispatch(followUser(user.id, post.userId, 'dropdown'))
     },
@@ -160,7 +159,6 @@ export const TweetItem = ({
         <CustomLink
           to={{
             pathname: `/dashboard/status/${post.id}`,
-            state: post
           }}
           linkRef={linkRef}
           className={style.tweet}>

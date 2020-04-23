@@ -97,13 +97,14 @@ export const TweetCreator = ({
     e.preventDefault();
     const processedPostObj = {
       ...postObj,
+      isNotification: user.social.followers.length > 0 ? true : false,
       poll: {
         ...postObj.poll,
         choices: getPollChoicesFiltered(postObj.poll.choices)
       }
     }
 
-    isEdit
+    user.id && isEdit
       ? handleSubmit(processedPostObj)
       : handleSubmit({ ...processedPostObj, uuid: uuidv4() })
     if (hasReset) {

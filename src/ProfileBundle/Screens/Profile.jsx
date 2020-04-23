@@ -17,12 +17,14 @@ import { ProfileOverlayImage } from '../Components/ProfileOverlayImage/ProfileOv
 import { ProfileBio } from '../Components/ProfileBio/ProfileBio';
 import { SpinnerTweets } from '../../GlobalComponents/SpinnerTweets/SpinnerTweets';
 import { userIdFromToken } from '../../utils/services/userIdFromToken';
+import { getFollowButtonState } from '../../utils/services/getFollowButtonState';
+import { updateNotifications } from '../../Redux/actions/notification/notification';
 
 export const Profile = ({ history }) => {
   const state = {
     ownerId: history.location.state && history.location.state.owner.ownerId,
     isOwner: history.location.state && history.location.state.owner.isOwner,
-    userId: history.location.state && history.location.state.userId
+    userId: history.location.state && history.location.state.userId,
   }
   const id = state.userId || userIdFromToken();
 
@@ -36,7 +38,6 @@ export const Profile = ({ history }) => {
   const [showOverlayImage, setShowOverlayImage] = useState(false);
   useEffect(() => {
     dispatch(getUserDetails(id));
-
     return () => {
       dispatch(resetUserDetails());
     }
@@ -71,6 +72,11 @@ export const Profile = ({ history }) => {
 
   const handleFollowUser = (ownerId, visitorId) => {
     dispatch(followUser(ownerId, visitorId, 'profile'));
+    if (getFollowButtonState(ownerId, user)) {
+      dispatch(updateNotifications({ userId: user.id }, { notificationState: false }))
+    } else {
+      dispatch(updateNotifications({ userId: user.id }, { notificationState: true }))
+    }
   }
 
   return (

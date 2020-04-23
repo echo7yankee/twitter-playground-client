@@ -21,6 +21,20 @@ export const getNotifications = (params) => {
   }
 }
 
+export const updateNotifications = (params, notificationState) => {
+  return async (dispatch) => {
+    try {
+      await axios.put('/notification', notificationState, {
+        params
+      })
+
+      dispatch(getNotifications(params));
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 
 export const resetNotifications = () => ({
   type: RESET_NOTIFICATIONS

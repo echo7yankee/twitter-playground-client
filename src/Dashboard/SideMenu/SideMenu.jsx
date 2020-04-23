@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { config } from '../../utils/constants/Environment';
+import spinner from '../../assets/gifs/spinner.gif';
 //style
 import style from './sideMenu.module.css';
 import { IoMdHome, IoIosPerson, IoMdNotificationsOutline } from 'react-icons/io';
 //redux
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserDetails } from '../../Redux/actions/user/user';
-import { getNotifications, resetNotifications } from '../../Redux/actions/notification/notification';
+import { getNotifications, updateNotifications, resetNotifications } from '../../Redux/actions/notification/notification';
 
 //react router dom
 import { NavLink } from 'react-router-dom';
@@ -48,9 +49,15 @@ export const SideMenu = () => {
 
   }, [dispatch, ownerProfileImg, userFollows])
 
+  const setNotificationsOnFlase = () => {
+    dispatch(updateNotifications({ userId: userFollows }, { notificationState: false }))
+  }
+
   useEffect(() => {
     setProfileImg(ownerProfileImg !== 'null' ? ownerProfileImg : user.profileImg)
   }, [ownerProfileImg, user.profileImg])
+
+  console.log(notificationsLength);
 
   return (
     <div className={style.menuContainer}>
@@ -62,15 +69,24 @@ export const SideMenu = () => {
           </NavLink>
         </li>
         <li className={style.menuItem}>
-          <NavLink to='/dashboard/notifications' activeClassName={style.isActive}>
+          <NavLink
+            to='/dashboard/notifications'
+            activeClassName={style.isActive}
+            onClick={setNotificationsOnFlase}
+          >
             <div className='pos-relative '>
               <IoMdNotificationsOutline />
-              {!notificationsLength
-                ? null
-                : <span className={notificationsLength === 0 ? '' : style.menuNotificationLength}>
-                  {notificationsLength > 0 && notificationsLength}
-                </span>
-              }
+              {/* {isLoading
+                ? <img src={spinner} className={style.menuNotificationSpinner} alt='spinner' />
+                : !notificationsLength
+                  ? null
+                  : <span className={notificationsLength === 0 ? '' : style.menuNotificationLength}>
+                    {notificationsLength > 0 && notificationsLength}
+                  </span>
+              } */}
+              {notificationsLength && <span className={notificationsLength === 0 ? '' : style.menuNotificationLength}>
+                {notificationsLength > 0 && notificationsLength}
+              </span>}
             </div>
             <span>Notifications</span>
           </NavLink>

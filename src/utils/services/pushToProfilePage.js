@@ -1,4 +1,4 @@
-export const pushToProfilePage = (history, post, user) => {
+export const pushToProfilePage = (history, post, user, userFollows) => {
   history.push({
     pathname: `/dashboard/user/${post.username.split(' ').join('')}`,
     state: {
@@ -6,6 +6,7 @@ export const pushToProfilePage = (history, post, user) => {
       owner: {
         ownerId: user.id,
         isOwner: post.userId === user.id ? null : false,
+        userFollows
       }
     }
   })
