@@ -28,10 +28,14 @@ export const TweetCreator = ({
   hasReset
 }) => {
 
-
-
   //local state
-  const [postObj, setPost] = useState(post)
+  const [postObj, setPost] = useState({
+    ...post,
+    poll: {
+      ...post.poll,
+      choices: post.poll.choices.length >= 2 ? post.poll.choices : createPoll().choices
+    }
+  })
   const [isPoll, setIsPoll] = useState(false);
   const [isEmoticonPicker, setIsEmoticonPicker] = useState(false);
 
