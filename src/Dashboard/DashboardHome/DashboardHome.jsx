@@ -27,7 +27,7 @@ export const DashboardHome = ({ history }) => {
     dispatch(getAllPosts({}));
     let postsInterval = setInterval(() => {
       dispatch(getAllPosts({}));
-    }, 30000)
+    }, 120000)
     dispatch(getUserDetails(userIdFromToken()));
 
     return () => {
