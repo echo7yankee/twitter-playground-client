@@ -26,10 +26,6 @@ export const SideMenu = () => {
   const isLoading = useSelector((state) => state.notification.isLoading);
   const userFollows = user.social && user.social.following
 
-  // TODO: FINISH NOTIFICATION SYSTEM, RESET TO NONE WHEN CLICKING THE NOTIFICATION AND 
-  // RESTART WHEN ADDING NEW NOTIFICATION AGAIN (MIGHT NEED EVERY OR UPDATE MANY HERE)
-
-
   useEffect(() => {
     let notificationsInterval;
     if (ownerProfileImg === 'null') {
@@ -37,9 +33,9 @@ export const SideMenu = () => {
     }
     if (userFollows && userFollows.length) {
       dispatch(getNotifications({ userId: userFollows }));
-      notificationsInterval = setTimeout(() => {
+      notificationsInterval = setInterval(() => {
         dispatch(getNotifications({ userId: userFollows }));
-      }, 30000);
+      }, 120000)
     }
 
     return () => {
@@ -49,15 +45,13 @@ export const SideMenu = () => {
 
   }, [dispatch, ownerProfileImg, userFollows])
 
-  const setNotificationsOnFlase = () => {
-    dispatch(updateNotifications({ userId: userFollows }, { notificationState: false }))
-  }
-
   useEffect(() => {
     setProfileImg(ownerProfileImg !== 'null' ? ownerProfileImg : user.profileImg)
   }, [ownerProfileImg, user.profileImg])
 
-  console.log(notificationsLength);
+  const setnotificationsOnFalse = () => {
+    dispatch(updateNotifications({ userId: userFollows }, { notificationState: false }))
+  }
 
   return (
     <div className={style.menuContainer}>
@@ -72,21 +66,16 @@ export const SideMenu = () => {
           <NavLink
             to='/dashboard/notifications'
             activeClassName={style.isActive}
-            onClick={setNotificationsOnFlase}
+            onClick={setnotificationsOnFalse}
           >
             <div className='pos-relative '>
               <IoMdNotificationsOutline />
-              {/* {isLoading
+              {isLoading && notificationsLength
                 ? <img src={spinner} className={style.menuNotificationSpinner} alt='spinner' />
-                : !notificationsLength
-                  ? null
-                  : <span className={notificationsLength === 0 ? '' : style.menuNotificationLength}>
-                    {notificationsLength > 0 && notificationsLength}
-                  </span>
-              } */}
-              {notificationsLength > 0 && <span className={notificationsLength === 0 ? '' : style.menuNotificationLength}>
-                {notificationsLength}
-              </span>}
+                : notificationsLength > 0 && <span className={style.menuNotificationLength}>
+                  {notificationsLength}
+                </span>
+              }
             </div>
             <span>Notifications</span>
           </NavLink>
