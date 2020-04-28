@@ -7,7 +7,12 @@ import { getFollowButtonState } from '../../../utils/services/getFollowButtonSta
 //Components
 import { TweetProfileImg } from '../TweetProfileImg/TweetProfileImg';
 
-export const TweetProfileResume = ({ post, user, isAnimateProfileResume, setIsAnimateProfileResume }) => {
+export const TweetProfileResume = ({
+  post,
+  user,
+  handleFollow,
+  isAnimateProfileResume,
+  setIsAnimateProfileResume }) => {
 
   useEffect(() => {
     setIsAnimateProfileResume(true);
@@ -30,7 +35,7 @@ export const TweetProfileResume = ({ post, user, isAnimateProfileResume, setIsAn
             onMouseOver={null}
           />
           {user.id !== post.userId
-            && <button className={`tweet-button ${getFollowButtonState(user.id, post.user)
+            && <button onClick={handleFollow} className={`tweet-button ${getFollowButtonState(user.id, post.user)
               ? 'tweet-button-filled'
               : 'tweet-button-empty'}`}>
               {getFollowButtonState(user.id, post.user) ? 'Unfollow' : 'Follow'}

@@ -5,6 +5,7 @@ export const addFollowerToPost = (postObj, userId) => {
       ...postObj.user,
       social: {
         ...postObj.user.social,
+        followersCount: postObj.user.social.followersCount + 1,
         followers: [...postObj.user.social.followers, userId]
       }
     }

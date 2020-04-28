@@ -110,8 +110,7 @@ export const TweetItem = ({
     }),
     edit: () => setPostOnEdit(post.uuid, true),
     follow: () => {
-
-      const isFollowed = getFollowButtonState(user.id, post.user);
+      let isFollowed = getFollowButtonState(user.id, post.user);
       if (isFollowed) {
         setPost(filterPostsFollowers(postObj, user.id));
         dispatch(followUser(user.id, post.userId, 'dropdown'))
@@ -191,7 +190,7 @@ export const TweetItem = ({
               classNameDiv='tweet-profile-img-container mr-1'
               onMouseOver={() => setProfileResume(postIndex)}
             />
-            {post.user
+            {postObj.user
               && isProfileResume === postIndex
               && <div
                 className={style.tweetItemProfileResumeContainer}
@@ -199,10 +198,11 @@ export const TweetItem = ({
                 onMouseOver={(e) => e.preventDefault()}
               >
                 <TweetProfileResume
-                  post={post}
+                  post={postObj}
                   user={user}
                   isAnimateProfileResume={isAnimateProfileResume}
                   setIsAnimateProfileResume={setIsAnimateProfileResume}
+                  handleFollow={action.follow}
                 />
               </div>
             }
