@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 //redux
 import style from './tweets.module.css';
@@ -35,6 +35,10 @@ import { TweetPollItems } from '../TweetPoll/Components/TweetPollItems/TweetPoll
 import { TweetProfileImg } from '../TweetProfileImg/TweetProfileImg';
 import { CustomLink } from '../../../GlobalComponents/CustomLink/CustomLink';
 import { Modal } from '../../../GlobalComponents/Modal/Components/Modal/Modal';
+import { TweetProfileResume } from '../TweetProfileResume/TweetProfileResume';
+
+// TODO: ADD A HOVER COMPONENT ON PICTURE AND DISPLAY A SHORT RESUME OF EACH USER 
+// lOOK TWITTER FOR INSPIRATION
 
 export const TweetItem = ({
   post,
@@ -43,12 +47,15 @@ export const TweetItem = ({
   remove,
   setPostOnEdit,
   isSingleTweet,
-  history }) => {
+  history,
+  postIndex }) => {
   //redux
   const dispatch = useDispatch();
 
   //useState
+  const [isAnimate, setIsAnimate] = useState(false);
   const [isDropdown, setIsDropdown] = useState(false);
+  const [isProfileResume, setProfileResume] = useState(-1);
   const [confirm, setConfirm] = useState({
     action: false,
     item: '',
@@ -61,6 +68,12 @@ export const TweetItem = ({
   const contentEditableEdit = useRef(null);
   const linkRef = useRef(null);
 
+  useEffect(() => {
+    setIsAnimate(true);
+
+    return () => setIsAnimate(false);
+  }, [])
+
   const handleLikePost = (e) => {
     e.preventDefault();
     const personWhoLiked = getPersonWhoLiked(postObj, user);
@@ -69,7 +82,7 @@ export const TweetItem = ({
         ...postObj,
         whoLiked: postObj.whoLiked.filter((like) => like !== user.id),
       })
-      dispatch(likePost(postObj.id, user.id))
+      dispatch(likePost(postObj.uuid, user.id))
       return;
     }
 
@@ -77,7 +90,7 @@ export const TweetItem = ({
       ...postObj,
       whoLiked: [...postObj.whoLiked, user.id]
     })
-    dispatch(likePost(postObj.id, user.id))
+    dispatch(likePost(postObj.uuid, user.id))
   }
 
   const openDropdown = () => {
@@ -92,7 +105,7 @@ export const TweetItem = ({
   const action = {
     remove: () => setIsModal({
       modalState: true,
-      modalAction: () => remove(post.uuid)
+      modalAction: () => remove(post.uuid, () => setIsAnimate(false))
     }),
     edit: () => setPostOnEdit(post.uuid, true),
     follow: () => {
@@ -158,15 +171,34 @@ export const TweetItem = ({
       <>
         <CustomLink
           to={{
-            pathname: `/dashboard/status/${post.id}`,
+            pathname: `/dashboard/status/${post.uuid}`,
           }}
           linkRef={linkRef}
-          className={style.tweet}>
-          <TweetProfileImg
-            profileImg={postObj.profileImg}
-            classNameIcon='placeholder-profile-img'
-            classNameDiv='tweet-profile-img-container mr-1'
-          />
+          className={isAnimate ? style.tweetAnimate : style.tweet}>
+          <div
+            className='pos-relative'
+            onMouseLeave={() => setProfileResume(-1)}
+          >
+            <TweetProfileImg
+              profileImg={postObj.profileImg}
+              classNameIcon='placeholder-profile-img'
+              classNameDiv='tweet-profile-img-container mr-1'
+              onMouseOver={() => setProfileResume(postIndex)}
+            />
+            {post.user
+              && isProfileResume === postIndex
+              && <div
+                className={style.tweetItemProfileResumeContainer}
+                onClick={(e) => e.preventDefault()}
+                onMouseOver={(e) => e.preventDefault()}
+              >
+                <TweetProfileResume
+                  post={post}
+                  user={user}
+                />
+              </div>
+            }
+          </div>
           <div style={{ width: '61rem' }}>
             <TweetItemHeaderInfo
               postObj={postObj}

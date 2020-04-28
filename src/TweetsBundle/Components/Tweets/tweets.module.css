@@ -1,17 +1,23 @@
 .tweetsContainer {
   border-top: none;
+  transition: opacity .2s ease-in;
 }
 
-.tweet:link,.tweet:visited {
+.tweet:link,.tweet:visited,.tweetAnimate:link,.tweetAnimate:visited {
   display: flex;
   border-bottom: 1px solid var(--blue-color-4);
   padding: 2rem 1.7rem;
   cursor: pointer;
-  transition: .2s ease-in background-color;
+  transition: .2s ease-in background-color, opacity .2s ease-in;
   text-decoration: none;
   color: var(--blue-color-7);
   border-left: 1px solid var(--blue-color-4);
   border-right: 1px solid var(--blue-color-4);
+  opacity: 0;
+}
+
+.tweetAnimate:link,.tweetAnimate:visited {
+  opacity: 1;
 }
 
 .tweet:hover {
@@ -20,6 +26,14 @@
 
 .tweet:focus {
   background-color: transparent;
+}
+
+.tweetItemProfileResumeContainer {
+  position: absolute;
+  left: -50%;
+  transform:translateX(-25%);
+  top: 40%;
+  z-index: 2000;
 }
 
 .tweetItemReplyContainer {

@@ -144,6 +144,23 @@ button {
   align-self: flex-start;
 }
 
+.tweet-button {
+  padding: 1.2rem 1.6rem;
+  border-radius: 2.5rem;
+  border: 1px solid var(--blue-color-1);
+  font-weight: 700;
+}
+
+.tweet-button-filled {
+  background-color: var(--blue-color-1);
+  color: var(--white-color);
+}
+
+.tweet-button-empty {
+  background-color: transparent;
+  color: var(--blue-color-1);
+}
+
 .overlay {
   position: fixed;
   top: 0;

@@ -1,0 +1,38 @@
+.tweetProfileResumeOuter {
+  background-color: transparent;
+  padding: 2rem;
+}
+
+.tweetProfileResume {
+  border-radius: 1rem;
+  width: 30rem;
+  padding: 1.2rem;
+  background-color: var(--white-color);
+  box-shadow: 0 0px 5px rgba(0,0,0,.3);
+  animation: tweetProfileResumeShow .3s .0s ease-in forwards;
+}
+
+.tweetProfileResumeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tweetProfileResumeUsername,.tweetProfileResumeBio {
+  margin:.5rem 0 1rem;
+  color: var(--blue-color-7);
+}
+
+.tweetProfileResumeSocial span:last-child {
+  margin-left: 2.5rem;
+}
+
+@keyframes tweetProfileResumeShow {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

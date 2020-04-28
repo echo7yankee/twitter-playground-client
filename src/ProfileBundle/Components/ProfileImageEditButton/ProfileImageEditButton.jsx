@@ -8,6 +8,8 @@ export const ProfileImageEditButton = ({ openModal, handleFollowUser, state, use
   return (
     <button
       className={style.profileImageEditButton}
+      style={state.isOwner !== null && getFollowButtonState(state.ownerId, user)
+        ? { backgroundColor: '#1da1f2', color: '#ffffff' } : {}}
       onClick={state.isOwner === null
         ? openModal
         : () => handleFollowUser(state.ownerId, user.id)}>

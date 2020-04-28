@@ -20,7 +20,7 @@ export const Tweets = ({
   remove,
   cancelButtonAction,
   setPostOnEdit,
-  history
+  history,
 }) => {
   //state
   const [isModal, setIsModal] = useState({
@@ -52,7 +52,7 @@ export const Tweets = ({
           />
         </div>
         <div className={style.tweets}>
-          {posts.map(post => {
+          {posts.map((post, index) => {
             return (
               <div key={post.uuid}>
                 {post.isEdit ?
@@ -69,6 +69,7 @@ export const Tweets = ({
                   />
                   : <TweetItem
                     post={post}
+                    postIndex={index}
                     user={user}
                     isSingleTweet={false}
                     setIsModal={setIsModal}

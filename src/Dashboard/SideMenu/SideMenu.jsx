@@ -13,6 +13,9 @@ import { getNotifications, updateNotifications, resetNotifications } from '../..
 import { NavLink } from 'react-router-dom';
 import { userIdFromToken } from '../../utils/services/userIdFromToken';
 
+// TODO: ADD A HOVER COMPONENT ON NOTIFICATIONS AND DISPLAY A SHORTE RESUME OF THE NOTIFICATIONS
+// lOOK TWITTER FOR INSPIRATION
+
 export const SideMenu = () => {
   const { url } = config;
   const ownerProfileImg = localStorage.getItem('ownerProfileImg');
@@ -52,6 +55,8 @@ export const SideMenu = () => {
   const setnotificationsOnFalse = () => {
     dispatch(updateNotifications({ userId: userFollows }, { notificationState: false }))
   }
+
+  // console.log(notifications);
 
   return (
     <div className={style.menuContainer}>

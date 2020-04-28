@@ -16,11 +16,12 @@ import { addNewPost } from '../Services/addNewPost';
 import { getUpdatedPost } from '../Services/getUpdatedPost';
 
 export const DashboardHome = ({ history }) => {
+  //useState
+  const [postsArr, setPosts] = useState([]);
   //redux
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userDetails);
   const posts = useSelector((state) => state.post.posts);
-  const [postsArr, setPosts] = useState([]);
   const isLoading = useSelector(state => state.post.isLoading);
 
   useEffect(() => {
@@ -51,8 +52,11 @@ export const DashboardHome = ({ history }) => {
     dispatch(addPost(post, userData));
   }
 
-  const remove = (id) => {
-    setPosts(postsArr.filter((post) => post.uuid !== id));
+  const remove = (id, animateRemove) => {
+    animateRemove();
+    setTimeout(() => {
+      setPosts(postsArr.filter((post) => post.uuid !== id));
+    }, 300);
     dispatch(removePost(id))
   }
 
