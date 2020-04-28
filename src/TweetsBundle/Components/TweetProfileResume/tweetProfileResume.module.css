@@ -10,13 +10,13 @@
   background-color: var(--white-color);
   box-shadow: 0 0px 5px rgba(0,0,0,.3);
   opacity: 0;
-  transition: .3s ease-in opacity;
+  transition: .1s ease-in opacity;
   transition-delay: .3s;
 }
 
 .tweetProfileResumeAnimate {
   opacity: 1;
-    transition: .3s ease-in opacity;
+  transition: .1s ease-in opacity;
 }
 
 .tweetProfileResumeHeader {
