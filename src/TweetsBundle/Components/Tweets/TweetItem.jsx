@@ -54,6 +54,7 @@ export const TweetItem = ({
 
   //useState
   const [isAnimate, setIsAnimate] = useState(false);
+  const [isAnimateProfileResume, setIsAnimateProfileResume] = useState(false);
   const [isDropdown, setIsDropdown] = useState(false);
   const [isProfileResume, setProfileResume] = useState(-1);
   const [confirm, setConfirm] = useState({
@@ -177,7 +178,12 @@ export const TweetItem = ({
           className={isAnimate ? style.tweetAnimate : style.tweet}>
           <div
             className='pos-relative'
-            onMouseLeave={() => setProfileResume(-1)}
+            onMouseLeave={() => {
+              setIsAnimateProfileResume(false);
+              setTimeout(() => {
+                setProfileResume(-1)
+              }, 600)
+            }}
           >
             <TweetProfileImg
               profileImg={postObj.profileImg}
@@ -195,6 +201,8 @@ export const TweetItem = ({
                 <TweetProfileResume
                   post={post}
                   user={user}
+                  isAnimateProfileResume={isAnimateProfileResume}
+                  setIsAnimateProfileResume={setIsAnimateProfileResume}
                 />
               </div>
             }

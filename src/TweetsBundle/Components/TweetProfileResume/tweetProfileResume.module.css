@@ -3,13 +3,20 @@
   padding: 2rem;
 }
 
-.tweetProfileResume {
+.tweetProfileResume,.tweetProfileResumeAnimate {
   border-radius: 1rem;
   width: 30rem;
   padding: 1.2rem;
   background-color: var(--white-color);
   box-shadow: 0 0px 5px rgba(0,0,0,.3);
-  animation: tweetProfileResumeShow .3s .0s ease-in forwards;
+  opacity: 0;
+  transition: .3s ease-in opacity;
+  transition-delay: .3s;
+}
+
+.tweetProfileResumeAnimate {
+  opacity: 1;
+    transition: .3s ease-in opacity;
 }
 
 .tweetProfileResumeHeader {
@@ -25,14 +32,4 @@
 
 .tweetProfileResumeSocial span:last-child {
   margin-left: 2.5rem;
-}
-
-@keyframes tweetProfileResumeShow {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }

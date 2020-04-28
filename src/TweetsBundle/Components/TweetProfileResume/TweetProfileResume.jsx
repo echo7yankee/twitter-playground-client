@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 //Style
 import style from './tweetProfileResume.module.css';
@@ -7,11 +7,21 @@ import { getFollowButtonState } from '../../../utils/services/getFollowButtonSta
 //Components
 import { TweetProfileImg } from '../TweetProfileImg/TweetProfileImg';
 
-export const TweetProfileResume = ({ post, user }) => {
+export const TweetProfileResume = ({ post, user, isAnimateProfileResume, setIsAnimateProfileResume }) => {
+
+  useEffect(() => {
+    setIsAnimateProfileResume(true);
+    return () => {
+      setIsAnimateProfileResume(false);
+    }
+  }, [setIsAnimateProfileResume])
+
   return (
     <div className={style.tweetProfileResumeOuter}>
       <div
-        className={style.tweetProfileResume}>
+        className={isAnimateProfileResume
+          ? style.tweetProfileResumeAnimate
+          : style.tweetProfileResume}>
         <header className={style.tweetProfileResumeHeader}>
           <TweetProfileImg
             profileImg={post.user.profileImg}
