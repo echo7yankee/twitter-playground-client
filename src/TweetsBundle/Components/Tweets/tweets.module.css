@@ -28,14 +28,6 @@
   background-color: transparent;
 }
 
-.tweetItemProfileResumeContainer {
-  position: absolute;
-  left: -50%;
-  transform:translateX(-25%);
-  top: 40%;
-  z-index: 2000;
-}
-
 .tweetItemReplyContainer {
   opacity: 0;
   pointer-events: none;

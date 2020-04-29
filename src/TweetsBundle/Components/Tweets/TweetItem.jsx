@@ -37,9 +37,6 @@ import { CustomLink } from '../../../GlobalComponents/CustomLink/CustomLink';
 import { Modal } from '../../../GlobalComponents/Modal/Components/Modal/Modal';
 import { TweetProfileResume } from '../TweetProfileResume/TweetProfileResume';
 
-// TODO: ADD A HOVER COMPONENT ON PICTURE AND DISPLAY A SHORT RESUME OF EACH USER 
-// lOOK TWITTER FOR INSPIRATION
-
 export const TweetItem = ({
   post,
   user,
@@ -117,7 +114,7 @@ export const TweetItem = ({
         return;
       }
       setPost(addFollowerToPost(postObj, user.id))
-      dispatch(followUser(user.id, post.userId, 'dropdown'))
+      dispatch(followUser(user.id, postObj.userId, 'dropdown'))
     },
   }
 
@@ -193,7 +190,7 @@ export const TweetItem = ({
             {postObj.user
               && isProfileResume === postIndex
               && <div
-                className={style.tweetItemProfileResumeContainer}
+                className='tweetItemProfileResumeContainer'
                 onClick={(e) => e.preventDefault()}
                 onMouseOver={(e) => e.preventDefault()}
               >

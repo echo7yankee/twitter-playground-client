@@ -36,6 +36,11 @@
   fill: var(--purple-color-1);
 }
 
+.notificationItemHeader {
+  position: relative;
+  width: max-content;
+}
+
 .notificationItemImage {
   width: 3.2rem;
   height: 3.2rem;

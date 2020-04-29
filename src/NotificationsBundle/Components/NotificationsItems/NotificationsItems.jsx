@@ -45,10 +45,11 @@ export const NotificationsItems = ({ history }) => {
       : <div className={style.notificationsItems}>
         {
           posts.length
-            ? posts.map((post) => {
+            ? posts.map((post, index) => {
               return <NotificationItem
                 key={post.id}
                 post={post}
+                notificationIndex={index}
                 user={user}
                 history={history}
               />

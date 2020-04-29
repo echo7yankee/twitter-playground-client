@@ -3,6 +3,12 @@ import { config } from '../../../utils/constants/Environment';
 import ContentEditable from 'react-contenteditable';
 //services
 import { getNotificationDropdownItems } from '../../Services/getNotificationDropdownItems';
+import { getFollowButtonState } from '../../../utils/services/getFollowButtonState';
+import { filterPostsFollowers } from '../../../TweetsBundle/Components/Tweets/Services/filterPostsFollowers';
+import { addFollowerToPost } from '../../../TweetsBundle/Components/Tweets/Services/addFollowerToPost';
+//redux
+import { useDispatch } from 'react-redux';
+import { followUser } from '../../../Redux/actions/user/user';
 //style
 import style from './notificationItem.module.css';
 import { IoIosStar, IoIosArrowDown, IoIosPerson } from 'react-icons/io';
@@ -11,13 +17,34 @@ import { useOutsideClose } from '../../../GlobalComponents/CloseDropdown/CloseDr
 import { CustomLink } from '../../../GlobalComponents/CustomLink/CustomLink';
 import { customLinkHistory } from '../../../utils/services/customLinkHistory';
 import { pushToProfilePage } from '../../../utils/services/pushToProfilePage';
+import { TweetProfileResume } from '../../../TweetsBundle/Components/TweetProfileResume/TweetProfileResume';
 
-export const NotificationItem = ({ history, post, user }) => {
+export const NotificationItem = ({ history, post, notificationIndex, user }) => {
+
+  //use state
+  const [notificationPost, setNotificationPost] = useState(post);
+  //redux
+  const dispatch = useDispatch();
+
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isProfileResume, setIsProfileResume] = useState(-1);
+  const [isAnimateProfileResume, setIsAnimateProfileResume] = useState(false);
 
-  // TODO: ADD NOTIFICATION SYSTEM
+  // TODO: This is a duplicated function like the one in TweetItem. You might have to put the whole
+  //post in redux store to avoid this duplication
+  const handleFollow = () => {
+    const isFollowed = getFollowButtonState(user.id, post.user);
+    if (isFollowed) {
+      setNotificationPost(filterPostsFollowers(notificationPost, user.id));
+      dispatch(followUser(user.id, notificationPost.userId, 'dropdown'))
+      return;
+    }
+    setNotificationPost(addFollowerToPost(notificationPost, user.id))
+    dispatch(followUser(user.id, notificationPost.userId, 'dropdown'))
+  }
 
   const linkRef = useRef(null);
+
   const wrapperRef = useRef(null);
   useOutsideClose(wrapperRef, () => setShowDropdown(false));
 
@@ -25,8 +52,8 @@ export const NotificationItem = ({ history, post, user }) => {
   return (
     <CustomLink
       to={{
-        pathname: `/dashboard/status/${post.uuid}`,
-        state: post
+        pathname: `/dashboard/status/${notificationPost.uuid}`,
+        state: notificationPost
       }}
       linkRef={linkRef}
       className={style.notificationItem}>
@@ -34,15 +61,34 @@ export const NotificationItem = ({ history, post, user }) => {
         <IoIosStar />
       </div>
       <div
-        className={style.notificationItemImage}
-        onClick={(e) => {
-          e.preventDefault();
-          customLinkHistory(() => pushToProfilePage(history, post, user));
-        }}
+        className={style.notificationItemHeader}
+        onClick={(e) => e.preventDefault()}
+        onMouseLeave={() => setIsProfileResume(-1)}
       >
-        {post.profileImg
-          ? <img src={`${url.API_URL}image/${post.profileImg}`} alt="" />
-          : <IoIosPerson className='placeholder-profile-img' />
+        <div
+          className={style.notificationItemImage}
+          onClick={() => customLinkHistory(() => pushToProfilePage(history, notificationPost, user))}
+        >
+          {notificationPost.profileImg
+            ? <img
+              src={`${url.API_URL}image/${notificationPost.profileImg}`}
+              onMouseOver={() => setIsProfileResume(notificationIndex)}
+              alt="profile" />
+            : <IoIosPerson
+              onMouseOver={() => setIsProfileResume(notificationIndex)}
+              className='placeholder-profile-img' />
+          }
+        </div>
+        {isProfileResume === notificationIndex
+          && <div className="notificationItemProfileResumeContainer">
+            <TweetProfileResume
+              post={notificationPost}
+              user={user}
+              isAnimateProfileResume={isAnimateProfileResume}
+              setIsAnimateProfileResume={setIsAnimateProfileResume}
+              handleFollow={handleFollow}
+            />
+          </div>
         }
       </div>
       <div
@@ -60,11 +106,11 @@ export const NotificationItem = ({ history, post, user }) => {
           isDropdown={showDropdown} />
       </div>
       <div className={style.notificationItemSubtitle}>
-        <span>Recent Tweet from <b>{post.username}</b></span>
+        <span>Recent Tweet from <b>{notificationPost.username}</b></span>
       </div>
       <ContentEditable
         className={style.notificationItemContent}
-        html={post.comment}
+        html={notificationPost.comment}
       />
     </CustomLink>
   )

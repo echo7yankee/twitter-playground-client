@@ -286,6 +286,19 @@ button {
   background-color: var(--blue-color-4);
 }
 
+.tweetItemProfileResumeContainer,.notificationItemProfileResumeContainer {
+  position: absolute;
+  left: -50%;
+  transform:translateX(-25%);
+  top: 40%;
+  z-index: 2000;
+}
+
+.notificationItemProfileResumeContainer {
+  transform: translateX(-40%);
+  top: 50%;
+}
+
 /* arrow rotations */
 .rotate-0 {
   transform: rotate(0deg);

@@ -15,7 +15,7 @@ export const ProfileImageEditButton = ({ openModal, handleFollowUser, state, use
         : () => handleFollowUser(state.ownerId, user.id)}>
       {state.isOwner === null
         ? 'Edit Profile'
-        : getFollowButtonState(state.ownerId, user) ? 'Unfollow' : 'Follow'}
+        : getFollowButtonState(state.ownerId, user) ? 'Following' : 'Follow'}
     </button>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 //Style
 import style from './tweetProfileResume.module.css';
@@ -13,6 +13,8 @@ export const TweetProfileResume = ({
   handleFollow,
   isAnimateProfileResume,
   setIsAnimateProfileResume }) => {
+
+  const [buttonText, setButtonText] = useState(false);
 
   useEffect(() => {
     setIsAnimateProfileResume(true);
@@ -35,10 +37,25 @@ export const TweetProfileResume = ({
             onMouseOver={null}
           />
           {user.id !== post.userId
-            && <button onClick={handleFollow} className={`tweet-button ${getFollowButtonState(user.id, post.user)
-              ? 'tweet-button-filled'
-              : 'tweet-button-empty'}`}>
-              {getFollowButtonState(user.id, post.user) ? 'Unfollow' : 'Follow'}
+            && <button
+              onClick={handleFollow}
+              className={`tweet-button ${getFollowButtonState(user.id, post.user)
+                ? 'tweet-button-filled'
+                : 'tweet-button-empty'}`}
+              style={
+                getFollowButtonState(user.id, post.user)
+                  && buttonText
+                  ? { backgroundColor: '#DE4C4A', borderColor: '#DE4C4A' } : {}
+              }
+              onMouseEnter={() => setButtonText(getFollowButtonState(user.id, post.user) && true)}
+              onMouseLeave={() => setButtonText(getFollowButtonState(user.id, post.user) && false)}
+            >
+              {buttonText
+                ? 'Unfollow' :
+                getFollowButtonState(user.id, post.user)
+                  ? 'Following'
+                  : 'Follow'
+              }
             </button>}
         </header>
         <div className={style.tweetProfileResumeUsername}>
