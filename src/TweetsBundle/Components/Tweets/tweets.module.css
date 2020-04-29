@@ -8,12 +8,12 @@
   border-bottom: 1px solid var(--blue-color-4);
   padding: 2rem 1.7rem;
   cursor: pointer;
-  transition: .2s ease-in background-color, opacity .2s ease-in;
   text-decoration: none;
   color: var(--blue-color-7);
   border-left: 1px solid var(--blue-color-4);
   border-right: 1px solid var(--blue-color-4);
   opacity: 0;
+  transition: .1s ease-in background-color, opacity .3s ease-in;
 }
 
 .tweetAnimate:link,.tweetAnimate:visited {
@@ -21,7 +21,7 @@
 }
 
 .tweetAnimate:hover {
-    background-color: var(--white-color-darken);
+  background-color: var(--white-color-darken);
 }
 
 .tweet:focus {
