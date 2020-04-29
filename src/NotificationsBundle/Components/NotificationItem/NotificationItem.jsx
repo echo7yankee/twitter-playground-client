@@ -25,7 +25,7 @@ export const NotificationItem = ({ history, post, user }) => {
   return (
     <CustomLink
       to={{
-        pathname: `/dashboard/status/${post.id}`,
+        pathname: `/dashboard/status/${post.uuid}`,
         state: post
       }}
       linkRef={linkRef}
