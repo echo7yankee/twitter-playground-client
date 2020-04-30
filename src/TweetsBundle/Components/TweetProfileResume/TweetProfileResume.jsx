@@ -6,13 +6,16 @@ import style from './tweetProfileResume.module.css';
 import { getFollowButtonState } from '../../../utils/services/getFollowButtonState';
 //Components
 import { TweetProfileImg } from '../TweetProfileImg/TweetProfileImg';
+import { pushToProfilePage } from '../../../utils/services/pushToProfilePage';
+import { getUserFollows } from '../../../utils/services/getUserFollows';
 
 export const TweetProfileResume = ({
   post,
   user,
   handleFollow,
   isAnimateProfileResume,
-  setIsAnimateProfileResume }) => {
+  setIsAnimateProfileResume,
+  history }) => {
 
   const [buttonText, setButtonText] = useState(false);
 
@@ -30,12 +33,18 @@ export const TweetProfileResume = ({
           ? style.tweetProfileResumeAnimate
           : style.tweetProfileResume}>
         <header className={style.tweetProfileResumeHeader}>
-          <TweetProfileImg
-            profileImg={post.user.profileImg}
-            classNameIcon='placeholder-profile-img'
-            classNameDiv='tweet-profile-img-container mr-1'
-            onMouseOver={null}
-          />
+          <div
+            onClick={() => {
+              pushToProfilePage(history, post, user, getUserFollows(user));
+            }}
+          >
+            <TweetProfileImg
+              profileImg={post.user.profileImg}
+              classNameIcon='placeholder-profile-img'
+              classNameDiv='tweet-profile-img-container mr-1'
+              onMouseOver={null}
+            />
+          </div>
           {user.id !== post.userId
             && <button
               onClick={handleFollow}
