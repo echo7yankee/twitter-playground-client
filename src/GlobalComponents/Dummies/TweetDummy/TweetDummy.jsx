@@ -14,7 +14,10 @@ export const TweetDummy = () => {
       </div>
       <div className={`${style.tweetDummyComment} ${style.tweetDummyItem}`} />
       <div className={style.tweetDummyBottom}>
-        <div className={`${style.tweetDummySocialButtons} ${style.tweetDummyItem}`} />
+        <div className='dflex'>
+          <div className={`${style.tweetDummySocialButtons} ${style.tweetDummyItem}`} />
+          <div className={`${style.tweetDummySocialButtons} ${style.tweetDummyItem}`} />
+        </div>
         <div className={`${style.tweetDummyReplyButton} ${style.tweetDummyItem}`} />
       </div>
     </div>
