@@ -1,6 +1,6 @@
 .profileDummyCover {
   height: 20rem;
-  background-color: var(--blue-color-8);
+  background-color: var(--blue-color-4);
 }
 
 .profileDummyItems {
@@ -86,8 +86,9 @@
   left: 0;
   top: 0;
   height: 100%;
-background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-  animation: animateProfileDummy 1.5s ease-in infinite backwards;
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  opacity: 0.7;
+   animation: animateProfileDummy 1.5s ease-out infinite alternate-reverse;
 }
 
 
