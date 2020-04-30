@@ -18,14 +18,14 @@
 .tweetDummyImg {
   width: 5.5rem;
   height: 5.5rem;
-  background-color: var(--blue-color-8);
+  background-color: var(--blue-color-4);
   border-radius: 50%;
 }
 
 .tweetDummyName,.tweetDummyComment,.tweetDummySocialButtons,.tweetDummyReplyButton {
   width: 50%;
   height: 2.4rem;
-  background-color: var(--blue-color-8);
+  background-color: var(--blue-color-4);
   border-radius: 3px;
   margin-left: 1rem;
 }
@@ -33,7 +33,7 @@
 .tweetDummyArrow {
   width: 2rem;
   height: 2rem;
-  background-color: var(--blue-color-8);
+  background-color: var(--blue-color-4);
   border-radius: 50%;
 }
 
@@ -67,8 +67,8 @@
   left: 0;
   top: 0;
   height: 100%;
-background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-  animation: animateDummyTweet 1s ease-in infinite backwards;
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  animation: animateDummyTweet 1.5s ease-in infinite backwards;
 }
 
 @keyframes animateDummyTweet {
