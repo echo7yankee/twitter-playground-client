@@ -68,8 +68,9 @@ export const TweetItem = ({
 
   useEffect(() => {
     setIsAnimate(true);
-
-    return () => setIsAnimate(false);
+    return () => {
+      setIsAnimate(false);
+    };
   }, [])
 
   const handleLikePost = (e) => {
@@ -200,6 +201,7 @@ export const TweetItem = ({
                   isAnimateProfileResume={isAnimateProfileResume}
                   setIsAnimateProfileResume={setIsAnimateProfileResume}
                   handleFollow={action.follow}
+                  history={history}
                 />
               </div>
             }
