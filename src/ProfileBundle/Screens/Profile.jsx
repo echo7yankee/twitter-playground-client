@@ -18,7 +18,7 @@ import { ProfileBio } from '../Components/ProfileBio/ProfileBio';
 import { userIdFromToken } from '../../utils/services/userIdFromToken';
 import { getFollowButtonState } from '../../utils/services/getFollowButtonState';
 import { updateNotifications } from '../../Redux/actions/notification/notification';
-import { ProfileDummy } from '../../GlobalComponents/ProfileDummy/ProfileDummy';
+import { ProfileDummy } from '../../GlobalComponents/Dummies/ProfileDummy/ProfileDummy';
 
 export const Profile = ({ history }) => {
   const state = {

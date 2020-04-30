@@ -8,9 +8,9 @@ import { getUserDetails, resetUserDetails } from '../../../Redux/actions/user/us
 import style from './notificationsItems.module.css';
 //Components
 import { NotificationItem } from '../NotificationItem/NotificationItem';
-import { SpinnerTweets } from '../../../GlobalComponents/SpinnerTweets/SpinnerTweets';
 import { userIdFromToken } from '../../../utils/services/userIdFromToken';
 import { getUserFollows } from '../../../utils/services/getUserFollows';
+import { NotificationDummy } from '../../../GlobalComponents/Dummies/NotificationDummy/NotificationDummy';
 
 export const NotificationsItems = ({ history }) => {
   //redux
@@ -40,7 +40,11 @@ export const NotificationsItems = ({ history }) => {
 
   return (
     isLoading
-      ? <SpinnerTweets />
+      ? <>
+        <NotificationDummy />
+        <NotificationDummy />
+        <NotificationDummy />
+      </>
       : <div className={style.notificationsItems}>
         {
           posts.length

@@ -10,8 +10,8 @@ import { getPost, resetPost } from '../../../Redux/actions/post/post';
 //Components
 import { PageTitle } from '../../../GlobalComponents/PageTitle/PageTitle';
 import { getUserDetails, resetUserDetails } from '../../../Redux/actions/user/user';
-import { SpinnerTweets } from '../../../GlobalComponents/SpinnerTweets/SpinnerTweets';
 import { TweetItem } from '../Tweets/TweetItem';
+import { TweetDummy } from '../../../GlobalComponents/Dummies/TweetDummy/TweetDummy';
 
 export const SingleTweet = ({ match, history }) => {
   const postId = match.params.postId;
@@ -49,6 +49,6 @@ export const SingleTweet = ({ match, history }) => {
             history={history}
           />
         </div>
-      </div> : <SpinnerTweets />
+      </div> : <TweetDummy />
   )
 }

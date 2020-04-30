@@ -13,7 +13,7 @@ import { PageTitle } from '../../GlobalComponents/PageTitle/PageTitle';
 import { userIdFromToken } from '../../utils/services/userIdFromToken';
 import { addNewPost } from '../Services/addNewPost';
 import { getUpdatedPost } from '../Services/getUpdatedPost';
-import { TweetDummy } from '../../GlobalComponents/TweetDummy/TweetDummy';
+import { TweetDummy } from '../../GlobalComponents/Dummies/TweetDummy/TweetDummy';
 
 export const DashboardHome = ({ history }) => {
   //useState
