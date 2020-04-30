@@ -1,0 +1,101 @@
+.profileDummyCover {
+  height: 20rem;
+  background-color: var(--blue-color-8);
+}
+
+.profileDummyItems {
+  padding: 2rem;
+}
+
+.profileDummyHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profileDummyImg {
+  width: 15rem;
+  height: 15rem;
+  background-color: var(--blue-color-4);
+  border-radius: 50%;
+  overflow: hidden;
+  transform: translateY(-50%);
+}
+
+.profileDummyButton,
+.profileDummyName,
+.profileDummyBio,
+.profileDummyCreatedAt,
+.profileDummyFollowingNumber,
+.profileDummyFollowingText,
+.profileDummyFollowersNumber,
+.profileDummyFollowersText {
+  width: 10rem;
+  height: 4.5rem;
+  background-color: var(--blue-color-4);
+  border-radius: 2.5rem;
+  align-self: flex-start;
+}
+
+.profileDummyInfo {
+  transform:translateY(-6rem);
+}
+
+.profileDummyName,
+.profileDummyBio,
+.profileDummyCreatedAt,
+.profileDummyFollowingNumber,
+.profileDummyFollowingText,
+.profileDummyFollowersNumber,
+.profileDummyFollowersText {
+  border-radius: 3px;
+  height: 2.5rem;
+}
+
+.profileDummyBio {
+  width: 100%;
+  height: 4rem;
+  margin: 1rem 0;
+}
+
+.profileDummySocial {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.profileDummyFollowingNumber,
+.profileDummyFollowersNumber {
+  width: 2.5rem;
+}
+
+.profileDummyFollowingText,
+.profileDummyFollowersText {
+  width: 10rem;
+  margin-left: 1rem;
+}
+
+.profileDummyItem {
+  position: relative;
+}
+
+.profileDummyItem::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  animation: animateProfileDummy 1s ease-in infinite backwards;
+}
+
+
+@keyframes animateProfileDummy {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}

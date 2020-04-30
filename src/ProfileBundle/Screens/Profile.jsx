@@ -15,10 +15,10 @@ import { ProfileImage } from '../Components/ProfileImage/ProfileImage';
 import { ProfileImageEditButton } from '../Components/ProfileImageEditButton/ProfileImageEditButton';
 import { ProfileOverlayImage } from '../Components/ProfileOverlayImage/ProfileOverlayImage';
 import { ProfileBio } from '../Components/ProfileBio/ProfileBio';
-import { SpinnerTweets } from '../../GlobalComponents/SpinnerTweets/SpinnerTweets';
 import { userIdFromToken } from '../../utils/services/userIdFromToken';
 import { getFollowButtonState } from '../../utils/services/getFollowButtonState';
 import { updateNotifications } from '../../Redux/actions/notification/notification';
+import { ProfileDummy } from '../../GlobalComponents/ProfileDummy/ProfileDummy';
 
 export const Profile = ({ history }) => {
   const state = {
@@ -81,7 +81,7 @@ export const Profile = ({ history }) => {
 
   return (
     isLoading || !user.id
-      ? <SpinnerTweets />
+      ? <ProfileDummy />
       : <div className={style.profile}>
         <div>
           <PageTitle

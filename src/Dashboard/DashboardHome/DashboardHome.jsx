@@ -10,7 +10,6 @@ import { DashboardHomeConstants } from './Constants/DashboardHomeConstants';
 //components
 import { Tweets } from '../../TweetsBundle/Components/Tweets/Tweets';
 import { PageTitle } from '../../GlobalComponents/PageTitle/PageTitle';
-import { SpinnerTweets } from '../../GlobalComponents/SpinnerTweets/SpinnerTweets';
 import { userIdFromToken } from '../../utils/services/userIdFromToken';
 import { addNewPost } from '../Services/addNewPost';
 import { getUpdatedPost } from '../Services/getUpdatedPost';
