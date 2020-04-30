@@ -24,7 +24,7 @@
 
 .tweetDummyName,.tweetDummyComment,.tweetDummySocialButtons,.tweetDummyReplyButton {
   width: 50%;
-  height: 2.4rem;
+  height: 1.7rem;
   background-color: var(--blue-color-4);
   border-radius: 3px;
   margin-left: 1rem;
