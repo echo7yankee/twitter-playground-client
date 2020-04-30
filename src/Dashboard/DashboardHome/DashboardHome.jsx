@@ -48,7 +48,7 @@ export const DashboardHome = ({ history }) => {
       username: user.fName + ' ' + user.lName,
       profileImg: user.profileImg,
     }
-    setPosts([...postsArr, addNewPost(post, userData)])
+    setPosts([addNewPost(post, userData), ...postsArr])
     dispatch(addPost(post, userData));
   }
 

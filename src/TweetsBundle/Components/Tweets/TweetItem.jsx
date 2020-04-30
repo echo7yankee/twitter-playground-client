@@ -107,7 +107,7 @@ export const TweetItem = ({
     }),
     edit: () => setPostOnEdit(post.uuid, true),
     follow: () => {
-      const isFollowed = getFollowButtonState(user.id, post.user);
+      const isFollowed = getFollowButtonState(user.id, postObj.user);
       if (isFollowed) {
         setPost(filterPostsFollowers(postObj, user.id));
         dispatch(followUser(user.id, post.userId, 'dropdown'))
