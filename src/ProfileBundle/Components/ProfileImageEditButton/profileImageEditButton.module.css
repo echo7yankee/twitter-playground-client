@@ -1,4 +1,4 @@
-.profileImageEditButton {
+.profileImageEditButton,.profileImageEditButtonFollowed {
   align-self: flex-start;
   margin-top: 1rem;
   padding: 1.2rem 1.6rem;
@@ -12,4 +12,14 @@
 
 .profileImageEditButton:hover {
   background-color: var(--blue-color-2);
+}
+
+.profileImageEditButtonFollowed {
+  background-color: var(--blue-color-1);
+  color: var(--white-color);
+}
+
+.profileImageEditButtonFollowed:hover {
+  background-color: var(--red-color-3);
+  border: 1px solid var(--red-color-3);
 }
