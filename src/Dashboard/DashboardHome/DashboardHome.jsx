@@ -14,6 +14,7 @@ import { SpinnerTweets } from '../../GlobalComponents/SpinnerTweets/SpinnerTweet
 import { userIdFromToken } from '../../utils/services/userIdFromToken';
 import { addNewPost } from '../Services/addNewPost';
 import { getUpdatedPost } from '../Services/getUpdatedPost';
+import { TweetDummy } from '../../GlobalComponents/TweetDummy/TweetDummy';
 
 export const DashboardHome = ({ history }) => {
   //useState
@@ -90,7 +91,11 @@ export const DashboardHome = ({ history }) => {
   }
 
   return !user.id && isLoading
-    ? <SpinnerTweets />
+    ? <>
+      <TweetDummy />
+      <TweetDummy />
+      <TweetDummy />
+    </>
     : (
       <div className={style.dashboardHome}>
         <PageTitle
@@ -107,6 +112,7 @@ export const DashboardHome = ({ history }) => {
           setPostOnEdit={setPostOnEdit}
           history={history}
         />
+        {/* <TweetDummy /> */}
       </div>
     )
 }

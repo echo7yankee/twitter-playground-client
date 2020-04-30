@@ -1,0 +1,82 @@
+.tweetDummy {
+  padding: 2rem 1.7rem;
+  border: 1px solid var(--blue-color-4);
+}
+
+.tweetDummyHeader,.tweetDummyBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tweetDummyHeaderLeft {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.tweetDummyImg {
+  width: 5.5rem;
+  height: 5.5rem;
+  background-color: var(--blue-color-8);
+  border-radius: 50%;
+}
+
+.tweetDummyName,.tweetDummyComment,.tweetDummySocialButtons,.tweetDummyReplyButton {
+  width: 50%;
+  height: 2.4rem;
+  background-color: var(--blue-color-8);
+  border-radius: 3px;
+  margin-left: 1rem;
+}
+
+.tweetDummyArrow {
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--blue-color-8);
+  border-radius: 50%;
+}
+
+.tweetDummyComment {
+ width: 80%;
+ margin:1rem 0 2rem 6.5rem;
+}
+
+.tweetDummyBottom {
+  margin: 0;
+  margin-left: 5.5rem;
+}
+
+.tweetDummySocialButtons {
+  width: 25%;
+}
+
+.tweetDummyReplyButton {
+  width: 6rem;
+  border-radius: 2.5rem;
+}
+
+.tweetDummyItem {
+  position: relative;
+  overflow: hidden;
+}
+
+.tweetDummyItem::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: var(--blue-color-4);
+  animation: animateDummyTweet .5s ease-in infinite backwards;
+}
+
+@keyframes animateDummyTweet {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
