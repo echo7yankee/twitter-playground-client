@@ -12,7 +12,6 @@ import { NotificationsItems } from '../Components/NotificationsItems/Notificatio
 
 export const Notifications = () => {
   //TODO: THINK ABOUT MENTIONS, HOW TO ADD NAME TAGS IN POSTS TO REFLECT THE MENTIONS
-  //TODO: CROP PICTURE
   return (
     <div className={style.notifications}>
       <PageTitle name={NotificationsConstants.PAGE_TITLE} hasBackButton={true} />
