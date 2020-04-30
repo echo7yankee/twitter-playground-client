@@ -12,6 +12,7 @@ import { getNotifications, updateNotifications, resetNotifications } from '../..
 //react router dom
 import { NavLink } from 'react-router-dom';
 import { userIdFromToken } from '../../utils/services/userIdFromToken';
+import { getUserFollows } from '../../utils/services/getUserFollows';
 
 export const SideMenu = () => {
   const { url } = config;
@@ -21,20 +22,19 @@ export const SideMenu = () => {
   //redux
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userDetails);
-  const notifications = useSelector((state) => state.notification.notifications);
+  // const notifications = useSelector((state) => state.notification.notifications);
   const notificationsLength = useSelector((state) => state.notification.notificationsLength);
   const isLoading = useSelector((state) => state.notification.isLoading);
-  const userFollows = user.social && user.social.following
 
   useEffect(() => {
     let notificationsInterval;
     if (ownerProfileImg === 'null') {
       dispatch(getUserDetails(userIdFromToken()));
     }
-    if (userFollows && userFollows.length) {
-      dispatch(getNotifications({ userId: userFollows }));
+    if (getUserFollows(user) && getUserFollows(user).length) {
+      dispatch(getNotifications({ userId: getUserFollows(user) }));
       notificationsInterval = setInterval(() => {
-        dispatch(getNotifications({ userId: userFollows }));
+        dispatch(getNotifications({ userId: getUserFollows(user) }));
       }, 120000)
     }
 
@@ -43,14 +43,14 @@ export const SideMenu = () => {
       window.clearInterval(notificationsInterval);
     }
 
-  }, [dispatch, ownerProfileImg, userFollows])
+  }, [dispatch, ownerProfileImg, user])
 
   useEffect(() => {
     setProfileImg(ownerProfileImg !== 'null' ? ownerProfileImg : user.profileImg)
   }, [ownerProfileImg, user.profileImg])
 
   const setnotificationsOnFalse = () => {
-    dispatch(updateNotifications({ userId: userFollows }, { notificationState: false }))
+    dispatch(updateNotifications({ userId: getUserFollows(user) }, { notificationState: false }))
   }
 
   // console.log(notifications);

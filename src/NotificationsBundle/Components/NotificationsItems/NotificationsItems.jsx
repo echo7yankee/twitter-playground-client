@@ -10,6 +10,7 @@ import style from './notificationsItems.module.css';
 import { NotificationItem } from '../NotificationItem/NotificationItem';
 import { SpinnerTweets } from '../../../GlobalComponents/SpinnerTweets/SpinnerTweets';
 import { userIdFromToken } from '../../../utils/services/userIdFromToken';
+import { getUserFollows } from '../../../utils/services/getUserFollows';
 
 export const NotificationsItems = ({ history }) => {
   //redux
@@ -17,8 +18,6 @@ export const NotificationsItems = ({ history }) => {
   const posts = useSelector((state) => state.post.posts);
   const isLoading = useSelector(state => state.post.isLoading);
   const user = useSelector((state) => state.user.userDetails);
-
-  const userFollows = user.social && user.social.following
 
   useEffect(() => {
     dispatch(getUserDetails(userIdFromToken()))
@@ -28,16 +27,16 @@ export const NotificationsItems = ({ history }) => {
     }
   }, [dispatch]);
   useEffect(() => {
-    if (userFollows && userFollows.length) {
+    if (getUserFollows(user) && getUserFollows(user).length) {
       dispatch(getAllPosts({
-        userId: userFollows
+        userId: getUserFollows(user)
       }));
     }
 
     return () => {
       dispatch(resetPosts());
     }
-  }, [dispatch, userFollows]);
+  }, [dispatch, user]);
 
   return (
     isLoading

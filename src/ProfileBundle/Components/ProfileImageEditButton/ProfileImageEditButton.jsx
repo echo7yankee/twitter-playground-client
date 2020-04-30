@@ -1,21 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { getFollowButtonState } from '../../../utils/services/getFollowButtonState';
 
 //style
 import style from './profileImageEditButton.module.css';
 
 export const ProfileImageEditButton = ({ openModal, handleFollowUser, state, user }) => {
+
+  const [buttonText, setButtonText] = useState(false);
+
   return (
     <button
-      className={style.profileImageEditButton}
-      style={state.isOwner !== null && getFollowButtonState(state.ownerId, user)
-        ? { backgroundColor: '#1da1f2', color: '#ffffff' } : {}}
+      className={state.isOwner !== null
+        && getFollowButtonState(state.ownerId, user)
+        ? style.profileImageEditButtonFollowed
+        : style.profileImageEditButton}
       onClick={state.isOwner === null
         ? openModal
-        : () => handleFollowUser(state.ownerId, user.id)}>
+        : () => handleFollowUser(state.ownerId, user.id)}
+      onMouseEnter={() => setButtonText(getFollowButtonState(state.ownerId, user) && true)}
+      onMouseLeave={() => setButtonText(getFollowButtonState(state.ownerId, user) && false)}
+    >
       {state.isOwner === null
         ? 'Edit Profile'
-        : getFollowButtonState(state.ownerId, user) ? 'Following' : 'Follow'}
+        : buttonText
+          ? 'Unfollow' :
+          getFollowButtonState(state.ownerId, user)
+            ? 'Following'
+            : 'Follow'}
     </button>
   )
 }
