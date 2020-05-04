@@ -1,6 +1,7 @@
 export const createUser = () => ({
   fName: '',
   lName: '',
+  username: '',
   website: '',
   bio: '',
   age: {
@@ -9,4 +10,11 @@ export const createUser = () => ({
     year: ''
   },
   location: '',
+  social: {
+    following: [],
+    followingCount: '',
+    followers: [],
+    followersCount: '',
+    usersToMessage: [],
+  }
 })
