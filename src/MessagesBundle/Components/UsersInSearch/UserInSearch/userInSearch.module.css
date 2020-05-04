@@ -4,14 +4,11 @@
   padding: 1rem;
   cursor: pointer;
   transition: background-color .2s ease-out;
+  border: 1px solid var(--blue-color-4);
 }
 
 .userInSearchItem:hover {
   background-color: var(--blue-color-2);
-}
-
-.userInSearchItem:not(:last-child) {
-  border-bottom: 1px solid var(--blue-color-4);
 }
 
 .userInSearchItem span {
