@@ -67,7 +67,7 @@ export const Profile = ({ history }) => {
   }
 
   const updateUser = async (newUserDetails) => {
-    dispatch(updateUserDetails(newUserDetails, closeModal))
+    dispatch(updateUserDetails(newUserDetails, closeModal, 'Profile'))
   }
 
   const handleFollowUser = (ownerId, visitorId) => {

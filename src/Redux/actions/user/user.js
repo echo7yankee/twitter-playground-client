@@ -25,17 +25,16 @@ export const getUserDetails = (userId) => {
   }
 }
 
-export const getUsers = (params) => {
+export const getUsersInSearch = (params) => {
   return async (dispatch) => {
     try {
 
       dispatch({ type: SET_GET_USERS_LOADING });
 
-      const response = await axios.get('/user', {
+      const response = await axios.get('/user/search', {
         params
       })
       const { data } = response;
-      console.log(data);
       dispatch({
         type: GET_USERS,
         payload: data,
@@ -44,6 +43,10 @@ export const getUsers = (params) => {
       if (error.response.status === 500) {
         dispatch(logoutUser());
       }
+      dispatch({
+        type: GET_USERS,
+        payload: [],
+      })
       console.log(error)
     }
   }
@@ -55,12 +58,15 @@ export const resetUserDetails = () => {
   }
 }
 
-export const updateUserDetails = (newUserDetails, closeModal) => {
+export const updateUserDetails = (newUserDetails, closeModal, location) => {
   return async (dispatch) => {
     try {
       await axios.put(`/user/userDetails/${newUserDetails.id}`, newUserDetails)
-      closeModal()
-      dispatch(getUserDetails(newUserDetails.id))
+      if (location === 'Profile') {
+        closeModal()
+        dispatch(getUserDetails(newUserDetails.id))
+        return;
+      }
     } catch (error) {
       console.log(error);
     }
