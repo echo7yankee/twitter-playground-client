@@ -1,6 +1,7 @@
 .userInSearchItem {
   list-style: none;
   display: flex;
+  align-items: center;
   padding: 1rem;
   cursor: pointer;
   border-left: 1px solid var(--blue-color-4);
