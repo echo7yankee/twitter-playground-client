@@ -1,0 +1,18 @@
+.usersInSearchDummy {
+  display: flex;
+  padding: 1rem;
+}
+
+.usersInSearchDummyImg {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  background-color: var(--blue-color-4);
+}
+
+.usersInSearchDummyText {
+  margin-left: .8rem;
+  height: 2rem;
+  background-color: var(--blue-color-4);
+  width: 50%;
+}
