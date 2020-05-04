@@ -3,7 +3,9 @@
   display: flex;
   padding: 1rem;
   cursor: pointer;
-  border: 1px solid var(--blue-color-4);
+  border-left: 1px solid var(--blue-color-4);
+  border-right: 1px solid var(--blue-color-4);
+  border-bottom: 1px solid var(--blue-color-4);
 }
 
 .userInSearchItem span {
