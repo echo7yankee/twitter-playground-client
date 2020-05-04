@@ -94,6 +94,9 @@ export const DashboardHome = ({ history }) => {
       <TweetDummy />
       <TweetDummy />
       <TweetDummy />
+      <TweetDummy />
+      <TweetDummy />
+      <TweetDummy />
     </>
     : (
       <div className={style.dashboardHome}>

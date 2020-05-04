@@ -44,6 +44,11 @@ export const NotificationsItems = ({ history }) => {
         <NotificationDummy />
         <NotificationDummy />
         <NotificationDummy />
+        <NotificationDummy />
+        <NotificationDummy />
+        <NotificationDummy />
+        <NotificationDummy />
+        <NotificationDummy />
       </>
       : <div className={style.notificationsItems}>
         {
