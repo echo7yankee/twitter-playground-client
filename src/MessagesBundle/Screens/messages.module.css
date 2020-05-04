@@ -1,0 +1,7 @@
+.messages {
+  max-width: 50%;
+  padding: 1rem;
+  border-left: 1px solid var(--blue-color-4);
+  border-right: 1px solid var(--blue-color-4);
+  min-height: 90vh;
+}

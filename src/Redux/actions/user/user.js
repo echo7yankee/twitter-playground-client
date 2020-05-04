@@ -1,6 +1,6 @@
 //axios
 import axios from 'axios';
-import { GET_USER_DETAILS, RESET_USER_DETAILS, SET_USER_DETAILS_LOADING } from '../../types';
+import { GET_USER_DETAILS, RESET_USER_DETAILS, SET_USER_DETAILS_LOADING, GET_USERS, SET_GET_USERS_LOADING } from '../../types';
 import { getAllPosts } from '../post/post';
 import { logoutUser } from '../auth/auth';
 
@@ -15,6 +15,30 @@ export const getUserDetails = (userId) => {
       dispatch({
         type: GET_USER_DETAILS,
         payload: data
+      })
+    } catch (error) {
+      if (error.response.status === 500) {
+        dispatch(logoutUser());
+      }
+      console.log(error)
+    }
+  }
+}
+
+export const getUsers = (params) => {
+  return async (dispatch) => {
+    try {
+
+      dispatch({ type: SET_GET_USERS_LOADING });
+
+      const response = await axios.get('/user', {
+        params
+      })
+      const { data } = response;
+      console.log(data);
+      dispatch({
+        type: GET_USERS,
+        payload: data,
       })
     } catch (error) {
       if (error.response.status === 500) {
