@@ -46,8 +46,11 @@
   color: var(--blue-color-1);
 }
 
-.isActive span {
+.isActive {
     background-color: var(--blue-color-2);
+}
+
+.isActive span {
     color: var(--blue-color-1);
 }
 

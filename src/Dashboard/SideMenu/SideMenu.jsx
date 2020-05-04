@@ -82,6 +82,8 @@ export const SideMenu = () => {
             </div>
             <span>Notifications</span>
           </NavLink>
+        </li>
+        <li className={style.menuItem}>
           <NavLink
             to='/dashboard/messages'
             activeClassName={style.isActive}
