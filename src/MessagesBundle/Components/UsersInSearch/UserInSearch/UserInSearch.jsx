@@ -9,8 +9,8 @@ export const UserInSearch = ({ user, onClick }) => {
     <li className={style.userInSearchItem} onClick={() => onClick(user)}>
       <TweetProfileImg
         profileImg={user.profileImg}
-        classNameIcon='placeholder-profile-img'
-        classNameDiv='tweet-profile-img-container mr-1'
+        classNameIcon='placeholder-profile-img-reply'
+        classNameDiv='tweet-profile-img-container-reply mr-1'
         onMouseOver={null}
       />
       <span><b>{user.username}</b></span>

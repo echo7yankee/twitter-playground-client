@@ -17,4 +17,5 @@
 .userInSearchItem span {
   margin-left: .8rem;
   color: var(--blue-color-7);
+  font-size: 1.5rem;
 }
