@@ -3,7 +3,8 @@ import { config } from '../../utils/constants/Environment';
 import spinner from '../../assets/gifs/spinner.gif';
 //style
 import style from './sideMenu.module.css';
-import { IoMdHome, IoIosPerson, IoMdNotificationsOutline } from 'react-icons/io';
+import { IoMdHome, IoIosPerson } from 'react-icons/io';
+import { MdEmail, MdNotifications } from 'react-icons/md';
 //redux
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserDetails } from '../../Redux/actions/user/user';
@@ -71,7 +72,7 @@ export const SideMenu = () => {
             onClick={setnotificationsOnFalse}
           >
             <div className='pos-relative '>
-              <IoMdNotificationsOutline />
+              <MdNotifications />
               {isLoading && notificationsLength
                 ? <img src={spinner} className={style.menuNotificationSpinner} alt='spinner' />
                 : notificationsLength > 0 && <span className={style.menuNotificationLength}>
@@ -80,6 +81,15 @@ export const SideMenu = () => {
               }
             </div>
             <span>Notifications</span>
+          </NavLink>
+          <NavLink
+            to='/dashboard/messages'
+            activeClassName={style.isActive}
+          >
+            <div className='pos-relative '>
+              <MdEmail />
+            </div>
+            <span>Messages</span>
           </NavLink>
         </li>
         <li className={style.menuItem}>
