@@ -1,13 +1,22 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 //style
 import style from './chat.module.css';
 //Components
 import { PageTitle } from '../../../GlobalComponents/PageTitle/PageTitle';
+import { ChatForm } from './ChatForm/ChatForm';
 
 export const Chat = ({ history }) => {
   const userVisitor = history.location && history.location.state.user;
+  //use state
+  const [message, setMessage] = useState('');
 
-  console.log(userVisitor);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
+  const handleChange = (e) => {
+    setMessage(e.target.value)
+  }
 
   return (
     <div>
@@ -16,7 +25,13 @@ export const Chat = ({ history }) => {
         hasBackButton={false}
       />
       <div className={style.chat}>
-        staf
+        <ChatForm
+          onSubmit={handleSubmit}
+          onChange={handleChange}
+          value={message}
+          type='text'
+          placeholder='Send message...'
+        />
       </div>
     </div>
   )

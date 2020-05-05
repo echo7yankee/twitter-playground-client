@@ -1,4 +1,5 @@
 .chat {
   border-right: 1px solid var(--blue-color-4);
   min-height: 90vh;
+  position: relative;
 }
