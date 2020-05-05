@@ -1,3 +1,8 @@
+.userInSearchLink:link,.userInSearchLink:visited{
+  text-decoration: none;
+  color: var(--blue-color-7);
+}
+
 .userInSearchItem {
   list-style: none;
   display: flex;

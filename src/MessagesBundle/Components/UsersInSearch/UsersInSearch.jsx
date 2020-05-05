@@ -12,7 +12,8 @@ export const UsersInSearch = ({ users, onClick }) => {
           <UserInSearch
             key={user.id}
             user={user}
-            onClick={onClick}
+            onClick={() => onClick(user)}
+            isLink={false}
           />)}
       </ul>
     </div>

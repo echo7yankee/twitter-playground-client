@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 // import style from './messages.module.css';
 //Components
 import { MessagesSearch } from '../MessagesSearch/MessagesSearch';
+import { UsersInMessages } from '../UsersInMessages/UsersInMessages';
 
 export const MessagesView = ({ user }) => {
   return (
@@ -10,9 +11,10 @@ export const MessagesView = ({ user }) => {
       ? <div>
         <MessagesSearch
           user={user}
-        // setUser={setUser}
         />
-        <div className="divider" style={{ height: '1px' }} />
+        {!user.social.usersToMessage.length
+          && <div className="divider" style={{ height: '1px' }} />}
+        <UsersInMessages users={user.social.usersToMessage} />
       </div>
       : null
   )
