@@ -2,8 +2,11 @@
   display: flex;
 }
 
-.messagesContainerLeft,.messagesContainerRight {
-  width: 100%;
+.messagesContainerLeft {
+ width: 35%;
+}
+.messagesContainerRight {
+  width: 65%;
 }
 
 .messagesPageTitle {
