@@ -16,7 +16,7 @@ import { Notifications } from '../NotificationsBundle/Screens/Notifications';
 import { SingleTweet } from '../TweetsBundle/Components/SingleTweet/SingleTweet';
 import { Messages } from '../MessagesBundle/Screens/Messages';
 
-export const Dashboard = () => {
+export const Dashboard = ({ history }) => {
   //redux
   const authenticated = useSelector(state => state.auth.authenticated);
 
@@ -39,9 +39,12 @@ export const Dashboard = () => {
               <Route path='/dashboard/status/:postId' component={SingleTweet} />
             </Switch>
           </div>
-          <div className='container-column-medium mt-05'>
-            <Trends />
-          </div>
+          {!history.location.pathname.includes('/dashboard/messages')
+            ? <div className='container-column-medium mt-05'>
+              <Trends />
+            </div>
+            : null
+          }
         </div>
       </div>
     </LastLocationProvider>
