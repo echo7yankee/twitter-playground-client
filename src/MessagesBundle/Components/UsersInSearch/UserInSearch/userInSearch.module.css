@@ -4,9 +4,12 @@
   align-items: center;
   padding: 1rem;
   cursor: pointer;
-  border-left: 1px solid var(--blue-color-4);
-  border-right: 1px solid var(--blue-color-4);
+  transition: background-color .2s ease-out;
   border-bottom: 1px solid var(--blue-color-4);
+}
+
+.userInSearchItem:hover {
+  background-color: var(--blue-color-5);
 }
 
 .userInSearchItem span {

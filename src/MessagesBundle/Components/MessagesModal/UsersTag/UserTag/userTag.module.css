@@ -1,0 +1,29 @@
+.userTagItem {
+  display: flex;
+  align-items: center;
+  padding: .6rem;
+  border-radius: 2.5rem;
+  transition: background-color .2s ease-out;
+      cursor: pointer;
+  width: max-content;
+}
+
+.userTagItem:not(:first-child) {
+  margin-left: .8rem;
+}
+
+.userTagItem:hover {
+  background-color: var(--blue-color-5);
+}
+
+.userTagItem span {
+  font-weight: 700;
+  color: var(--blue-color-1);
+}
+
+.userTagItem svg {
+  width: 2rem;
+  height: 2rem;
+  fill: var(--blue-color-1);
+  margin-left: .8rem;
+}

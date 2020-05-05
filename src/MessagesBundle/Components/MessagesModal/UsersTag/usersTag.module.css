@@ -1,0 +1,10 @@
+.usersTag {
+  padding: .8rem 2rem;
+  background-color: var(--blue-color-2);
+}
+
+.usersTagItems {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}

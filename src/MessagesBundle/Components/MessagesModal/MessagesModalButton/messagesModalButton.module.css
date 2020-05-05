@@ -1,0 +1,5 @@
+.messagesModalTopButtonDisabled {
+  background-color: var(--blue-color-1-alpha-half)!important;
+  border-color: var(--blue-color-1-alpha-half) !important;
+  pointer-events: none !important;
+}
