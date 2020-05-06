@@ -80,7 +80,7 @@ export const MessagesModal = ({
   }
 
   return (
-    <div className='overlay overlay-alpha-black' onClick={onClose}>
+    <div className='overlay overlay-alpha-black' onClick={onClose} style={{ zIndex: '5000' }}>
       <div
         className={style.modal}
         onClick={(e) => e.stopPropagation()}
