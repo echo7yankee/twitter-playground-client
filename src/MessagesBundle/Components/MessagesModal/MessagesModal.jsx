@@ -29,6 +29,7 @@ export const MessagesModal = ({
   const users = useSelector((state) => state.user.usersInSearch);
   const isLoading = useSelector((state) => state.user.isLoading);
 
+
   useEffect(() => {
     const params = {
       _id: followedUsers,

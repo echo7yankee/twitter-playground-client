@@ -6,13 +6,13 @@ import style from './userInSearch.module.css';
 //Components
 import { TweetProfileImg } from '../../../../TweetsBundle/Components/TweetProfileImg/TweetProfileImg';
 
-export const UserInSearch = ({ user, onClick, isLink }) => {
+export const UserInSearch = ({ user, userAdmin, onClick, isLink }) => {
   return (
     isLink
       ? <Link
         to={{
           pathname: `/dashboard/messages/${user.id}`,
-          state: { user }
+          state: { userVisitor: user, userAdmin }
         }}
         className={style.userInSearchLink}
       >

@@ -24,7 +24,7 @@ export const MessagesView = ({ user }) => {
       {user.id && !user.social.usersToMessage.length
         && <div className="divider" style={{ height: '1px' }} />}
       {user.id
-        ? <UsersInMessages users={filterUsersBySearch(user.social.usersToMessage, search)} />
+        ? <UsersInMessages userAdmin={user} users={filterUsersBySearch(user.social.usersToMessage, search)} />
         : <>
           <UsersInSearchDummy />
           <UsersInSearchDummy />
