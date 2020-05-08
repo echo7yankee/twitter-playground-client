@@ -60,7 +60,9 @@ export const SideMenu = () => {
     <div className={style.menuContainer}>
       <ul className={style.menuItems}>
         <li className={style.menuItem}>
-          <NavLink to='/dashboard/' exact={true} activeClassName={style.isActive}>
+          <NavLink to='/dashboard/'
+            exact={true}
+            activeClassName={style.isActive}>
             <IoMdHome />
             <span>Home</span>
           </NavLink>

@@ -5,6 +5,7 @@ import style from './chat.module.css';
 //Components
 import { PageTitle } from '../../../GlobalComponents/PageTitle/PageTitle';
 import { ChatForm } from './ChatForm/ChatForm';
+import { ChatMessages } from './ChatMessages/ChatMessages';
 
 let socket;
 
@@ -12,13 +13,14 @@ export const Chat = ({ history }) => {
   const ENDPOINT = 'localhost:5000';
   const userVisitor = history.location && history.location.state.userVisitor;
   const userAdmin = history.location && history.location.state.userAdmin
+  const name = userAdmin.username;
+  const room = '123'
 
   //use state
   const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    const name = userAdmin.username;
-    const room = '123'
     socket = io(ENDPOINT);
 
 
@@ -33,19 +35,25 @@ export const Chat = ({ history }) => {
       socket.disconnect();
     }
 
-  }, [userAdmin.username, userAdmin.id, userVisitor.social.followers, ENDPOINT])
+  }, [name, userAdmin.id, userVisitor.social.followers, ENDPOINT])
+
+  useEffect(() => {
+    socket.on('message', (message) => {
+      setMessages((msgs) => [...msgs, message]);
+    })
+
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (message) {
+      socket.emit('sendMessage', message, name, room, () => setMessage(''))
+    }
   }
 
   const handleChange = (e) => {
     setMessage(e.target.value)
   }
-
-  console.log('VISITOR', userVisitor);
-  console.log('ADMIN', userAdmin);
-
 
   return (
     <div>
@@ -54,6 +62,11 @@ export const Chat = ({ history }) => {
         hasBackButton={false}
       />
       <div className={style.chat}>
+        <ChatMessages
+          messages={messages}
+          userAdmin={userAdmin}
+          userVisitor={userVisitor}
+        />
         <ChatForm
           onSubmit={handleSubmit}
           onChange={handleChange}
