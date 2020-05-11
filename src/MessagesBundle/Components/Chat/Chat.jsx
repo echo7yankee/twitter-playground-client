@@ -88,30 +88,32 @@ export const Chat = ({ history }) => {
   }
 
   return (
-    <div>
-      <PageTitle
-        name={userVisitor.username}
-        hasBackButton={false}
-      />
-      <div className={style.chat}>
-        {messages && messages.length && !isLoading
-          ? <ChatMessages
-            messages={messages}
-            userAdmin={userAdmin}
-            userVisitor={userVisitor}
-          />
-          : <div className={style.chatSpinnerContainer}>
-            <CustomSpinner className={style.chatSpinnerImg} />
-          </div>
-        }
-        <ChatForm
-          onSubmit={handleSubmit}
-          onChange={handleChange}
-          value={message}
-          type='text'
-          placeholder='Send message...'
+    messages ?
+      <div>
+        <PageTitle
+          name={userVisitor.username}
+          hasBackButton={false}
         />
+        <div className={style.chat}>
+          {!isLoading
+            ? <ChatMessages
+              messages={messages}
+              userAdmin={userAdmin}
+              userVisitor={userVisitor}
+            />
+            : <div className={style.chatSpinnerContainer}>
+              <CustomSpinner className={style.chatSpinnerImg} />
+            </div>
+          }
+          <ChatForm
+            onSubmit={handleSubmit}
+            onChange={handleChange}
+            value={message}
+            type='text'
+            placeholder='Send message...'
+          />
+        </div>
       </div>
-    </div>
+      : null
   )
 }

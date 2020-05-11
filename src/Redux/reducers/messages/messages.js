@@ -3,7 +3,7 @@ import { SET_MESSAGES_LOADING, GET_MESSAGES, RESET_MESSAGES, CLEAR_MESSAGES_LOAD
 
 const initState = {
   isLoading: false,
-  messages: {},
+  messages: { roomId: '', messages: [] },
 }
 
 export function messagesReducer(state, action) {
