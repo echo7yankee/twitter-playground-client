@@ -1,0 +1,58 @@
+.userInSearchLink:link,.userInSearchLink:visited{
+  text-decoration: none;
+  color: var(--blue-color-7);
+}
+
+.userInSearchItem {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color .2s ease-out;
+  border-bottom: 1px solid var(--blue-color-4);
+}
+
+.userInSearchItem:hover {
+  background-color: var(--blue-color-5);
+}
+
+.userInSearchItem span {
+  margin-left: .8rem;
+  color: var(--blue-color-7);
+  font-size: 1.5rem;
+  transition: color .2s ease-out;
+}
+
+.userInSearchItem div,.userInSearchItem svg {
+  border: 2px solid transparent;
+  transition: border .2s ease-out;
+}
+
+.userInSearchItem:hover.userInSearchItem span {
+  color: var(--blue-color-1);
+}
+
+.userInSearchItem:hover.userInSearchItem div, 
+.userInSearchItem:hover.userInSearchItem svg {
+  border: 2px solid var(--blue-color-1);
+}
+
+/* ACTIVE */
+
+.userInSearchLinkActive {
+  background-color: var(--blue-color-5);
+}
+
+.userInSearchLinkActive.userInSearchItem span {
+  color: var(--blue-color-1);
+}
+
+.userInSearchLinkActive.userInSearchItem div,
+.userInSearchLinkActive.userInSearchItem svg {
+  border: 2px solid var(--blue-color-1);
+}
+
+.userInSearchLinkActive {
+  background-color: red!important;
+}

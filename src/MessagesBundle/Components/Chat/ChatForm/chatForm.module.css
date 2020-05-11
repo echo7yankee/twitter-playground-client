@@ -1,0 +1,81 @@
+.chatFormContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:1.5rem 1rem;
+  background-color: var(--blue-color-2);
+}
+
+.chatFormContainer svg,.chatFormContainerLeft svg {
+  width: 2.2rem;
+  height: 2.2rem;
+  fill: var(--blue-color-1);
+  cursor: pointer;
+}
+
+.chatFormContainerLeft {
+  display: flex;
+  align-items: center;
+}
+
+.chatFormContainerLeft svg,.chatForm svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: .4rem;
+  box-sizing: content-box;
+  border-radius: 50%;
+  transition:  fill .2s ease-out, background-color .2s ease-out;
+}
+
+.chatFormContainerLeft svg:hover, .chatForm svg:hover {
+  background-color: var(--blue-color-6);
+  fill: var(--white-color);
+}
+
+.chatForm {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.chatForm div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid transparent;
+  padding: .4rem .7rem;
+  width: 100%;
+  border-radius: 2.5rem;
+  margin: 0 .5rem;
+  background-color: var(--white-color);
+}
+
+.chatForm input {
+  border: none;
+  background-color: transparent;
+  font-size: 1.5rem;
+  color: var(--blue-color-7);
+  width: 100%;
+}
+
+.chatForm div:focus-within {
+  background-color: var(--white-color);
+  border-color: var(--blue-color-1);
+}
+
+.chatForm input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: var(--blue-color-7);
+  font-size: 1.5rem;
+}
+
+.chatForm input::-moz-placeholder {
+  /* Firefox 18- */
+  color: var(--blue-color-7);
+  font-size: 1.5rem;
+}

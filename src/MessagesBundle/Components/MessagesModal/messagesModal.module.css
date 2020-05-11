@@ -1,0 +1,79 @@
+.modal {
+  max-width: 60rem;
+  min-height: 60rem;
+  border-radius: 2.5rem;
+  background-color: white;
+  box-shadow: 0 0px 4px rgba(255,255,255,.3);
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.messagesModalTop {
+  padding: 1.2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--blue-color-4);
+}
+
+.messagesModalTopTitle {
+  display: flex;
+  align-items: center;
+}
+
+.messagesModalTopTitle svg {
+  fill: var(--blue-color-1);
+  padding: .6rem;
+  box-sizing: content-box;
+  width: 2rem;
+  height: 2rem;
+  transition: background-color .2s ease-out;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.messagesModalTopTitle svg:hover {
+  background-color: var(--blue-color-2);
+}
+
+.messagesModalTopTitle span {
+  margin-left: .8rem;
+  color: var(--blue-color-7);
+  font-weight: 700;
+}
+
+.messagesModalTopButton button {
+  padding: 0.8rem 1.6rem;
+  border: 1px solid var(--blue-color-1);
+  background-color: var(--blue-color-1);
+  border-radius: 2.5rem;
+  color: var(--white-color);
+  font-weight: 700;
+  transition: background-color .2s ease-out;
+}
+
+.messagesModalTopButton button:hover {
+  background-color: var(--blue-color-1-darken);
+}
+
+.modalMessagesSpinner {
+  position: absolute;
+  right: 2.5rem;
+  top: 50%;
+  transform: translateY(-70%);
+}
+
+.modalMessagesSpinnerImg {
+  width: 3rem;
+  height: 3rem;
+}
+
+.modalMessagesSpinnerImg div {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-width: 4px;
+  border-color: var(--blue-color-6);
+   border-color: var(--blue-color-6) transparent transparent transparent;
+}

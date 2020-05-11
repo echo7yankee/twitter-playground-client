@@ -1,0 +1,49 @@
+.messagesContainer {
+  display: flex;
+}
+
+.messagesContainerLeft {
+ width: 35%;
+}
+.messagesContainerRight {
+  width: 65%;
+}
+
+.messagesPageTitle {
+  position: relative;
+}
+
+.messages {
+  border-left: 1px solid var(--blue-color-4);
+  border-right: 1px solid var(--blue-color-4);
+  min-height: 90vh;
+}
+
+.messagesTitleIcon {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: .9rem;
+  border-radius: 50%;
+  transition: background-color .2s ease-out;
+}
+
+.messagesTitleIcon:hover {
+  background-color: var(--blue-color-2);
+}
+
+.messagesTitleIcon svg {
+  width: 2rem;
+  height: 2rem;
+  fill: var(--blue-color-1);
+  position: relative;
+}
+
+.messagesPageTitle span {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  color: var(--blue-color-1);
+}

@@ -48,6 +48,9 @@
 
 .isActive {
     background-color: var(--blue-color-2);
+}
+
+.isActive span {
     color: var(--blue-color-1);
 }
 
@@ -56,7 +59,7 @@
     border-color: var(--blue-color-1);
 }
 
-.isActive div:last-child {
+.menuItem:last-child .isActive div{
   border: 2px solid var(--blue-color-1);
   border-radius: 50%;
 }

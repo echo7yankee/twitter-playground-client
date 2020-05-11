@@ -1,0 +1,34 @@
+.userTagItem {
+  display: flex;
+  align-items: center;
+  transition: background-color .2s ease-out;
+  width: max-content;
+}
+
+.userTagItem:not(:first-child) {
+  margin-left: .8rem;
+}
+
+.userTagItem span {
+  font-weight: 700;
+  padding: .9rem;
+  border-radius: 2.5rem;
+  background-color: var(--blue-color-1);
+  color: var(--white-color);
+}
+
+.userTagItem svg {
+  width: 2rem;
+  height: 2rem;
+  fill: var(--blue-color-1);
+  margin-left: .8rem;
+  cursor: pointer;
+  padding: .6rem;
+  box-sizing: content-box;
+  border-radius: 50%;
+  transition: background-color .2s ease-out;
+}
+
+.userTagItem svg:hover {
+  background-color: var(--red-color-2);
+}

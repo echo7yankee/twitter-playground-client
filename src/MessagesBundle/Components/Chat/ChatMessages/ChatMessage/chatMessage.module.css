@@ -1,0 +1,41 @@
+.chatMessageItemAdmin,.chatMessageItemVisitor {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.chatMessageItemAdmin:not(:first-child),.chatMessageItemVisitor:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.chatMessageItemVisitor {
+  justify-content: flex-end;
+}
+
+.chatMessageItemAdmin span:first-child,
+.chatMessageItemVisitor span:first-child {
+  color: var(--blue-color-7);
+  margin-right: .8rem;
+}
+
+.chatMessageItemAdmin span:nth-child(2),
+.chatMessageItemVisitor span:nth-child(2){
+  padding: 1rem 1.2rem;
+  background-color: var(--blue-color-6);
+  color: var(--white-color);
+  border-radius: 2.5rem;
+  width: max-content;
+}
+
+.chatMessageItemAdmin span:last-child,
+.chatMessageItemVisitor span:last-child {
+  color: var(--blue-color-7);
+  margin-left: .8rem;
+}
+
+
+.chatMessageItemVisitor span:nth-child(2){
+  background-color: var(--blue-color-4);
+  color: var(--blue-color-7);
+}

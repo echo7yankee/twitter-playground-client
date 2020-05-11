@@ -1,0 +1,28 @@
+.globalSearch {
+  display: flex;
+  align-items: center;
+  background-color: var(--blue-color-2);
+  border: 1px solid var(--blue-color-1);
+  border-radius: 2.5rem;
+  padding: 1rem 2rem;
+}
+
+.globalSearch svg {
+  width: 2rem;
+  height: 2rem;
+  fill: var(--blue-color-1);
+}
+
+.globalSearch input {
+  margin-left: 1.2rem;
+  padding: .5rem 0;
+  border: none;
+  width: 100%;
+  background-color: transparent;
+  color: var(--blue-color-7);
+  font-size: 1.5rem;
+}
+
+.globalSearch input::placeholder {
+  font-size: 1.5rem;
+}
