@@ -12,6 +12,7 @@ import { getUsersInSearch, updateUserDetails } from '../../../Redux/actions/user
 import { UsersInSearch } from '../UsersInSearch/UsersInSearch';
 import { MessagesModalButton } from './MessagesModalButton/MessagesModalButton';
 import { UsersTag } from './UsersTag/UsersTag';
+import { CustomSpinner } from '../../../GlobalComponents/CustomSpinner/CustomSpinner';
 
 export const MessagesModal = ({
   onClose,
@@ -137,7 +138,7 @@ export const MessagesModal = ({
             />
             {isLoading
               && <div className={style.modalMessagesSpinner}>
-                <div className={`${style.modalMessagesSpinnerImg} lds-ring`}><div></div><div></div><div></div><div></div></div>
+                <CustomSpinner className={style.modalMessagesSpinnerImg} />
               </div>}
           </div>
           : <UsersTag

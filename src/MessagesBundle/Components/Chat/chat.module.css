@@ -3,3 +3,18 @@
   min-height: 90vh;
   position: relative;
 }
+
+.chatSpinnerContainer {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.chatSpinnerImg div {
+  width: 4.2rem;
+  height: 4.2rem;
+  border-width: 4px;
+  border-color: var(--blue-color-6);
+  border-color: var(--blue-color-6) transparent transparent transparent;
+}
