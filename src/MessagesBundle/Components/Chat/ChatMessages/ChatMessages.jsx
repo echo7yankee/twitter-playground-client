@@ -3,10 +3,12 @@ import React from 'react';
 import style from './chatMessages.module.css';
 //Components
 import { ChatMessage } from './ChatMessage/ChatMessage';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 export const ChatMessages = ({ messages, userAdmin, userVisitor }) => {
   return (
-    <div className={style.chatMessages}>
+    <ScrollToBottom
+      className={style.chatMessages}>
       <ul className={style.chatMessagesItems}>
         {messages.map((message, index) =>
           <ChatMessage
@@ -16,6 +18,6 @@ export const ChatMessages = ({ messages, userAdmin, userVisitor }) => {
             userVisitor={userVisitor}
           />)}
       </ul>
-    </div>
+    </ScrollToBottom>
   )
 }
