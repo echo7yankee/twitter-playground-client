@@ -14,7 +14,13 @@ export const Chat = ({ history }) => {
   const userVisitor = history.location && history.location.state.userVisitor;
   const userAdmin = history.location && history.location.state.userAdmin
   const name = userAdmin.username;
-  const room = '123'
+  const room = userAdmin.social.roomIds.find((roomId) => {
+    const userVisitorRoomId = userVisitor.social.roomIds
+      .find((visitorRoomId) => roomId === visitorRoomId);
+    return userVisitorRoomId
+  });
+
+  console.log(room);
 
   //use state
   const [message, setMessage] = useState('');
@@ -22,7 +28,6 @@ export const Chat = ({ history }) => {
 
   useEffect(() => {
     socket = io(ENDPOINT);
-
 
     socket.emit('join', { name, room }, (error) => {
       if (error) {
@@ -35,7 +40,7 @@ export const Chat = ({ history }) => {
       socket.disconnect();
     }
 
-  }, [name, userAdmin.id, userVisitor.social.followers, ENDPOINT])
+  }, [name, room, userAdmin.id, userVisitor.social.followers, ENDPOINT])
 
   useEffect(() => {
     socket.on('message', (message) => {

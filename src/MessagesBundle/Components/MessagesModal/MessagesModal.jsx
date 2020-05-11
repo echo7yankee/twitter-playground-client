@@ -46,6 +46,16 @@ export const MessagesModal = ({
   }
 
   const addUserToNewUsers = (newUser) => {
+    const roomId = user.id + newUser.id;
+
+    const updatedUser = {
+      ...newUser,
+      social: {
+        ...newUser.social,
+        roomIds: [...newUser.social.roomIds, roomId]
+      }
+    }
+
     const isSameUser = newUsers.some((user) => {
       return user.id === newUser.id;
     })
@@ -59,7 +69,7 @@ export const MessagesModal = ({
       return;
     };
 
-    setNewUsers([...newUsers, newUser])
+    setNewUsers([...newUsers, updatedUser])
     setSearch('');
   }
 
@@ -68,17 +78,27 @@ export const MessagesModal = ({
   }
 
   const addNewUsersToMessages = () => {
+    const roomIds = newUsers.map((newUser) => {
+      const id = newUser.social.roomIds.find((roomId) => {
+        return user.id + newUser.id === roomId
+      })
+      dispatch(updateUserDetails(newUser, null, 'Messages'));
+      return id;
+    });
+
     const updatedUser = {
       ...user,
       social: {
         ...user.social,
-        usersToMessage: [...user.social.usersToMessage, ...newUsers]
+        usersToMessage: [...user.social.usersToMessage, ...newUsers],
+        roomIds: [...user.social.roomIds, ...roomIds]
       }
     }
     setUser(updatedUser)
     dispatch(updateUserDetails(updatedUser, null, 'Messages'));
     onClose();
   }
+
 
   return (
     <div className='overlay overlay-alpha-black' onClick={onClose} style={{ zIndex: '5000' }}>

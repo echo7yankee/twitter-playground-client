@@ -4,7 +4,6 @@ import ReactEmoji from 'react-emoji';
 import style from './chatMessage.module.css';
 
 export const ChatMessage = ({ message, userAdmin, userVisitor }) => {
-  console.log(message);
   return (
     <li className={userAdmin.username === message.user
       ? style.chatMessageItemAdmin
