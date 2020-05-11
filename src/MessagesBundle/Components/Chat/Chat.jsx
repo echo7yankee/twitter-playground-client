@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import io from 'socket.io-client';
+import { config } from '../../../utils/constants/Environment';
 //style
 import style from './chat.module.css';
 //Redux
@@ -19,7 +20,8 @@ export const Chat = ({ history }) => {
   const chatMessages = useSelector((state) => state.message.messages);
   const isLoading = useSelector((state) => state.message.isLoading);
 
-  const ENDPOINT = 'localhost:5000';
+  const { url } = config;
+  const ENDPOINT = url.API_URL;
   const userVisitor = history.location && history.location.state.userVisitor;
   const userAdmin = history.location && history.location.state.userAdmin
   const name = userAdmin.username;
