@@ -3,10 +3,21 @@
   display: flex;
   align-items: center;
   width: 100%;
+  padding: 0rem 2rem;
 }
 
-.chatMessageItemAdmin:not(:first-child),.chatMessageItemVisitor:not(:first-child) {
+.chatMessageItemAdmin:first-child,.chatMessageItemAdmin:last-child
+.chatMessageItemVisitor:first-child,.chatMessageItemVisitor:last-child {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.chatMessageItemAdmin:not(:first-child),.chatMessageItemVisitor:not(:last-child) {
   margin-top: 1rem;
+}
+
+.chatMessageItemVisitor span svg,.chatMessageItemVisitor span svg{
+  margin:0!important;
 }
 
 .chatMessageItemVisitor {
@@ -16,7 +27,6 @@
 .chatMessageItemAdmin span:first-child,
 .chatMessageItemVisitor span:first-child {
   color: var(--blue-color-7);
-  margin-right: .8rem;
   width: max-content;
   white-space: nowrap;
 }
