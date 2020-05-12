@@ -17,6 +17,8 @@
 .chatMessageItemVisitor span:first-child {
   color: var(--blue-color-7);
   margin-right: .8rem;
+  width: max-content;
+  white-space: nowrap;
 }
 
 .chatMessageItemAdmin span:nth-child(2),
@@ -26,12 +28,14 @@
   color: var(--white-color);
   border-radius: 2.5rem;
   width: max-content;
+  word-break: break-all;
 }
 
 .chatMessageItemAdmin span:last-child,
 .chatMessageItemVisitor span:last-child {
   color: var(--blue-color-7);
   margin-left: .8rem;
+  width: max-content;
 }
 
 
