@@ -16,12 +16,9 @@
   margin-top: 1rem;
 }
 
-.chatMessageItemVisitor span svg,.chatMessageItemVisitor span svg{
-  margin:0!important;
-}
-
 .chatMessageItemVisitor {
   justify-content: flex-end;
+  padding-right: 0;
 }
 
 .chatMessageItemAdmin span:first-child,
@@ -41,15 +38,6 @@
   word-break: break-all;
 }
 
-.chatMessageItemAdmin span:last-child,
 .chatMessageItemVisitor span:last-child {
-  color: var(--blue-color-7);
   margin-left: .8rem;
-  width: max-content;
-}
-
-
-.chatMessageItemVisitor span:nth-child(2){
-  background-color: var(--blue-color-4);
-  color: var(--blue-color-7);
 }
