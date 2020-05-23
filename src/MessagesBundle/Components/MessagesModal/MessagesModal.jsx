@@ -83,7 +83,15 @@ export const MessagesModal = ({
       const id = newUser.social.roomIds.find((roomId) => {
         return user.id + newUser.id === roomId
       })
-      dispatch(updateUserDetails(newUser, null, 'Messages'));
+      const updatedNewUser = {
+        ...newUser,
+        social: {
+          ...newUser.social,
+          usersToMessage: [...newUser.social.usersToMessage, user]
+        }
+      }
+      console.log('UPDATING NEW USER WITH WHAT?', newUser);
+      dispatch(updateUserDetails(updatedNewUser, null, 'Messages'));
       return id;
     });
 
