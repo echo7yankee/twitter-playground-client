@@ -73,6 +73,16 @@ export const updateUserDetails = (newUserDetails, closeModal, location) => {
   }
 }
 
+export const turnUserAcceptanceOnTrue = (userId, updatedUserAdmin, room) => {
+  return async (_dispatch) => {
+    try {
+      await axios.put(`/user/userDetails/accept/${userId}`, { room, updatedUserAdmin });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
 export const followUser = (ownerId, visitorId, actionFrom) => {
   return async (dispatch) => {
     try {

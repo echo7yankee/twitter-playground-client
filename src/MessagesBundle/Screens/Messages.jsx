@@ -6,7 +6,7 @@ import { AiOutlineMail } from 'react-icons/ai';
 import { Route } from 'react-router-dom';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserDetails, resetUserDetails, updateUserDetails } from '../../Redux/actions/user/user';
+import { getUserDetails, resetUserDetails, updateUserDetails, turnUserAcceptanceOnTrue } from '../../Redux/actions/user/user';
 //Utils/services
 import { createUser } from '../../utils/services/createUser';
 import { userIdFromToken } from '../../utils/services/userIdFromToken';
@@ -50,30 +50,10 @@ export const Messages = () => {
       return user.social.roomIds.find((roomId) => roomId.id === room.id);
     })
 
-    console.log(visitorUser);
-
-    visitorUser = {
-      ...visitorUser,
-      social: {
-        ...visitorUser.social,
-        roomIds: [...visitorUser.social.roomIds.map((roomId) => {
-          console.log('roomId', roomId);
-          if (roomId.id === room.id) {
-            return {
-              ...roomId,
-              hasAccepted: true
-            }
-          }
-          return roomId;
-        })]
-      }
-    }
     setUser(updatedUserAdmin);
-    // dispatch(updateUserDetails(visitorUser, null, 'Messages'));
-    // dispatch(updateUserDetails(updatedUserAdmin, null, 'Messages'));
+    dispatch(turnUserAcceptanceOnTrue(visitorUser.id, updatedUserAdmin, room));
+    dispatch(updateUserDetails(updatedUserAdmin, null, 'Messages'));
   }
-
-  console.log(userObj);
 
   return (
     <div className={style.messagesContainer}>
