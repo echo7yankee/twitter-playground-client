@@ -53,7 +53,7 @@ export const MessagesModal = ({
       ...newUser,
       social: {
         ...newUser.social,
-        roomIds: [...newUser.social.roomIds, roomId]
+        roomIds: [...newUser.social.roomIds, { id: roomId, hasAccepted: false }],
       }
     }
 
@@ -81,28 +81,53 @@ export const MessagesModal = ({
   const addNewUsersToMessages = () => {
     const roomIds = newUsers.map((newUser) => {
       const id = newUser.social.roomIds.find((roomId) => {
-        return user.id + newUser.id === roomId
+        return user.id + newUser.id === roomId.id
       })
       const updatedNewUser = {
         ...newUser,
         social: {
           ...newUser.social,
-          usersToMessage: [...newUser.social.usersToMessage, user]
+          usersToMessage: [...newUser.social.usersToMessage, {
+            ...user,
+            social: {
+              ...user.social,
+              usersToMessage: [...user.social.usersToMessage, ...newUsers],
+              roomIds: [...user.social.roomIds, {
+                ...id,
+                hasAccepted: null
+              }]
+            }
+          }]
         }
       }
-      console.log('UPDATING NEW USER WITH WHAT?', newUser);
+
+      console.log('UPDATED NEW USER', updatedNewUser);
+
       dispatch(updateUserDetails(updatedNewUser, null, 'Messages'));
-      return id;
+      return {
+        ...id,
+        hasAccepted: null,
+      };
     });
 
     const updatedUser = {
       ...user,
       social: {
         ...user.social,
-        usersToMessage: [...user.social.usersToMessage, ...newUsers],
+        usersToMessage: [...user.social.usersToMessage, ...newUsers.map((newUser) => {
+          return {
+            ...newUser,
+            social: {
+              ...newUser.social,
+              usersToMessage: [...newUser.social.usersToMessage, user],
+              roomIds: [...user.social.roomIds, ...roomIds],
+            }
+          }
+        })],
         roomIds: [...user.social.roomIds, ...roomIds]
       }
     }
+    console.log('UPDATED USER', updatedUser);
     setUser(updatedUser)
     dispatch(updateUserDetails(updatedUser, null, 'Messages'));
     onClose();

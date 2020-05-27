@@ -25,10 +25,10 @@ export const Chat = ({ history }) => {
   const userVisitor = history.location && history.location.state.userVisitor;
   const userAdmin = history.location && history.location.state.userAdmin
   const name = userAdmin.username;
-  const room = userAdmin.social.roomIds.find((roomId) => {
+  const { id } = userAdmin.social.roomIds.find((roomId) => {
     const userVisitorRoomId = userVisitor.social.roomIds
-      .find((visitorRoomId) => roomId === visitorRoomId);
-    return userVisitorRoomId
+      .find((visitorRoomId) => roomId.id === visitorRoomId.id);
+    return userVisitorRoomId;
   });
 
   //use state
@@ -36,14 +36,14 @@ export const Chat = ({ history }) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    dispatch(getMessages(room));
+    dispatch(getMessages(id));
     return () => dispatch(resetMessages());
-  }, [dispatch, room])
+  }, [dispatch, id])
 
   useEffect(() => {
     socket = io(ENDPOINT);
 
-    socket.emit('join', { name, room }, (error) => {
+    socket.emit('join', { name, id }, (error) => {
       if (error) {
         alert(error);
       }
@@ -56,7 +56,7 @@ export const Chat = ({ history }) => {
     }
 
   }, [name,
-    room,
+    id,
     userAdmin.id,
     userVisitor.social.followers,
     chatMessages.messages,
@@ -71,14 +71,14 @@ export const Chat = ({ history }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const filter = {
-      roomId: room
+      roomId: id
     }
     const params = {
       user: userAdmin.username,
       text: message
     }
     if (message) {
-      socket.emit('sendMessage', message, name, room, () => setMessage(''))
+      socket.emit('sendMessage', message, name, id, () => setMessage(''))
       dispatch(addMessages(filter, params))
     }
   }

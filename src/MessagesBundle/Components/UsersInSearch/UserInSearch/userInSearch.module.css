@@ -33,26 +33,7 @@
   color: var(--blue-color-1);
 }
 
-.userInSearchItem:hover.userInSearchItem div, 
+.userInSearchItem:hover.userInSearchItem div:first, 
 .userInSearchItem:hover.userInSearchItem svg {
   border: 2px solid var(--blue-color-1);
-}
-
-/* ACTIVE */
-
-.userInSearchLinkActive {
-  background-color: var(--blue-color-5);
-}
-
-.userInSearchLinkActive.userInSearchItem span {
-  color: var(--blue-color-1);
-}
-
-.userInSearchLinkActive.userInSearchItem div,
-.userInSearchLinkActive.userInSearchItem svg {
-  border: 2px solid var(--blue-color-1);
-}
-
-.userInSearchLinkActive {
-  background-color: red!important;
 }
