@@ -6,19 +6,13 @@ import style from './userInSearch.module.css';
 //Components
 import { TweetProfileImg } from '../../../../TweetsBundle/Components/TweetProfileImg/TweetProfileImg';
 
-export const UserInSearch = ({ user, userAdmin, onClick, isLink, handleAcceptUser }) => {
-  const room = userAdmin?.social?.roomIds.find((roomId) => {
-    const id = user.social?.roomIds
-      .find((visitorRoomId) => roomId.id === visitorRoomId.id)
-    return id
-  });
-
+export const UserInSearch = ({ user, room, userAdmin, onClick, isLink, handleAcceptUser }) => {
   return (
     isLink
       ? <Link
         to={{
           pathname: `/dashboard/messages/${user.id}`,
-          state: { userVisitor: user, userAdmin }
+          state: { userVisitor: user, userAdmin, room }
         }}
         onClick={(e) => !room?.hasAccepted && e.preventDefault()}
         className={style.userInSearchLink}

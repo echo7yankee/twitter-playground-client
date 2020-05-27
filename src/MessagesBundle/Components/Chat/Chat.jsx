@@ -24,12 +24,8 @@ export const Chat = ({ history }) => {
   const ENDPOINT = url.API_URL;
   const userVisitor = history.location && history.location.state.userVisitor;
   const userAdmin = history.location && history.location.state.userAdmin
+  const { id } = history.location && history.location.state.room
   const name = userAdmin.username;
-  const { id } = userAdmin.social.roomIds.find((roomId) => {
-    const userVisitorRoomId = userVisitor.social.roomIds
-      .find((visitorRoomId) => roomId.id === visitorRoomId.id);
-    return userVisitorRoomId;
-  });
 
   //use state
   const [message, setMessage] = useState('');

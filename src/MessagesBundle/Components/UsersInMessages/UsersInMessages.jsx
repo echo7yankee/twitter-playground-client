@@ -10,7 +10,8 @@ export const UsersInMessages = ({ userAdmin, users, handleAcceptUser }) => {
   return (
     <div>
       <ul>
-        {users.map((user) => {
+        {users.map((user, index) => {
+          const room = userAdmin.social.roomIds.find((roomId) => roomId.id === user.social.roomIds[index].id)
           return (
             <UserInSearch
               key={user.id}
@@ -19,6 +20,7 @@ export const UsersInMessages = ({ userAdmin, users, handleAcceptUser }) => {
               onClick={null}
               isLink={true}
               handleAcceptUser={handleAcceptUser}
+              room={room}
             />
           )
         })}
