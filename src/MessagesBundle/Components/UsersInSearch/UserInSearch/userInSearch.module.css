@@ -11,6 +11,7 @@
   cursor: pointer;
   transition: background-color .2s ease-out;
   border-bottom: 1px solid var(--blue-color-4);
+  position: relative;
 }
 
 .userInSearchItem:hover {
@@ -36,4 +37,51 @@
 .userInSearchItem:hover.userInSearchItem div:first, 
 .userInSearchItem:hover.userInSearchItem svg {
   border: 2px solid var(--blue-color-1);
+}
+
+
+.userInSearchAcceptance {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  width: 100%;
+}
+
+.userInSearchAcceptance button {
+  padding: 1rem 1.2rem;
+  border-radius: 3px;
+  font-weight: 700;
+  transition: background-color .2s ease-out, opacity .2s ease-out,transform .2s ease-out;
+}
+
+.userInSearchAcceptance button:first-child {
+  background-color: var(--blue-color-1);
+  color: var(--white-color);
+  margin-right: 2.5rem;
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.userInSearchAcceptance button:first-child:hover {
+  background-color: var(--blue-color-1-darken);
+}
+
+.userInSearchAcceptance button:last-child {
+  background-color: var(--grey-color-4);
+  color: var(--white-color);
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.userInSearchAcceptance button:last-child:hover {
+  background-color: var(--grey-color-5);
+}
+
+.userInSearchAcceptance:hover.userInSearchAcceptance button {
+  transform: translateX(0);
+  opacity: 1;
 }

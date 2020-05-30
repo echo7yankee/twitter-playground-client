@@ -8,7 +8,7 @@ import { UserInSearch } from '../UsersInSearch/UserInSearch/UserInSearch';
 export const UsersInMessages = ({ userAdmin, users, handleAcceptUser }) => {
 
   return (
-    <div>
+    <div className={style.usersInMessages}>
       <ul>
         {users.map((user, index) => {
           const room = userAdmin.social.roomIds.find((roomId) => roomId.id === user.social.roomIds[index].id)
