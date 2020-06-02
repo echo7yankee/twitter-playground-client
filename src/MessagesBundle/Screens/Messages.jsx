@@ -47,11 +47,11 @@ export const Messages = () => {
     }
 
     let visitorUser = userObj.social.usersToMessage.find((user, index) => {
-      return user.social.roomIds.find((roomId) => roomId.id === room.id);
+      return user.social.roomIds.find((roomId) => roomId?.id === room?.id);
     })
 
     setUser(updatedUserAdmin);
-    dispatch(turnUserAcceptanceOnTrue(visitorUser.id, updatedUserAdmin, room));
+    dispatch(turnUserAcceptanceOnTrue(visitorUser?.id, updatedUserAdmin, room));
     dispatch(updateUserDetails(updatedUserAdmin, null, 'Messages'));
   }
 
