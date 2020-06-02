@@ -27,16 +27,17 @@
 
 .userInSearchItem div,.userInSearchItem svg {
   border: 2px solid transparent;
-  transition: border .2s ease-out;
+  transition: border .2s ease-out,fill .2s ease-out;
 }
 
 .userInSearchItem:hover.userInSearchItem span {
   color: var(--blue-color-1);
 }
 
-.userInSearchItem:hover.userInSearchItem div:first, 
+.userInSearchItem:hover.userInSearchItem div:first-child, 
 .userInSearchItem:hover.userInSearchItem svg {
   border: 2px solid var(--blue-color-1);
+  fill: var(--blue-color-1);
 }
 
 
