@@ -24,26 +24,22 @@ export const Chat = ({ history }) => {
   const ENDPOINT = url.API_URL;
   const userVisitor = history.location && history.location.state.userVisitor;
   const userAdmin = history.location && history.location.state.userAdmin
+  const { id } = history.location && history.location.state.room
   const name = userAdmin.username;
-  const room = userAdmin.social.roomIds.find((roomId) => {
-    const userVisitorRoomId = userVisitor.social.roomIds
-      .find((visitorRoomId) => roomId === visitorRoomId);
-    return userVisitorRoomId
-  });
 
   //use state
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    dispatch(getMessages(room));
+    dispatch(getMessages(id));
     return () => dispatch(resetMessages());
-  }, [dispatch, room])
+  }, [dispatch, id])
 
   useEffect(() => {
     socket = io(ENDPOINT);
 
-    socket.emit('join', { name, room }, (error) => {
+    socket.emit('join', { name, id }, (error) => {
       if (error) {
         alert(error);
       }
@@ -56,7 +52,7 @@ export const Chat = ({ history }) => {
     }
 
   }, [name,
-    room,
+    id,
     userAdmin.id,
     userVisitor.social.followers,
     chatMessages.messages,
@@ -71,14 +67,14 @@ export const Chat = ({ history }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const filter = {
-      roomId: room
+      roomId: id
     }
     const params = {
       user: userAdmin.username,
       text: message
     }
     if (message) {
-      socket.emit('sendMessage', message, name, room, () => setMessage(''))
+      socket.emit('sendMessage', message, name, id, () => setMessage(''))
       dispatch(addMessages(filter, params))
     }
   }
@@ -88,30 +84,32 @@ export const Chat = ({ history }) => {
   }
 
   return (
-    <div>
-      <PageTitle
-        name={userVisitor.username}
-        hasBackButton={false}
-      />
-      <div className={style.chat}>
-        {messages && messages.length && !isLoading
-          ? <ChatMessages
-            messages={messages}
-            userAdmin={userAdmin}
-            userVisitor={userVisitor}
-          />
-          : <div className={style.chatSpinnerContainer}>
-            <CustomSpinner className={style.chatSpinnerImg} />
-          </div>
-        }
-        <ChatForm
-          onSubmit={handleSubmit}
-          onChange={handleChange}
-          value={message}
-          type='text'
-          placeholder='Send message...'
+    messages ?
+      <div>
+        <PageTitle
+          name={userVisitor.username}
+          hasBackButton={false}
         />
+        <div className={style.chat}>
+          {!isLoading
+            ? <ChatMessages
+              messages={messages}
+              userAdmin={userAdmin}
+              userVisitor={userVisitor}
+            />
+            : <div className={style.chatSpinnerContainer}>
+              <CustomSpinner className={style.chatSpinnerImg} />
+            </div>
+          }
+          <ChatForm
+            onSubmit={handleSubmit}
+            onChange={handleChange}
+            value={message}
+            type='text'
+            placeholder='Send message...'
+          />
+        </div>
       </div>
-    </div>
+      : null
   )
 }

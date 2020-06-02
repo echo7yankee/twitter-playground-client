@@ -53,7 +53,7 @@ export const MessagesModal = ({
       ...newUser,
       social: {
         ...newUser.social,
-        roomIds: [...newUser.social.roomIds, roomId]
+        roomIds: [...newUser.social.roomIds, { id: roomId, hasAccepted: false }],
       }
     }
 
@@ -81,17 +81,47 @@ export const MessagesModal = ({
   const addNewUsersToMessages = () => {
     const roomIds = newUsers.map((newUser) => {
       const id = newUser.social.roomIds.find((roomId) => {
-        return user.id + newUser.id === roomId
+        return user.id + newUser.id === roomId.id
       })
-      dispatch(updateUserDetails(newUser, null, 'Messages'));
-      return id;
+      const updatedNewUser = {
+        ...newUser,
+        social: {
+          ...newUser.social,
+          usersToMessage: [...newUser.social.usersToMessage, {
+            ...user,
+            social: {
+              ...user.social,
+              usersToMessage: [...user.social.usersToMessage, ...newUsers],
+              roomIds: [...user.social.roomIds, {
+                ...id,
+                hasAccepted: null
+              }]
+            }
+          }]
+        }
+      }
+
+      dispatch(updateUserDetails(updatedNewUser, null, 'Messages'));
+      return {
+        ...id,
+        hasAccepted: null,
+      };
     });
 
     const updatedUser = {
       ...user,
       social: {
         ...user.social,
-        usersToMessage: [...user.social.usersToMessage, ...newUsers],
+        usersToMessage: [...user.social.usersToMessage, ...newUsers.map((newUser) => {
+          return {
+            ...newUser,
+            social: {
+              ...newUser.social,
+              usersToMessage: [...newUser.social.usersToMessage, user],
+              roomIds: [...user.social.roomIds, ...roomIds],
+            }
+          }
+        })],
         roomIds: [...user.social.roomIds, ...roomIds]
       }
     }

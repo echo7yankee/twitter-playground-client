@@ -27,7 +27,7 @@ export const getMessages = (roomId) => {
       const { data } = response;
       dispatch({ type: GET_MESSAGES, payload: data });
     } catch (error) {
-      dispatch({ type: CLEAR_MESSAGES_LOADING })
+      dispatch({ type: CLEAR_MESSAGES_LOADING });
       console.log(error);
     }
   }

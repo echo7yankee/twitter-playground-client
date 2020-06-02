@@ -8,7 +8,7 @@ import { MessagesSearch } from '../MessagesSearch/MessagesSearch';
 import { UsersInMessages } from '../UsersInMessages/UsersInMessages';
 import { UsersInSearchDummy } from '../../../GlobalComponents/Dummies/UsersInSearchDummy/UsersInSearchDummy';
 
-export const MessagesView = ({ user }) => {
+export const MessagesView = ({ user, handleAcceptUser }) => {
   const [search, setSearch] = useState('');
   const handleChange = (e) => {
     setSearch(e.target.value);
@@ -24,7 +24,11 @@ export const MessagesView = ({ user }) => {
       {user.id && !user.social.usersToMessage.length
         && <div className="divider" style={{ height: '1px' }} />}
       {user.id
-        ? <UsersInMessages userAdmin={user} users={filterUsersBySearch(user.social.usersToMessage, search)} />
+        ? <UsersInMessages
+          userAdmin={user}
+          users={filterUsersBySearch(user.social.usersToMessage, search)}
+          handleAcceptUser={handleAcceptUser}
+        />
         : <>
           <UsersInSearchDummy />
           <UsersInSearchDummy />

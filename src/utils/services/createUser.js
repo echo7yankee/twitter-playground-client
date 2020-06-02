@@ -16,5 +16,6 @@ export const createUser = () => ({
     followers: [],
     followersCount: '',
     usersToMessage: [],
+    hasAccepted: false,
   }
 })

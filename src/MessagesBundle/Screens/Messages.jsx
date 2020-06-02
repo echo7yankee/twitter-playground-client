@@ -6,10 +6,11 @@ import { AiOutlineMail } from 'react-icons/ai';
 import { Route } from 'react-router-dom';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserDetails, resetUserDetails } from '../../Redux/actions/user/user';
-//Utils
+import { getUserDetails, resetUserDetails, updateUserDetails, turnUserAcceptanceOnTrue } from '../../Redux/actions/user/user';
+//Utils/services
 import { createUser } from '../../utils/services/createUser';
 import { userIdFromToken } from '../../utils/services/userIdFromToken';
+import { setHasAcceptedOnTrue } from '../Services/setHasAcceptedOnTrue';
 //Components
 import { PageTitle } from '../../GlobalComponents/PageTitle/PageTitle';
 import { MessagesView } from '../Components/MessagesView/MessagesView'
@@ -36,6 +37,24 @@ export const Messages = () => {
     setUser(user);
   }, [user])
 
+  const handleAcceptUser = (room) => {
+    const updatedUserAdmin = {
+      ...userObj,
+      social: {
+        ...userObj.social,
+        roomIds: setHasAcceptedOnTrue(userObj, room),
+      }
+    }
+
+    let visitorUser = userObj.social.usersToMessage.find((user, index) => {
+      return user.social.roomIds.find((roomId) => roomId.id === room.id);
+    })
+
+    setUser(updatedUserAdmin);
+    dispatch(turnUserAcceptanceOnTrue(visitorUser.id, updatedUserAdmin, room));
+    dispatch(updateUserDetails(updatedUserAdmin, null, 'Messages'));
+  }
+
   return (
     <div className={style.messagesContainer}>
       <div className={style.messagesContainerLeft}>
@@ -55,6 +74,7 @@ export const Messages = () => {
         <div className={style.messages}>
           <MessagesView
             user={userObj}
+            handleAcceptUser={handleAcceptUser}
           />
         </div>
         {isModal
