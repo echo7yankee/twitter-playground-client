@@ -113,18 +113,24 @@ export const MessagesModal = ({
       social: {
         ...user.social,
         usersToMessage: [...user.social.usersToMessage, ...newUsers.map((newUser) => {
-          return {
+          const newUserSocial = {
             ...newUser,
             social: {
               ...newUser.social,
               usersToMessage: [...newUser.social.usersToMessage, user],
-              roomIds: [...user.social.roomIds, ...roomIds],
+              roomId: {
+                id: user.id + newUser.id,
+                hasAccepted: null
+              }
             }
           }
+          delete newUserSocial.social.roomIds;
+          return newUserSocial
         })],
         roomIds: [...user.social.roomIds, ...roomIds]
       }
     }
+    console.log('UPDATED USER', updatedUser);
     setUser(updatedUser)
     dispatch(updateUserDetails(updatedUser, null, 'Messages'));
     onClose();

@@ -10,8 +10,11 @@ export const UsersInMessages = ({ userAdmin, users, handleAcceptUser }) => {
   return (
     <div className={style.usersInMessages}>
       <ul>
-        {users.map((user, index) => {
-          const room = userAdmin.social.roomIds.find((roomId) => roomId.id === user.social.roomIds[index].id)
+        {users.map((user) => {
+          const room = userAdmin.social.roomIds.find((room) => {
+            return room.id === user.social.roomId.id
+          })
+          console.log('ROOM', room);
           return (
             <UserInSearch
               key={user.id}
