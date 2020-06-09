@@ -130,7 +130,6 @@ export const MessagesModal = ({
         roomIds: [...user.social.roomIds, ...roomIds]
       }
     }
-    console.log('UPDATED USER', updatedUser);
     setUser(updatedUser)
     dispatch(updateUserDetails(updatedUser, null, 'Messages'));
     onClose();

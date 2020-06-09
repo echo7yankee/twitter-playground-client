@@ -6,7 +6,7 @@ import style from './userInSearch.module.css';
 //Components
 import { TweetProfileImg } from '../../../../TweetsBundle/Components/TweetProfileImg/TweetProfileImg';
 
-export const UserInSearch = ({ user, room, userAdmin, onClick, isLink, handleAcceptUser }) => {
+export const UserInSearch = ({ user, room, userAdmin, onClick, isLink, handleAcceptUser, cancelAcceptUser }) => {
   return (
     isLink
       ? <Link
@@ -29,13 +29,14 @@ export const UserInSearch = ({ user, room, userAdmin, onClick, isLink, handleAcc
           <span><b>{user.username}</b> {room?.hasAccepted === false && 'has sent you a request'}</span>
           {
             room?.hasAccepted === null
-              ? <div>
+              ? <div className={style.userInSearchPending}>
                 <span>Pending request </span>
+                <button onClick={cancelAcceptUser}>Cancel</button>
               </div>
-              : !room?.hasAccepted
+              : room?.hasAccepted === false
                 ? <div className={style.userInSearchAcceptance}>
-                  <button onClick={() => handleAcceptUser(room)} >Yes</button>
-                  <button>No</button>
+                  <button onClick={handleAcceptUser} >Yes</button>
+                  <button onClick={cancelAcceptUser}>No</button>
                 </div> : null
           }
         </li>

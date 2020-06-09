@@ -86,3 +86,27 @@
   transform: translateX(0);
   opacity: 1;
 }
+
+
+.userInSearchPending button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(50%,-50%);
+  z-index: 500;
+  background-color: var(--red-color-4);
+  opacity: 0;
+  color: var(--white-color);
+  border-radius: 2.5rem;
+  padding: 1rem 1.6rem;
+  transition: transform .2s ease-out,opacity .2s ease-out,background-color .2s ease-out;
+}
+
+.userInSearchPending button:hover {
+  background-color: var(--red-color-3);
+}
+
+.userInSearchItem:hover .userInSearchPending button {
+ transform: translate(-50%,-50%);
+ opacity: 1;
+}

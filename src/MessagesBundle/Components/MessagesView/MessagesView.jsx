@@ -8,7 +8,7 @@ import { MessagesSearch } from '../MessagesSearch/MessagesSearch';
 import { UsersInMessages } from '../UsersInMessages/UsersInMessages';
 import { UsersInSearchDummy } from '../../../GlobalComponents/Dummies/UsersInSearchDummy/UsersInSearchDummy';
 
-export const MessagesView = ({ user, handleAcceptUser }) => {
+export const MessagesView = ({ user, handleAcceptUser, cancelAcceptUser }) => {
   const [search, setSearch] = useState('');
   const handleChange = (e) => {
     setSearch(e.target.value);
@@ -28,6 +28,7 @@ export const MessagesView = ({ user, handleAcceptUser }) => {
           userAdmin={user}
           users={filterUsersBySearch(user.social.usersToMessage, search)}
           handleAcceptUser={handleAcceptUser}
+          cancelAcceptUser={cancelAcceptUser}
         />
         : <>
           <UsersInSearchDummy />

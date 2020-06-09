@@ -6,7 +6,13 @@ import { AiOutlineMail } from 'react-icons/ai';
 import { Route } from 'react-router-dom';
 //redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserDetails, resetUserDetails, updateUserDetails, turnUserAcceptanceOnTrue } from '../../Redux/actions/user/user';
+import {
+  getUserDetails,
+  resetUserDetails,
+  updateUserDetails,
+  turnUserAcceptanceOnTrue,
+  cancelUserAcceptance,
+} from '../../Redux/actions/user/user';
 //Utils/services
 import { createUser } from '../../utils/services/createUser';
 import { userIdFromToken } from '../../utils/services/userIdFromToken';
@@ -55,6 +61,22 @@ export const Messages = () => {
     dispatch(updateUserDetails(updatedUserAdmin, null, 'Messages'));
   }
 
+  const cancelAcceptUser = (userVisitorId, roomId) => {
+    const updatedUserAdmin = {
+      ...userObj,
+      social: {
+        ...userObj.social,
+        usersToMessage: userObj.social.usersToMessage
+          .filter((userVisitor) => userVisitor.id !== userVisitorId),
+        roomIds: userObj.social.roomIds
+          .filter((room) => room.id !== roomId),
+      }
+    }
+    setUser(updatedUserAdmin);
+    dispatch(updateUserDetails(updatedUserAdmin, null, 'Messages'));
+    dispatch(cancelUserAcceptance(userVisitorId, userObj.id, roomId))
+  }
+
   return (
     <div className={style.messagesContainer}>
       <div className={style.messagesContainerLeft}>
@@ -75,6 +97,7 @@ export const Messages = () => {
           <MessagesView
             user={userObj}
             handleAcceptUser={handleAcceptUser}
+            cancelAcceptUser={cancelAcceptUser}
           />
         </div>
         {isModal
