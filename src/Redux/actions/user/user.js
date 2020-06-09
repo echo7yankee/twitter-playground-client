@@ -83,6 +83,21 @@ export const turnUserAcceptanceOnTrue = (userId, updatedUserAdmin, room) => {
   }
 }
 
+export const cancelUserAcceptance = (userId, userVisitorId, roomId) => {
+  return async (_dispatch) => {
+    try {
+      await axios.put(`/user/userDetails/cancel/${userId}`, {}, {
+        params: {
+          userVisitorId,
+          roomId
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
 export const followUser = (ownerId, visitorId, actionFrom) => {
   return async (dispatch) => {
     try {
