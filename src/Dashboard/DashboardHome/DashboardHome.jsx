@@ -52,11 +52,8 @@ export const DashboardHome = ({ history }) => {
     dispatch(addPost(post, userData));
   }
 
-  const remove = (id, animateRemove) => {
-    animateRemove();
-    setTimeout(() => {
-      setPosts(postsArr.filter((post) => post.uuid !== id));
-    }, 300);
+  const remove = (id) => {
+    setPosts(postsArr.filter((post) => post.uuid !== id));
     dispatch(removePost(id))
   }
 

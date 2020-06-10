@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { AnimatePresence } from 'framer-motion';
 //style
 import style from './profile.module.css';
 
@@ -103,12 +103,14 @@ export const Profile = ({ history }) => {
             <ProfileBio user={user} />
           </div>
         </div>
-        {isOpen && <ProfileModal
-          closeModal={closeModal}
-          user={user}
-          updateUser={updateUser}
-          selectImage={selectImage}
-        />}
+        <AnimatePresence>
+          {isOpen && <ProfileModal
+            closeModal={closeModal}
+            user={user}
+            updateUser={updateUser}
+            selectImage={selectImage}
+          />}
+        </AnimatePresence>
         {showOverlayImage &&
           <ProfileOverlayImage
             user={user}

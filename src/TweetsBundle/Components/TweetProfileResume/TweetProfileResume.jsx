@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 //Style
 import style from './tweetProfileResume.module.css';
@@ -13,25 +14,19 @@ export const TweetProfileResume = ({
   post,
   user,
   handleFollow,
-  isAnimateProfileResume,
-  setIsAnimateProfileResume,
   history }) => {
 
   const [buttonText, setButtonText] = useState(false);
 
-  useEffect(() => {
-    setIsAnimateProfileResume(true);
-    return () => {
-      setIsAnimateProfileResume(false);
-    }
-  }, [setIsAnimateProfileResume])
-
   return (
-    <div className={style.tweetProfileResumeOuter}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, delay: 0.2 }}
+      className={style.tweetProfileResumeOuter}>
       <div
-        className={isAnimateProfileResume
-          ? style.tweetProfileResumeAnimate
-          : style.tweetProfileResume}>
+        className={style.tweetProfileResume}>
         <header className={style.tweetProfileResumeHeader}>
           <div
             onClick={() => {
@@ -78,6 +73,6 @@ export const TweetProfileResume = ({
           <span> <b>{post.user.social.followersCount}</b> Followers </span>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }

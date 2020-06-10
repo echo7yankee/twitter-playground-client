@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 //style
 import style from './modal.module.css';
@@ -16,8 +17,24 @@ export const Modal = ({
   buttonTwoText,
   destroyModal }) => {
   return (
-    <div className={`${style.modalOverlay} overlay-alpha-black`} onClick={destroyModal}>
-      <div className={style.modal} style={styleModal}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 0.2,
+      }}
+      exit={{ opacity: 0 }}
+      className={`${style.modalOverlay} overlay-alpha-black`}
+      onClick={destroyModal}>
+      <motion.div
+        initial={{ opacity: 0, y: 50, x: '-50%' }}
+        animate={{ opacity: 1, y: '-50%' }}
+        transition={{
+          duration: 0.2,
+        }}
+        exit={{ opacity: 0, y: -30 }}
+        className={style.modal}
+        style={styleModal}>
         <ModalHeader
           text={text}
           question={question}
@@ -26,7 +43,7 @@ export const Modal = ({
           buttonOneText={buttonOneText}
           buttonOneAction={buttonOneAction}
           buttonTwoText={buttonTwoText} />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }

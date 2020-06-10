@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-
+import { AnimatePresence } from 'framer-motion';
 //style
 import style from './tweets.module.css';
 
@@ -51,7 +51,7 @@ export const Tweets = ({
             post={createPost()}
           />
         </div>
-        <div className={style.tweets}>
+        <AnimatePresence className={style.tweets}>
           {posts.map((post, index) => {
             return (
               <div key={post.uuid}>
@@ -67,7 +67,8 @@ export const Tweets = ({
                     cancelButtonAction={() => cancelButtonAction(post.uuid, false)}
                     post={post}
                   />
-                  : <TweetItem
+                  :
+                  <TweetItem
                     post={post}
                     postIndex={index}
                     user={user}
@@ -76,24 +77,27 @@ export const Tweets = ({
                     setPostOnEdit={setPostOnEdit}
                     remove={remove}
                     history={history}
-                  />}
+                  />
+                }
               </div>
             )
           })}
-        </div>
+        </AnimatePresence>
       </div>
-      {isModal.modalState
-        && <Modal
-          text={GlobalConstants.REMOVE_MODAL.TEXT}
-          question={GlobalConstants.REMOVE_MODAL.QUESTION}
-          buttonOneText={GlobalConstants.REMOVE_MODAL.BUTTON_ONE}
-          buttonTwoText={GlobalConstants.REMOVE_MODAL.BUTTON_TWO}
-          destroyModal={destroyModal}
-          buttonOneAction={isModal.modalAction}
-          styleModal={{
-            width: '60rem'
-          }}
-        />}
+      <AnimatePresence>
+        {isModal.modalState
+          && <Modal
+            text={GlobalConstants.REMOVE_MODAL.TEXT}
+            question={GlobalConstants.REMOVE_MODAL.QUESTION}
+            buttonOneText={GlobalConstants.REMOVE_MODAL.BUTTON_ONE}
+            buttonTwoText={GlobalConstants.REMOVE_MODAL.BUTTON_TWO}
+            destroyModal={destroyModal}
+            buttonOneAction={isModal.modalAction}
+            styleModal={{
+              width: '60rem'
+            }}
+          />}
+      </AnimatePresence>
     </>
   )
 }

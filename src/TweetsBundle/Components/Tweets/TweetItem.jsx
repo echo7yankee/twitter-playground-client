@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 //redux
 import style from './tweets.module.css';
 import { useDispatch } from 'react-redux';
@@ -50,8 +50,6 @@ export const TweetItem = ({
   const dispatch = useDispatch();
 
   //useState
-  const [isAnimate, setIsAnimate] = useState(false);
-  const [isAnimateProfileResume, setIsAnimateProfileResume] = useState(false);
   const [isDropdown, setIsDropdown] = useState(false);
   const [isProfileResume, setProfileResume] = useState(-1);
   const [confirm, setConfirm] = useState({
@@ -65,13 +63,6 @@ export const TweetItem = ({
   const contentEditableCreator = useRef(null);
   const contentEditableEdit = useRef(null);
   const linkRef = useRef(null);
-
-  useEffect(() => {
-    setIsAnimate(true);
-    return () => {
-      setIsAnimate(false);
-    };
-  }, [])
 
   const handleLikePost = (e) => {
     e.preventDefault();
@@ -104,7 +95,7 @@ export const TweetItem = ({
   const action = {
     remove: () => setIsModal({
       modalState: true,
-      modalAction: () => remove(post.uuid, () => setIsAnimate(false))
+      modalAction: () => remove(post.uuid)
     }),
     edit: () => setPostOnEdit(post.uuid, true),
     follow: () => {
@@ -166,17 +157,20 @@ export const TweetItem = ({
 
   return (
     postObj.uuid ?
-      <>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <CustomLink
           to={{
             pathname: `/dashboard/status/${post.uuid}`,
           }}
           linkRef={linkRef}
-          className={isAnimate ? style.tweetAnimate : style.tweet}>
+          className={style.tweet}>
           <div
             className='pos-relative'
             onMouseLeave={() => {
-              setIsAnimateProfileResume(false);
               setTimeout(() => {
                 setProfileResume(-1)
               }, 600)
@@ -188,23 +182,23 @@ export const TweetItem = ({
               classNameDiv='tweet-profile-img-container mr-1'
               onMouseOver={() => setProfileResume(postIndex)}
             />
-            {postObj.user
-              && isProfileResume === postIndex
-              && <div
-                className='tweetItemProfileResumeContainer'
-                onClick={(e) => e.preventDefault()}
-                onMouseOver={(e) => e.preventDefault()}
-              >
-                <TweetProfileResume
-                  post={postObj}
-                  user={user}
-                  isAnimateProfileResume={isAnimateProfileResume}
-                  setIsAnimateProfileResume={setIsAnimateProfileResume}
-                  handleFollow={action.follow}
-                  history={history}
-                />
-              </div>
-            }
+            <AnimatePresence>
+              {postObj.user
+                && isProfileResume === postIndex
+                && <div
+                  className='tweetItemProfileResumeContainer'
+                  onClick={(e) => e.preventDefault()}
+                  onMouseOver={(e) => e.preventDefault()}
+                >
+                  <TweetProfileResume
+                    post={postObj}
+                    user={user}
+                    handleFollow={action.follow}
+                    history={history}
+                  />
+                </div>
+              }
+            </AnimatePresence>
           </div>
           <div style={{ width: '61rem' }}>
             <TweetItemHeaderInfo
@@ -290,18 +284,20 @@ export const TweetItem = ({
               cancelButtonAction={null}
             />
           }
-          {
-            confirm.action && <Modal
-              text={GlobalConstants.REMOVE_MODAL.TEXT}
-              styleModal={{ width: '60rem' }}
-              question={GlobalConstants.REMOVE_MODAL.QUESTION}
-              buttonOneText={GlobalConstants.REMOVE_MODAL.BUTTON_ONE}
-              buttonOneAction={() => removePostReply(confirm.item)}
-              buttonTwoText={GlobalConstants.REMOVE_MODAL.BUTTON_TWO}
-              destroyModal={() => setConfirm((prevState) => ({ ...prevState, action: false }))}
-            />
-          }
+          <AnimatePresence>
+            {
+              confirm.action && <Modal
+                text={GlobalConstants.REMOVE_MODAL.TEXT}
+                styleModal={{ width: '60rem' }}
+                question={GlobalConstants.REMOVE_MODAL.QUESTION}
+                buttonOneText={GlobalConstants.REMOVE_MODAL.BUTTON_ONE}
+                buttonOneAction={() => removePostReply(confirm.item)}
+                buttonTwoText={GlobalConstants.REMOVE_MODAL.BUTTON_TWO}
+                destroyModal={() => setConfirm((prevState) => ({ ...prevState, action: false }))}
+              />
+            }
+          </AnimatePresence>
         </div>
-      </> : null
+      </motion.div> : null
   )
 }
