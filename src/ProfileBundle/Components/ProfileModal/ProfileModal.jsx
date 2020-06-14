@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-
+import { AnimatePresence, motion } from 'framer-motion';
 //style
 import style from './profileModal.module.css';
 import { MdClose } from 'react-icons/md';
@@ -14,8 +14,9 @@ import { ProfileModalForm } from '../ProfileModalForm/ProfileModalForm';
 import { Modal } from '../../../GlobalComponents/Modal/Components/Modal/Modal';
 import { ProfileConstants } from '../../Constants/ProfileConstants';
 import { createUser } from '../../../utils/services/createUser';
+import { Error } from '../../../GlobalComponents/Error/Error';
 
-export const ProfileModal = ({ user, closeModal, selectImage, updateUser }) => {
+export const ProfileModal = ({ user, closeModal, selectImage, updateUser, errors }) => {
 
   //React state
   const [userObj, setUser] = useState(createUser());
@@ -67,8 +68,18 @@ export const ProfileModal = ({ user, closeModal, selectImage, updateUser }) => {
   //File input ref for giving the click() method to a custom button
   const fileInputRef = useRef();
 
+  console.log('ERROR', errors?.profileError);
+
   return (
-    <div className='overlay overlay-alpha-black' onClick={closeModal}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 0.2,
+      }}
+      exit={{ opacity: 0 }}
+      className='overlay overlay-alpha-black'
+      onClick={closeModal}>
       <div className={style.profileModal} onClick={(e) => {
         e.stopPropagation();
       }}>
@@ -90,6 +101,7 @@ export const ProfileModal = ({ user, closeModal, selectImage, updateUser }) => {
               user={userObj}
               selectImage={selectImage}
               fileInputRef={fileInputRef} />
+            {errors?.profileError && <Error error={errors.profileError} />}
             <ProfileModalForm
               user={userObj}
               handleChange={handleChange}
@@ -100,20 +112,22 @@ export const ProfileModal = ({ user, closeModal, selectImage, updateUser }) => {
             />
           </div>
         </form>
-        {showBirthModal
-          && <Modal
-            text={ProfileConstants.BIRTH_MODAL.TEXT}
-            question={ProfileConstants.BIRTH_MODAL.QUESTION}
-            buttonOneText={ProfileConstants.BIRTH_MODAL.BUTTON_TWO}
-            buttonTwoText={ProfileConstants.BIRTH_MODAL.BUTTON_ONE}
-            destroyModal={destroyModal}
-            buttonOneAction={showBirthInfo}
-            styleModal={{
-              width: '50%'
-            }}
-          />
-        }
+        <AnimatePresence>
+          {showBirthModal
+            && <Modal
+              text={ProfileConstants.BIRTH_MODAL.TEXT}
+              question={ProfileConstants.BIRTH_MODAL.QUESTION}
+              buttonOneText={ProfileConstants.BIRTH_MODAL.BUTTON_TWO}
+              buttonTwoText={ProfileConstants.BIRTH_MODAL.BUTTON_ONE}
+              destroyModal={destroyModal}
+              buttonOneAction={showBirthInfo}
+              styleModal={{
+                width: '50%'
+              }}
+            />
+          }
+        </AnimatePresence>
       </div>
-    </div>
+    </motion.div>
   )
 }

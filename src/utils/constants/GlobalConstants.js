@@ -4,5 +4,11 @@ export const GlobalConstants = {
     QUESTION: 'Are you sure?',
     BUTTON_ONE: 'Yes',
     BUTTON_TWO: 'No'
+  },
+  ERRORS: {
+    ERRORS_PROFILE: {
+      NAME: 'profileError',
+      TEXT: 'File type incorrect'
+    }
   }
 }

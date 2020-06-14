@@ -11,38 +11,37 @@ html {
   box-sizing: inherit;
 }
 
-
 :root {
-  --white-color:rgb(255,255,255);
-  --white-color-darken:rgb(245,248,250);
-  --white-color-alpha:rgba(255,255,255,.2);
-  --grey-color-1:#EDF2F5;
-  --grey-color-2:rgb(233, 233, 233);
-  --grey-color-3:rgb(216, 216, 216);
-  --grey-color-4:#657786;
-  --grey-color-5:#49555f;
-  --black-color-1:#14171A;
-  --overlay-color-1:rgba(73,63,62,.9);
-  --red-color-1:#D8000C;
-  --red-color-1-alpha:rgba(216, 0, 12,.1);
-  --red-color-2:#FFD2D2;
-  --red-color-3:#DE4C4A;
-  --red-color-4:rgb(224, 36, 94);
-  --red-color-4-alpha:rgb(224,36,94,0.1);
+  --white-color: rgb(255, 255, 255);
+  --white-color-darken: rgb(245, 248, 250);
+  --white-color-alpha: rgba(255, 255, 255, 0.2);
+  --grey-color-1: #edf2f5;
+  --grey-color-2: rgb(233, 233, 233);
+  --grey-color-3: rgb(216, 216, 216);
+  --grey-color-4: #657786;
+  --grey-color-5: #49555f;
+  --black-color-1: #14171a;
+  --overlay-color-1: rgba(73, 63, 62, 0.9);
+  --red-color-1: #d8000c;
+  --red-color-1-alpha: rgba(216, 0, 12, 0.1);
+  --red-color-2: #ffd2d2;
+  --red-color-3: #de4c4a;
+  --red-color-4: rgb(224, 36, 94);
+  --red-color-4-alpha: rgb(224, 36, 94, 0.1);
   --green-color-1: #0ba80b;
-  --blue-color-1:#1da1f2;
-  --blue-color-1-alpha:rgba(29, 161, 242,.8);
-  --blue-color-1-alpha-half:rgba(29,161,242,.5);
-  --blue-color-1-darken:#1A91DA;
-  --blue-color-2:#E8F5FE;
-  --blue-color-3:#659DD2;
-  --blue-color-4:#E6ECF0;
-  --blue-color-5:#F5F8FA;
-  --blue-color-6:#4BC2F4;
-  --blue-color-7:#66757F;
-  --blue-color-7-lighten:rgb(146, 152, 155);
-  --blue-color-8:#CCD6DD;
-  --purple-color-1:#794BC4;
+  --blue-color-1: #1da1f2;
+  --blue-color-1-alpha: rgba(29, 161, 242, 0.8);
+  --blue-color-1-alpha-half: rgba(29, 161, 242, 0.5);
+  --blue-color-1-darken: #1a91da;
+  --blue-color-2: #e8f5fe;
+  --blue-color-3: #659dd2;
+  --blue-color-4: #e6ecf0;
+  --blue-color-5: #f5f8fa;
+  --blue-color-6: #4bc2f4;
+  --blue-color-7: #66757f;
+  --blue-color-7-lighten: rgb(146, 152, 155);
+  --blue-color-8: #ccd6dd;
+  --purple-color-1: #794bc4;
 }
 
 body {
@@ -70,12 +69,14 @@ ul {
   padding: 0;
 }
 
-input,textarea,textarea::placeholder,input::placeholder {
+input,
+textarea,
+textarea::placeholder,
+input::placeholder {
   outline: none;
   font-family: "Roboto", sans-serif;
   font-size: 1.6rem;
 }
-
 
 button {
   cursor: pointer;
@@ -112,7 +113,7 @@ button {
 
 .container-column-large {
   width: 100%;
-  margin:0 2.5rem;
+  margin: 0 2.5rem;
 }
 
 .pos-relative {
@@ -150,7 +151,7 @@ button {
   border-radius: 2.5rem;
   border: 1px solid var(--blue-color-1);
   font-weight: 700;
-  transition: background-color .2s ease-in;
+  transition: background-color 0.2s ease-in;
 }
 
 .tweet-button-filled {
@@ -182,7 +183,7 @@ button {
 }
 
 .overlay-alpha-black {
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .overlay-alpha-brown {
@@ -220,19 +221,20 @@ button {
 .error {
   background-color: var(--red-color-2);
   color: var(--red-color-1);
-  padding: .6rem .8rem;
+  padding: 0.6rem 0.8rem;
   border-radius: 2.5rem;
   width: max-content;
   font-size: 1.4rem;
 }
 
-.placeholder-profile-img,.placeholder-profile-img-reply{
+.placeholder-profile-img,
+.placeholder-profile-img-reply {
   width: 5.5rem;
   height: 5.5rem;
   fill: var(--grey-color-3);
   border: 2px solid var(--grey-color-3);
   border-radius: 100%;
-  padding: .5rem;
+  padding: 0.5rem;
   margin-right: 1rem;
   align-self: flex-start;
 }
@@ -281,17 +283,18 @@ button {
 }
 
 .divider {
-  margin: .8rem 0;
+  margin: 0.8rem 0;
   width: 100%;
   height: 2px;
   background-color: var(--blue-color-4);
 }
 
-.tweetItemProfileResumeContainer,.notificationItemProfileResumeContainer {
+.tweetItemProfileResumeContainer,
+.notificationItemProfileResumeContainer {
   position: absolute;
   left: -50%;
-  transform:translateX(-25%);
-  top: 50%;
+  transform: translateX(-25%);
+  top: 4rem;
   z-index: 2000;
 }
 
@@ -340,14 +343,13 @@ button {
 /* arrow rotations */
 .rotate-0 {
   transform: rotate(0deg);
-  transition: transform .05s ease-out !important;
+  transition: transform 0.05s ease-out !important;
 }
 
 .rotate-90 {
   transform: rotate(-90deg);
-  transition: transform .05s ease-out !important;
+  transition: transform 0.05s ease-out !important;
 }
-
 
 /* margin bottom */
 
@@ -367,10 +369,9 @@ button {
   margin-bottom: 5rem;
 }
 
-
 /* margin right */
 .mr-05 {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 .mr-1 {
   margin-right: 1rem;
@@ -418,10 +419,9 @@ button {
   margin-left: 7rem;
 }
 
-
 /* margin top */
 .mt-05 {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 .mt-1 {
   margin-top: 1rem;

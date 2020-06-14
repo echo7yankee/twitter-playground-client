@@ -1,9 +1,12 @@
 .tweetsContainer {
   border-top: none;
-  transition: opacity .2s ease-in;
+  transition: opacity 0.2s ease-in;
 }
 
-.tweet:link,.tweet:visited,.tweetAnimate:link,.tweetAnimate:visited {
+.tweet:link,
+.tweet:visited,
+.tweetAnimate:link,
+.tweetAnimate:visited {
   display: flex;
   border-bottom: 1px solid var(--blue-color-4);
   padding: 2rem 1.7rem;
@@ -12,11 +15,10 @@
   color: var(--blue-color-7);
   border-left: 1px solid var(--blue-color-4);
   border-right: 1px solid var(--blue-color-4);
-  opacity: 0;
-  transition: .1s ease-in background-color, opacity .3s ease-in;
 }
 
-.tweetAnimate:link,.tweetAnimate:visited {
+.tweetAnimate:link,
+.tweetAnimate:visited {
   opacity: 1;
 }
 
@@ -32,10 +34,10 @@
   opacity: 0;
   pointer-events: none;
   position: absolute;
-    -webkit-animation: tweetItemReplyHide .3s ease-in; /* Safari 4+ */
-  -moz-animation:    tweetItemReplyHide .3s ease-in; /* Fx 5+ */
-  -o-animation:      tweetItemReplyHide .3s ease-in; /* Opera 12+ */
-  animation:         tweetItemReplyHide .3s ease-in; /* IE 10+, Fx 29+ */
+  -webkit-animation: tweetItemReplyHide 0.3s ease-in; /* Safari 4+ */
+  -moz-animation: tweetItemReplyHide 0.3s ease-in; /* Fx 5+ */
+  -o-animation: tweetItemReplyHide 0.3s ease-in; /* Opera 12+ */
+  animation: tweetItemReplyHide 0.3s ease-in; /* IE 10+, Fx 29+ */
 }
 
 .tweetItemReplyContainerShow {
@@ -43,18 +45,20 @@
   overflow-y: scroll;
   overflow-x: hidden;
   pointer-events: unset;
-  -webkit-animation: tweetItemReply .3s ease-in; /* Safari 4+ */
-  -moz-animation:    tweetItemReply .3s ease-in; /* Fx 5+ */
-  -o-animation:      tweetItemReply .3s ease-in; /* Opera 12+ */
-  animation:         tweetItemReply .3s ease-in; /* IE 10+, Fx 29+ */
+  -webkit-animation: tweetItemReply 0.3s ease-in; /* Safari 4+ */
+  -moz-animation: tweetItemReply 0.3s ease-in; /* Fx 5+ */
+  -o-animation: tweetItemReply 0.3s ease-in; /* Opera 12+ */
+  animation: tweetItemReply 0.3s ease-in; /* IE 10+, Fx 29+ */
 }
 
-.tweetItemReplyContainer,.tweetItemReplyContainerShow::-webkit-scrollbar {
+.tweetItemReplyContainer,
+.tweetItemReplyContainerShow::-webkit-scrollbar {
   width: 5px !important;
   background-color: var(--blue-color-2);
 }
 
-.tweetItemReplyContainer,.tweetItemReplyContainerShow::-webkit-scrollbar-thumb {
+.tweetItemReplyContainer,
+.tweetItemReplyContainerShow::-webkit-scrollbar-thumb {
   background-color: var(--blue-color-3);
 }
 
@@ -62,7 +66,7 @@
   min-height: 17px;
   max-height: 150px;
   max-width: 55rem;
-  overflow:hidden;
+  overflow: hidden;
   padding: 1.8rem;
   border: none;
 }
@@ -72,28 +76,28 @@
 }
 
 .tweetItemReplyCreator[placeholder]:empty:before {
-    content: attr(placeholder);
-    color: #555; 
+  content: attr(placeholder);
+  color: #555;
 }
 
 .tweetItemReplyCreator {
   border: none;
 }
 
-@keyframes tweetItemReply{  
-      0%   { 
-      opacity: 0;
-    }
-  100% { 
+@keyframes tweetItemReply {
+  0% {
+    opacity: 0;
+  }
+  100% {
     opacity: 1;
   }
 }
 
 @keyframes tweetItemReplyHide {
-      0%   { 
-      visibility: visible;
-    }
-  100% { 
+  0% {
+    visibility: visible;
+  }
+  100% {
     visibility: hidden;
   }
 }

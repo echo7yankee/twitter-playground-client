@@ -1,11 +1,13 @@
-.tweetIcon,.tweetItemHeartIcon,.tweetIconOutline {
+.tweetIcon,
+.tweetItemHeartIcon,
+.tweetIconOutline {
   width: 1.8rem;
   height: 1.8rem;
-  padding: .9rem;
+  padding: 0.9rem;
   border-radius: 100%;
   box-sizing: content-box;
   cursor: pointer;
-  transition: background-color .2s ease-in, fill .2s ease-in;
+  transition: background-color 0.2s ease-in, fill 0.2s ease-in;
 }
 
 .tweetIconOutline {
@@ -13,7 +15,7 @@
 }
 
 .tweetIconOutline:hover {
-   background-color: var(--blue-color-2);
+  background-color: var(--blue-color-2);
 }
 
 .tweetItemHeartIcon:hover {
@@ -24,7 +26,7 @@
 
 .tweetItemCount {
   font-size: 1.4rem;
-  transition: color .2s ease-in;
+  transition: color 0.2s ease-in;
 }
 
 .tweetItemHeartIcon:hover ~ .tweetItemCount {
