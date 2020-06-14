@@ -3,12 +3,13 @@
 .notificationWrapperSuccess {
   position: fixed;
   bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 1.2rem 2rem;
+  left: 2rem;
+  padding: 1.2rem 1.8rem;
   border-radius: 3px;
   font-weight: 500;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
+  width: 38rem;
+  text-align: left;
 }
 
 .notificationWrapperError {
