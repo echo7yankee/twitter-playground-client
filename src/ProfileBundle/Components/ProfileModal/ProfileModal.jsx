@@ -14,8 +14,9 @@ import { ProfileModalForm } from '../ProfileModalForm/ProfileModalForm';
 import { Modal } from '../../../GlobalComponents/Modal/Components/Modal/Modal';
 import { ProfileConstants } from '../../Constants/ProfileConstants';
 import { createUser } from '../../../utils/services/createUser';
+import { Error } from '../../../GlobalComponents/Error/Error';
 
-export const ProfileModal = ({ user, closeModal, selectImage, updateUser }) => {
+export const ProfileModal = ({ user, closeModal, selectImage, updateUser, errors }) => {
 
   //React state
   const [userObj, setUser] = useState(createUser());
@@ -67,6 +68,8 @@ export const ProfileModal = ({ user, closeModal, selectImage, updateUser }) => {
   //File input ref for giving the click() method to a custom button
   const fileInputRef = useRef();
 
+  console.log('ERROR', errors?.profileError);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -98,6 +101,7 @@ export const ProfileModal = ({ user, closeModal, selectImage, updateUser }) => {
               user={userObj}
               selectImage={selectImage}
               fileInputRef={fileInputRef} />
+            {errors?.profileError && <Error error={errors.profileError} />}
             <ProfileModalForm
               user={userObj}
               handleChange={handleChange}

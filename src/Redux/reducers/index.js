@@ -4,6 +4,7 @@ import { userReducer } from './user/user';
 import { postReducer } from './post/post';
 import { notificationReducer } from './notification/notification';
 import { messagesReducer } from './messages/messages';
+import { errorsReducer } from './errors/errors';
 
 export const rootReducer = combineReducers({
   auth: authReducer,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
   post: postReducer,
   notification: notificationReducer,
   message: messagesReducer,
+  errors: errorsReducer,
 })

@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 //style
 import style from './profile.module.css';
+//utils
+import { GlobalConstants } from '../../utils/constants/GlobalConstants';
 
 //redux
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserDetails, updateUserDetails, uploadUserImg, followUser, resetUserDetails } from '../../Redux/actions/user/user';
+import { displayError } from '../../Redux/actions/errors/errors';
 
 //Components
 import { ProfileModal } from '../Components/ProfileModal/ProfileModal';
@@ -20,6 +23,7 @@ import { getFollowButtonState } from '../../utils/services/getFollowButtonState'
 import { updateNotifications } from '../../Redux/actions/notification/notification';
 import { ProfileDummy } from '../../GlobalComponents/Dummies/ProfileDummy/ProfileDummy';
 
+
 export const Profile = ({ history }) => {
   const state = {
     ownerId: history.location.state && history.location.state.owner.ownerId,
@@ -32,6 +36,7 @@ export const Profile = ({ history }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userDetails);
   const isLoading = useSelector((state) => state.user.isLoading);
+  const errors = useSelector((state) => state.errors.errors)
 
   //react state
   const [isOpen, setIsOpen] = useState(false);
@@ -55,14 +60,33 @@ export const Profile = ({ history }) => {
   //update user
 
   const selectImage = (e) => {
+    const file = e.target.files[0];
+    if (file.name.includes('.xlsx')
+      || file.name.includes('.txt')
+      || file.name.includes('.zip')
+      || file.name.includes('.svg')
+      || file.name.includes('.csv')
+      || file.name.includes('.pdf')
+      || file.name.includes('.docx')
+      || file.name.includes('.tar.gz')
+      || file.name.includes('.exe')
+      || file.name.includes('.gif')
+      || file.name.includes('.msi')
+      || file.name.includes('.md')
+      || file.name.includes('.yaml')
+    ) {
+      dispatch(displayError(GlobalConstants.ERRORS.ERRORS_PROFILE.NAME, GlobalConstants.ERRORS.ERRORS_PROFILE.TEXT));
+      return;
+    }
+
     const formData = new FormData();
-    formData.append('file', e.target.files[0])
+    formData.append('file', file)
     const config = {
       headers: {
         'content-type': 'multipart/form-data'
       }
     }
-    localStorage.setItem('ownerProfileImg', e.target.files[0].name);
+    localStorage.setItem('ownerProfileImg', file.name);
     dispatch(uploadUserImg(formData, config, user.id))
   }
 
@@ -109,6 +133,7 @@ export const Profile = ({ history }) => {
             user={user}
             updateUser={updateUser}
             selectImage={selectImage}
+            errors={errors}
           />}
         </AnimatePresence>
         {showOverlayImage &&
