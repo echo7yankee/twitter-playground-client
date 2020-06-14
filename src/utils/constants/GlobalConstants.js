@@ -7,8 +7,14 @@ export const GlobalConstants = {
   },
   ERRORS: {
     ERRORS_PROFILE: {
-      NAME: 'profileError',
-      TEXT: 'File type incorrect'
+      TEXT: 'File type incorrect',
+      NOTIFICATION_TYPE: 'error',
+    }
+  },
+  SUCCESS: {
+    SUCCESS_PROFILE: {
+      TEXT: 'Your profile image has been updated successfully',
+      NOTIFICATION_TYPE: 'success',
     }
   }
 }

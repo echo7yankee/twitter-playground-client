@@ -3,6 +3,8 @@ import axios from 'axios';
 import { GET_USER_DETAILS, RESET_USER_DETAILS, SET_USER_DETAILS_LOADING, GET_USERS, SET_GET_USERS_LOADING } from '../../types';
 import { getAllPosts } from '../post/post';
 import { logoutUser } from '../auth/auth';
+import { GlobalConstants } from '../../../utils/constants/GlobalConstants';
+import { displayNotification } from '../notificationToaster/notificationToaster';
 
 export const getUserDetails = (userId) => {
   return async (dispatch) => {
@@ -124,6 +126,10 @@ export const uploadUserImg = (formData, config, userId) => {
       await axios.put(`/user/userDetails/${userId}/upload`, formData, config);
       dispatch(getUserDetails(userId));
       dispatch(getAllPosts());
+      dispatch(displayNotification(
+        GlobalConstants.SUCCESS.SUCCESS_PROFILE.TEXT,
+        GlobalConstants.SUCCESS.SUCCESS_PROFILE.NOTIFICATION_TYPE,
+      ));
     } catch (error) {
       console.log(error);
     }
