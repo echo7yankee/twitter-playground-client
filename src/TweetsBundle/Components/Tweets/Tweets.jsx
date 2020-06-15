@@ -11,6 +11,7 @@ import { createPost } from '../../../utils/services/createPost';
 import { TweetCreator } from '../TweetCreator/Components/TweetCreator/TweetCreator';
 import { TweetItem } from './TweetItem';
 import { Modal } from '../../../GlobalComponents/Modal/Components/Modal/Modal';
+import { Notification } from '../../../GlobalComponents/Notification/Notification';
 
 export const Tweets = ({
   handleAddPost,
@@ -21,6 +22,8 @@ export const Tweets = ({
   cancelButtonAction,
   setPostOnEdit,
   history,
+  notificationMessage,
+  notificationType,
 }) => {
   //state
   const [isModal, setIsModal] = useState({
@@ -87,6 +90,7 @@ export const Tweets = ({
       <AnimatePresence>
         {isModal.modalState
           && <Modal
+            key={1}
             text={GlobalConstants.REMOVE_MODAL.TEXT}
             question={GlobalConstants.REMOVE_MODAL.QUESTION}
             buttonOneText={GlobalConstants.REMOVE_MODAL.BUTTON_ONE}
@@ -97,6 +101,11 @@ export const Tweets = ({
               width: '60rem'
             }}
           />}
+        {notificationMessage && <Notification
+          key={2}
+          notificationMessage={notificationMessage}
+          notificationType={notificationType}
+        />}
       </AnimatePresence>
     </>
   )

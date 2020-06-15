@@ -23,6 +23,7 @@ export const DashboardHome = ({ history }) => {
   const user = useSelector((state) => state.user.userDetails);
   const posts = useSelector((state) => state.post.posts);
   const isLoading = useSelector(state => state.post.isLoading);
+  const { notificationMessage, notificationType } = useSelector((state) => state.notificationToaster)
 
   useEffect(() => {
     dispatch(getAllPosts({}));
@@ -110,8 +111,9 @@ export const DashboardHome = ({ history }) => {
           cancelButtonAction={cancelButtonAction}
           setPostOnEdit={setPostOnEdit}
           history={history}
+          notificationMessage={notificationMessage}
+          notificationType={notificationType}
         />
-        {/* <TweetDummy /> */}
       </div>
     )
 }

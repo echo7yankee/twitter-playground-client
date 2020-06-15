@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { GET_POSTS, SET_POSTS_LOADING, RESET_POSTS, GET_POST, RESET_POST } from '../../types';
+import { displayNotification } from '../notificationToaster/notificationToaster';
+import { GlobalConstants } from '../../../utils/constants/GlobalConstants';
 
 export function addPost(post, userData) {
-  return async (_dispatch) => {
+  return async (dispatch) => {
     try {
       await axios.post('/post', post, {
         params: {
@@ -11,6 +13,11 @@ export function addPost(post, userData) {
           profileImg: userData.profileImg
         }
       })
+
+      dispatch(displayNotification(
+        GlobalConstants.SUCCESS.SUCCESS_ADD_POST.TEXT,
+        GlobalConstants.SUCCESS.SUCCESS_ADD_POST.NOTIFICATION_TYPE,
+      ));
 
     } catch (error) {
       console.log(error)
@@ -72,9 +79,13 @@ export function resetPost() {
 }
 
 export function removePost(postId) {
-  return async (_dispatch) => {
+  return async (dispatch) => {
     try {
       await axios.delete(`/post/${postId}`);
+      dispatch(displayNotification(
+        GlobalConstants.SUCCESS.SUCCESS_REMOVE_POST.TEXT,
+        GlobalConstants.SUCCESS.SUCCESS_REMOVE_POST.NOTIFICATION_TYPE,
+      ));
     } catch (error) {
       console.log(error);
     }
@@ -82,9 +93,13 @@ export function removePost(postId) {
 }
 
 export function editPost(postId, newPost) {
-  return async (_dispatch) => {
+  return async (dispatch) => {
     try {
       await axios.put(`/post/${postId}`, newPost)
+      dispatch(displayNotification(
+        GlobalConstants.SUCCESS.SUCCESS_EDIT_POST.TEXT,
+        GlobalConstants.SUCCESS.SUCCESS_EDIT_POST.NOTIFICATION_TYPE,
+      ));
     } catch (error) {
       console.log(error);
     }
@@ -117,7 +132,7 @@ export function votePoll(postId, voteContainer) {
 }
 
 export function createPostComment(userId, postId, comment) {
-  return async (_dispatch) => {
+  return async (dispatch) => {
     try {
       await axios.post(`/postComment`, comment, {
         params: {
@@ -125,6 +140,10 @@ export function createPostComment(userId, postId, comment) {
           postId
         }
       })
+      dispatch(displayNotification(
+        GlobalConstants.SUCCESS.SUCCESS_ADD_POST_COMMENT.TEXT,
+        GlobalConstants.SUCCESS.SUCCESS_ADD_POST_COMMENT.NOTIFICATION_TYPE,
+      ));
     } catch (error) {
       console.log(error);
     }
@@ -132,9 +151,13 @@ export function createPostComment(userId, postId, comment) {
 }
 
 export function removePostComment(postCommentId) {
-  return async (_dispatch) => {
+  return async (dispatch) => {
     try {
       await axios.delete(`/postComment/${postCommentId}`);
+      dispatch(displayNotification(
+        GlobalConstants.SUCCESS.SUCESS_REMOVE_POST_COMMENT.TEXT,
+        GlobalConstants.SUCCESS.SUCESS_REMOVE_POST_COMMENT.NOTIFICATION_TYPE,
+      ));
     } catch (error) {
       console.log(error);
     }
@@ -142,9 +165,13 @@ export function removePostComment(postCommentId) {
 }
 
 export function editPostComment(updatedCommentId, updatedComment) {
-  return async (_dispatch) => {
+  return async (dispatch) => {
     try {
       await axios.put(`/postComment/${updatedCommentId}`, updatedComment);
+      dispatch(displayNotification(
+        GlobalConstants.SUCCESS.SUCCESS_EDIT_POST_COMMENT.TEXT,
+        GlobalConstants.SUCCESS.SUCCESS_EDIT_POST_COMMENT.NOTIFICATION_TYPE,
+      ));
     } catch (error) {
       console.log(error);
     }

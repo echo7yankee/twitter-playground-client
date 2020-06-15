@@ -24,6 +24,7 @@ import { updateNotifications } from '../../Redux/actions/notification/notificati
 import { ProfileDummy } from '../../GlobalComponents/Dummies/ProfileDummy/ProfileDummy';
 import { Notification } from '../../GlobalComponents/Notification/Notification';
 
+//TODO: ADD NOTIFICATION WHEN FOLLOWING/UNFOLLOWING PERSON
 
 export const Profile = ({ history }) => {
   const state = {
