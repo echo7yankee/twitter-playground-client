@@ -27,13 +27,13 @@ export const getUserDetails = (userId) => {
   }
 }
 
-export const getUsersInSearch = (params) => {
+export const getUsers = (params) => {
   return async (dispatch) => {
     try {
 
       dispatch({ type: SET_GET_USERS_LOADING });
 
-      const response = await axios.get('/user/search', {
+      const response = await axios.get('/user', {
         params
       })
       const { data } = response;
@@ -42,9 +42,6 @@ export const getUsersInSearch = (params) => {
         payload: data,
       })
     } catch (error) {
-      if (error.response.status === 500) {
-        dispatch(logoutUser());
-      }
       dispatch({
         type: GET_USERS,
         payload: [],

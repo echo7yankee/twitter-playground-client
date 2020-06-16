@@ -13,17 +13,18 @@
 .tweetCreatorTextarea {
   min-height: 17px;
   max-height: 150px;
-  overflow:hidden;
+  overflow: hidden;
   padding: 1.8rem 0;
   border: none;
+  position: relative;
 }
 
 .tweetCreatorTextarea:focus {
   outline: none;
 }
 .tweetCreatorTextarea[placeholder]:empty:before {
-    content: attr(placeholder);
-    color: #555; 
+  content: attr(placeholder);
+  color: #555;
 }
 
 .tweetCreatorTextarea {
@@ -32,4 +33,12 @@
 
 .tweetCreatorFormButtons {
   margin-top: 3.5rem;
+}
+
+.tweetCreatorTagUsername {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: red;
+  width: 50rem;
 }

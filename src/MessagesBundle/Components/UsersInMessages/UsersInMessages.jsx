@@ -9,11 +9,11 @@ export const UsersInMessages = ({ userAdmin, users, handleAcceptUser, cancelAcce
   return (
     <div className={style.usersInMessages}>
       <ul>
-        {users.map((user) => {
-          const room = userAdmin.social.roomIds.find((room, index) => {
+        {users.map((user, index) => {
+          const room = userAdmin.social.roomIds.find((room) => {
             return user.social.roomId?.hasAccepted === null
               ? room.id === user.social.roomId.id
-              : room.id === user.social.roomIds[index].id
+              : room.id === userAdmin.social.roomIds[index].id
           })
           return (
             <UserInSearch
