@@ -111,6 +111,13 @@ export const TweetCreator = ({
     })
   }
 
+  const insertTagName = ({ username }) => {
+    setPost({
+      ...postObj,
+      comment: `${postObj.comment.split('').filter((item) => item !== '@').join('')} ${username}`
+    })
+  }
+
   const submit = (e) => {
     e.preventDefault();
     const processedPostObj = {
@@ -147,12 +154,12 @@ export const TweetCreator = ({
     : false;
   const buttonState = isPoll ? buttonStateIfPollTrue : postObj.comment ? true : false
 
-  console.log(postObj.comment)
-  console.log(users);
+  let keyDropdownSticky;
+  postObj.comment.split('').forEach((item, index) => {
+    keyDropdownSticky = item === '@' ? index + 1 : null;
+  })
 
-  const commentLength = postObj.comment.length + 5;
-
-  console.log(commentLength);
+  console.log(postObj.comment);
 
   return (
     <div className={style.tweetCreatorContainer}>
@@ -164,13 +171,25 @@ export const TweetCreator = ({
         />
         <div style={{ width: '61rem' }}>
           <div>
-            <ContentEditable
-              placeholder={placeholder}
-              onChange={handleChange}
-              innerRef={contentEditableRef}
-              className={style.tweetCreatorTextarea}
-              html={postObj.comment}
-            />
+            <div className='pos-relative'>
+              <ContentEditable
+                placeholder={placeholder}
+                onChange={handleChange}
+                innerRef={contentEditableRef}
+                className={style.tweetCreatorTextarea}
+                html={postObj.comment}
+              />
+              {postObj.comment.includes('@') && users.length
+                ?
+                <div style={{ left: keyDropdownSticky + 'rem' }} className={style.tweetCreatorTagUsername}>
+                  <UsersInSearch
+                    users={users}
+                    onClick={insertTagName}
+                    isLink={false}
+                  />
+                </div>
+                : null}
+            </div>
             <div>
               {isPoll && <TweetCreatorPoll
                 setIsPoll={setIsPoll}
@@ -195,12 +214,6 @@ export const TweetCreator = ({
                 isEdit={isEdit}
                 cancelButtonAction={cancelButtonAction}
               />
-              {postObj.comment.includes('@') && users.length
-                ?
-                <div style={{ left: commentLength + 'rem' }} className={style.tweetCreatorTagUsername}>
-                  <UsersInSearch users={users} />
-                </div>
-                : null}
             </div>
           </div>
         </div>
