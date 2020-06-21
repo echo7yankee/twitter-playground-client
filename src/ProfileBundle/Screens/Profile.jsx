@@ -8,7 +8,7 @@ import { GlobalConstants } from '../../utils/constants/GlobalConstants';
 //redux
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserDetails, updateUserDetails, uploadUserImg, followUser, resetUserDetails } from '../../Redux/actions/user/user';
-import { displayError } from '../../Redux/actions/errors/errors';
+import { displayNotification } from '../../Redux/actions/notificationToaster/notificationToaster';
 
 //Components
 import { ProfileModal } from '../Components/ProfileModal/ProfileModal';
@@ -22,7 +22,9 @@ import { userIdFromToken } from '../../utils/services/userIdFromToken';
 import { getFollowButtonState } from '../../utils/services/getFollowButtonState';
 import { updateNotifications } from '../../Redux/actions/notification/notification';
 import { ProfileDummy } from '../../GlobalComponents/Dummies/ProfileDummy/ProfileDummy';
+import { Notification } from '../../GlobalComponents/Notification/Notification';
 
+//TODO: ADD NOTIFICATION WHEN FOLLOWING/UNFOLLOWING PERSON
 
 export const Profile = ({ history }) => {
   const state = {
@@ -36,7 +38,7 @@ export const Profile = ({ history }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userDetails);
   const isLoading = useSelector((state) => state.user.isLoading);
-  const errors = useSelector((state) => state.errors.errors)
+  const { notificationMessage, notificationType } = useSelector((state) => state.notificationToaster)
 
   //react state
   const [isOpen, setIsOpen] = useState(false);
@@ -75,7 +77,10 @@ export const Profile = ({ history }) => {
       || file.name.includes('.md')
       || file.name.includes('.yaml')
     ) {
-      dispatch(displayError(GlobalConstants.ERRORS.ERRORS_PROFILE.NAME, GlobalConstants.ERRORS.ERRORS_PROFILE.TEXT));
+      dispatch(displayNotification(
+        GlobalConstants.ERRORS.ERRORS_PROFILE.TEXT,
+        GlobalConstants.ERRORS.ERRORS_PROFILE.NOTIFICATION_TYPE,
+      ));
       return;
     }
 
@@ -133,14 +138,21 @@ export const Profile = ({ history }) => {
             user={user}
             updateUser={updateUser}
             selectImage={selectImage}
-            errors={errors}
+            key={1}
           />}
+          {notificationMessage && <Notification
+            key={2}
+            notificationMessage={notificationMessage}
+            notificationType={notificationType}
+          />
+          }
         </AnimatePresence>
         {showOverlayImage &&
           <ProfileOverlayImage
             user={user}
             setShowOverlayImage={setShowOverlayImage}
           />}
+
       </div>
   )
 }

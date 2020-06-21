@@ -7,8 +7,38 @@ export const GlobalConstants = {
   },
   ERRORS: {
     ERRORS_PROFILE: {
-      NAME: 'profileError',
-      TEXT: 'File type incorrect'
+      TEXT: 'File type incorrect',
+      NOTIFICATION_TYPE: 'error',
     }
+  },
+  SUCCESS: {
+    SUCCESS_PROFILE: {
+      TEXT: 'Your profile image has been updated successfully',
+      NOTIFICATION_TYPE: 'success',
+    },
+    SUCCESS_ADD_POST: {
+      TEXT: 'Your post has been added successfully',
+      NOTIFICATION_TYPE: 'SUCCESS',
+    },
+    SUCCESS_REMOVE_POST: {
+      TEXT: 'Your post has been removed successfully',
+      NOTIFICATION_TYPE: 'SUCCESS',
+    },
+    SUCCESS_EDIT_POST: {
+      TEXT: 'Your post has been updated successfully',
+      NOTIFICATION_TYPE: 'SUCCESS'
+    },
+    SUCCESS_ADD_POST_COMMENT: {
+      TEXT: 'Your comment has been added successfully',
+      NOTIFICATION_TYPE: 'SUCCESS'
+    },
+    SUCESS_REMOVE_POST_COMMENT: {
+      TEXT: 'Your comment has been removed successfully',
+      NOTIFICATION_TYPE: 'SUCCESS'
+    },
+    SUCCESS_EDIT_POST_COMMENT: {
+      TEXT: 'Your comment has been updated successfully',
+      NOTIFICATION_TYPE: 'SUCCESS'
+    },
   }
 }

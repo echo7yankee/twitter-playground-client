@@ -10,6 +10,8 @@ import { TweetProfileImg } from '../TweetProfileImg/TweetProfileImg';
 import { pushToProfilePage } from '../../../utils/services/pushToProfilePage';
 import { getUserFollows } from '../../../utils/services/getUserFollows';
 
+//TODO: ADD NOTIFICATION WHEN FOLLOWING/UNFOLLOWING PERSON ON PROFILE RESUME
+
 export const TweetProfileResume = ({
   post,
   user,

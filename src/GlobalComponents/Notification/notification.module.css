@@ -1,0 +1,23 @@
+.notificationWrapperError,
+.notificationWrapperWarning,
+.notificationWrapperSuccess {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  padding: 1.2rem 1.8rem;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 1.5rem;
+  width: 38rem;
+  text-align: left;
+}
+
+.notificationWrapperError {
+  background-color: var(--red-color-2);
+  color: var(--red-color-1);
+}
+
+.notificationWrapperSuccess {
+  color: var(--white-color);
+  background-color: var(--green-color-1);
+}

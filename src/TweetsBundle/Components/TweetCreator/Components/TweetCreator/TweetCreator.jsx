@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import uuidv4 from 'uuid/v4';
 //style
 import style from './tweetCreator.module.css';
@@ -8,12 +8,16 @@ import { TweetCreatorPollConstants } from '../../Constants/TweetCreatorPollConst
 import { createPollChoices } from '../../../../../utils/services/createPollChoices';
 import { getPollChoicesFiltered } from '../../../../../utils/services/getPollChoicesFiltered';
 import { createPoll } from '../../../../../utils/services/createPoll';
+//redux
+import { getUsers } from '../../../../../Redux/actions/user/user';
+import { useDispatch, useSelector } from 'react-redux';
 //Components
 import ContentEditable from 'react-contenteditable'
 import { TweetCreatorButtonIcons } from '../TweetCreatorButtonIcons/TweetCreatorButtonIcons';
 import { TweetCreatorButton } from '../TweetCreatorButton/TweetCreatorButton';
 import { TweetCreatorPoll } from '../TweetCreatorPoll/TweetCreatorPoll';
 import { TweetProfileImg } from '../../../TweetProfileImg/TweetProfileImg';
+import { UsersInSearch } from '../../../../../MessagesBundle/Components/UsersInSearch/UsersInSearch';
 
 
 export const TweetCreator = ({
@@ -38,6 +42,16 @@ export const TweetCreator = ({
   })
   const [isPoll, setIsPoll] = useState(false);
   const [isEmoticonPicker, setIsEmoticonPicker] = useState(false);
+
+  //redux
+  const users = useSelector((state) => state.user.usersInSearch);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (postObj.comment.includes('@')) {
+      dispatch(getUsers({ _id: user.social?.following }))
+    }
+  }, [dispatch, user.social, postObj.comment]);
 
   const handleChange = e => {
     setPost({
@@ -97,6 +111,13 @@ export const TweetCreator = ({
     })
   }
 
+  const insertTagName = ({ username }) => {
+    setPost({
+      ...postObj,
+      comment: `${postObj.comment.split('').filter((item) => item !== '@').join('')} ${username}`
+    })
+  }
+
   const submit = (e) => {
     e.preventDefault();
     const processedPostObj = {
@@ -133,6 +154,13 @@ export const TweetCreator = ({
     : false;
   const buttonState = isPoll ? buttonStateIfPollTrue : postObj.comment ? true : false
 
+  let keyDropdownSticky;
+  postObj.comment.split('').forEach((item, index) => {
+    keyDropdownSticky = item === '@' ? index + 1 : null;
+  })
+
+  console.log(postObj.comment);
+
   return (
     <div className={style.tweetCreatorContainer}>
       <div className={style.tweetCreatorHeader}>
@@ -143,13 +171,25 @@ export const TweetCreator = ({
         />
         <div style={{ width: '61rem' }}>
           <div>
-            <ContentEditable
-              placeholder={placeholder}
-              onChange={handleChange}
-              innerRef={contentEditableRef}
-              className={style.tweetCreatorTextarea}
-              html={postObj.comment}
-            />
+            <div className='pos-relative'>
+              <ContentEditable
+                placeholder={placeholder}
+                onChange={handleChange}
+                innerRef={contentEditableRef}
+                className={style.tweetCreatorTextarea}
+                html={postObj.comment}
+              />
+              {postObj.comment.includes('@') && users.length
+                ?
+                <div style={{ left: keyDropdownSticky + 'rem' }} className={style.tweetCreatorTagUsername}>
+                  <UsersInSearch
+                    users={users}
+                    onClick={insertTagName}
+                    isLink={false}
+                  />
+                </div>
+                : null}
+            </div>
             <div>
               {isPoll && <TweetCreatorPoll
                 setIsPoll={setIsPoll}

@@ -7,7 +7,7 @@ import { IoMdClose } from 'react-icons/io';
 import { MessagesModalInput } from './MessagesModalInput/MessagesModalInput';
 //Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsersInSearch, updateUserDetails } from '../../../Redux/actions/user/user';
+import { getUsers, updateUserDetails } from '../../../Redux/actions/user/user';
 //Components
 import { UsersInSearch } from '../UsersInSearch/UsersInSearch';
 import { MessagesModalButton } from './MessagesModalButton/MessagesModalButton';
@@ -30,13 +30,12 @@ export const MessagesModal = ({
   const users = useSelector((state) => state.user.usersInSearch);
   const isLoading = useSelector((state) => state.user.isLoading);
 
-
   useEffect(() => {
     const params = {
       _id: followedUsers,
-      username: search,
+      username: search
     }
-    dispatch(getUsersInSearch(params));
+    dispatch(getUsers(params));
     if (!newUsers.length) {
       setIsNextPhase(false);
     }
