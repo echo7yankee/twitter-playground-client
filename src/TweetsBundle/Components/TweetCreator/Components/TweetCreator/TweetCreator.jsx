@@ -8,6 +8,7 @@ import { TweetCreatorPollConstants } from '../../Constants/TweetCreatorPollConst
 import { createPollChoices } from '../../../../../utils/services/createPollChoices';
 import { getPollChoicesFiltered } from '../../../../../utils/services/getPollChoicesFiltered';
 import { createPoll } from '../../../../../utils/services/createPoll';
+import { GlobalConstants } from '../../../../../utils/constants/GlobalConstants';
 //redux
 import { getUsers } from '../../../../../Redux/actions/user/user';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,7 +19,6 @@ import { TweetCreatorButton } from '../TweetCreatorButton/TweetCreatorButton';
 import { TweetCreatorPoll } from '../TweetCreatorPoll/TweetCreatorPoll';
 import { TweetProfileImg } from '../../../TweetProfileImg/TweetProfileImg';
 import { UsersInSearch } from '../../../../../MessagesBundle/Components/UsersInSearch/UsersInSearch';
-
 
 export const TweetCreator = ({
   handleSubmit,
@@ -42,6 +42,7 @@ export const TweetCreator = ({
   })
   const [isPoll, setIsPoll] = useState(false);
   const [isEmoticonPicker, setIsEmoticonPicker] = useState(false);
+  const [enterCount, setEnterCount] = useState(false);
 
   //redux
   const users = useSelector((state) => state.user.usersInSearch);
@@ -154,9 +155,9 @@ export const TweetCreator = ({
     : false;
   const buttonState = isPoll ? buttonStateIfPollTrue : postObj.comment ? true : false
 
-  let keyDropdownSticky;
+  let keyDropdownStickyLeft;
   postObj.comment.split('').forEach((item, index) => {
-    keyDropdownSticky = item === '@' ? index + 1 : null;
+    keyDropdownStickyLeft = item === '@' ? index + 1 : null;
   })
 
   console.log(postObj.comment);
@@ -178,10 +179,25 @@ export const TweetCreator = ({
                 innerRef={contentEditableRef}
                 className={style.tweetCreatorTextarea}
                 html={postObj.comment}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    setEnterCount((prevState) => prevState + 1);
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Backspace') {
+                    setEnterCount((prevState) => {
+                      if (prevState === 0) {
+                        setEnterCount(0);
+                      }
+                      return prevState - 1
+                    });
+                  }
+                }}
               />
-              {postObj.comment.includes('@') && users.length
+              {postObj.comment.includes(GlobalConstants.KEYBOARD_KEYS.AROUND) && users.length
                 ?
-                <div style={{ left: keyDropdownSticky + 'rem' }} className={style.tweetCreatorTagUsername}>
+                <div style={{ left: keyDropdownStickyLeft + 'rem', top: enterCount + 'rem' }} className={style.tweetCreatorTagUsername}>
                   <UsersInSearch
                     users={users}
                     onClick={insertTagName}

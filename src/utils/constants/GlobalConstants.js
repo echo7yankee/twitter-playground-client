@@ -40,5 +40,8 @@ export const GlobalConstants = {
       TEXT: 'Your comment has been updated successfully',
       NOTIFICATION_TYPE: 'SUCCESS'
     },
+  },
+  KEYBOARD_KEYS: {
+    AROUND: ' @',
   }
 }
