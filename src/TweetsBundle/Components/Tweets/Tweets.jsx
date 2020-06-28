@@ -17,6 +17,7 @@ export const Tweets = ({
   handleAddPost,
   handleEditPost,
   user,
+  users,
   posts,
   remove,
   cancelButtonAction,
@@ -45,6 +46,7 @@ export const Tweets = ({
           <TweetCreator
             handleSubmit={handleAddPost}
             user={user}
+            users={users}
             contentEditableRef={createTweetRef}
             contentEditablePlaceholder="What's happening?"
             buttonText='Tweet'
@@ -62,6 +64,7 @@ export const Tweets = ({
                   <TweetCreator
                     handleSubmit={handleEditPost}
                     user={user}
+                    users={users}
                     contentEditableRef={editTweetRef}
                     contentEditablePlaceholder="Edit"
                     buttonText='Edit'
@@ -75,6 +78,7 @@ export const Tweets = ({
                     post={post}
                     postIndex={index}
                     user={user}
+                    users={users}
                     isSingleTweet={false}
                     setIsModal={setIsModal}
                     setPostOnEdit={setPostOnEdit}
