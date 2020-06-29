@@ -20,6 +20,7 @@ export const TweetItemHeaderInfo = ({
   closeDropdown,
   openDropdown,
   user,
+  users,
   action,
   history,
   isSingleTweet

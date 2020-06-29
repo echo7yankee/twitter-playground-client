@@ -40,6 +40,7 @@ import { TweetProfileResume } from '../TweetProfileResume/TweetProfileResume';
 export const TweetItem = ({
   post,
   user,
+  users,
   setIsModal,
   remove,
   setPostOnEdit,
@@ -208,6 +209,7 @@ export const TweetItem = ({
               openDropdown={openDropdown}
               closeDropdown={closeDropdown}
               user={user}
+              users={users}
               history={history}
               isSingleTweet={isSingleTweet}
             />
