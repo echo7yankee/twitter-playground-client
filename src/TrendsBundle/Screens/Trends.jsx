@@ -1,4 +1,5 @@
 import React from 'react';
+import { TrendsSearch } from '../TrendsSearch/TrendsSearch';
 
 //style
 //import style from './trends.module.css';
@@ -6,7 +7,7 @@ import React from 'react';
 export const Trends = () => {
   return (
     <div>
-      Trends component
+      <TrendsSearch />
     </div>
   )
 }

@@ -67,7 +67,8 @@ export const NotificationItem = ({ history, post, notificationIndex, user }) => 
       >
         <div
           className={style.notificationItemImage}
-          onClick={() => customLinkHistory(() => pushToProfilePage(history, notificationPost, user))}
+          onClick={() => customLinkHistory(() => pushToProfilePage(`/dashboard/user/${post.username.split(' ').join('')}`,
+            history, notificationPost, user))}
         >
           {notificationPost.profileImg
             ? <img
