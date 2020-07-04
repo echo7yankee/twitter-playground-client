@@ -8,9 +8,7 @@ import { TweetCreatorPollConstants } from '../../Constants/TweetCreatorPollConst
 import { createPollChoices } from '../../../../../utils/services/createPollChoices';
 import { getPollChoicesFiltered } from '../../../../../utils/services/getPollChoicesFiltered';
 import { createPoll } from '../../../../../utils/services/createPoll';
-//redux
-import { getUsers } from '../../../../../Redux/actions/user/user';
-import { useDispatch, useSelector } from 'react-redux';
+import { GlobalConstants } from '../../../../../utils/constants/GlobalConstants';
 //Components
 import ContentEditable from 'react-contenteditable'
 import { TweetCreatorButtonIcons } from '../TweetCreatorButtonIcons/TweetCreatorButtonIcons';
@@ -19,10 +17,10 @@ import { TweetCreatorPoll } from '../TweetCreatorPoll/TweetCreatorPoll';
 import { TweetProfileImg } from '../../../TweetProfileImg/TweetProfileImg';
 import { UsersInSearch } from '../../../../../MessagesBundle/Components/UsersInSearch/UsersInSearch';
 
-
 export const TweetCreator = ({
   handleSubmit,
   user,
+  users,
   contentEditableRef,
   contentEditablePlaceholder,
   buttonText,
@@ -42,16 +40,20 @@ export const TweetCreator = ({
   })
   const [isPoll, setIsPoll] = useState(false);
   const [isEmoticonPicker, setIsEmoticonPicker] = useState(false);
+  const [enterCount, setEnterCount] = useState(2);
+  const [keyDropdownStickyLeft, setKeyDropDownStickyLeft] = useState(1);
+  const [followedUsers, setFollowedUsers] = useState([]);
 
-  //redux
-  const users = useSelector((state) => state.user.usersInSearch);
-  const dispatch = useDispatch();
+  console.log(followedUsers);
 
   useEffect(() => {
     if (postObj.comment.includes('@')) {
-      dispatch(getUsers({ _id: user.social?.following }))
+      setFollowedUsers(users)
     }
-  }, [dispatch, user.social, postObj.comment]);
+    postObj.comment.split('').forEach((item, index) => {
+      setKeyDropDownStickyLeft(item === '@' ? index + 1 : null);
+    })
+  }, [users, postObj.comment]);
 
   const handleChange = e => {
     setPost({
@@ -154,13 +156,6 @@ export const TweetCreator = ({
     : false;
   const buttonState = isPoll ? buttonStateIfPollTrue : postObj.comment ? true : false
 
-  let keyDropdownSticky;
-  postObj.comment.split('').forEach((item, index) => {
-    keyDropdownSticky = item === '@' ? index + 1 : null;
-  })
-
-  console.log(postObj.comment);
-
   return (
     <div className={style.tweetCreatorContainer}>
       <div className={style.tweetCreatorHeader}>
@@ -178,12 +173,29 @@ export const TweetCreator = ({
                 innerRef={contentEditableRef}
                 className={style.tweetCreatorTextarea}
                 html={postObj.comment}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    setEnterCount((prevState) => prevState + 1);
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Backspace') {
+                    setEnterCount((prevState) => {
+                      if (prevState === 2) {
+                        setEnterCount(2);
+                        return;
+                      }
+                      return prevState - 1
+                    });
+                  }
+                }}
               />
-              {postObj.comment.includes('@') && users.length
+              {postObj.comment.includes(GlobalConstants.KEYBOARD_KEYS.AROUND) && users.length
                 ?
-                <div style={{ left: keyDropdownSticky + 'rem' }} className={style.tweetCreatorTagUsername}>
+                <div style={{ left: keyDropdownStickyLeft + 'rem', top: enterCount + 'rem' }}
+                  className={style.tweetCreatorTagUsername}>
                   <UsersInSearch
-                    users={users}
+                    users={followedUsers}
                     onClick={insertTagName}
                     isLink={false}
                   />

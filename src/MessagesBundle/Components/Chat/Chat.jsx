@@ -10,7 +10,7 @@ import { getMessages, addMessages, resetMessages } from '../../../Redux/actions/
 import { PageTitle } from '../../../GlobalComponents/PageTitle/PageTitle';
 import { ChatForm } from './ChatForm/ChatForm';
 import { ChatMessages } from './ChatMessages/ChatMessages';
-import { CustomSpinner } from '../../../GlobalComponents/CustomSpinner/CustomSpinner';
+import { MessagesDummy } from '../../../GlobalComponents/Dummies/MessagesDummy/MessagesDummy';
 
 let socket;
 
@@ -97,8 +97,8 @@ export const Chat = ({ history }) => {
               userAdmin={userAdmin}
               userVisitor={userVisitor}
             />
-            : <div className={style.chatSpinnerContainer}>
-              <CustomSpinner className={style.chatSpinnerImg} />
+            : <div>
+              <MessagesDummy />
             </div>
           }
           <ChatForm

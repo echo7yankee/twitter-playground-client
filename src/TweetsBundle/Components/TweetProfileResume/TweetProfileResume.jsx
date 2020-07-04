@@ -32,7 +32,8 @@ export const TweetProfileResume = ({
         <header className={style.tweetProfileResumeHeader}>
           <div
             onClick={() => {
-              pushToProfilePage(history, post, user, getUserFollows(user));
+              pushToProfilePage(`/dashboard/user/${post.username.split(' ').join('')}`,
+                history, post, user, getUserFollows(user));
             }}
           >
             <TweetProfileImg

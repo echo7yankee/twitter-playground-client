@@ -20,6 +20,7 @@ export const TweetItemHeaderInfo = ({
   closeDropdown,
   openDropdown,
   user,
+  users,
   action,
   history,
   isSingleTweet
@@ -42,7 +43,9 @@ export const TweetItemHeaderInfo = ({
           <div>
             <h3 onClick={(e) => {
               e.preventDefault();
-              customLinkHistory(() => pushToProfilePage(history, postObj, user));
+              customLinkHistory(() => pushToProfilePage(
+                `/dashboard/user/${postObj.username.split(' ').join('')}`,
+                history, postObj, user));
             }}>{postObj.username}</h3>
           </div>
           <span className='ml-05'>-</span>

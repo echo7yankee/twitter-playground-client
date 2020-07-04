@@ -4,7 +4,7 @@ import style from './dashboardHome.module.css';
 //redux
 import { useSelector, useDispatch } from 'react-redux';
 import { addPost, getAllPosts, editPost, resetPosts, removePost } from '../../Redux/actions/post/post';
-import { getUserDetails, resetUserDetails } from '../../Redux/actions/user/user';
+import { getUserDetails, resetUserDetails, getUsers } from '../../Redux/actions/user/user';
 //Dashboard constants
 import { DashboardHomeConstants } from './Constants/DashboardHomeConstants';
 //components
@@ -21,6 +21,7 @@ export const DashboardHome = ({ history }) => {
   //redux
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userDetails);
+  const users = useSelector((state) => state.user.usersInSearch);
   const posts = useSelector((state) => state.post.posts);
   const isLoading = useSelector(state => state.post.isLoading);
   const { notificationMessage, notificationType } = useSelector((state) => state.notificationToaster)
@@ -41,7 +42,8 @@ export const DashboardHome = ({ history }) => {
 
   useEffect(() => {
     setPosts(posts);
-  }, [posts])
+    dispatch(getUsers({ _id: user.social?.following }))
+  }, [posts, dispatch, user.social])
 
   const handleAddPost = (post) => {
     const userData = {
@@ -106,6 +108,7 @@ export const DashboardHome = ({ history }) => {
           handleAddPost={handleAddPost}
           handleEditPost={handleEditPost}
           user={user}
+          users={users}
           posts={postsArr}
           remove={remove}
           cancelButtonAction={cancelButtonAction}
