@@ -1,5 +1,18 @@
 import axios from 'axios';
-import { GET_POSTS, SET_POSTS_LOADING, RESET_POSTS, GET_POST, RESET_POST, ADD_POSTS, REMOVE_POST, SET_POST_IS_EDIT, EDIT_POST, CANCEL_EDIT, ADD_POST_COMMENT, REMOVE_POST_COMMENT } from '../../types';
+import {
+  GET_POSTS,
+  SET_POSTS_LOADING,
+  RESET_POSTS,
+  GET_POST,
+  RESET_POST,
+  ADD_POSTS,
+  REMOVE_POST,
+  SET_POST_IS_EDIT,
+  EDIT_POST,
+  CANCEL_EDIT,
+  ADD_POST_COMMENT,
+  REMOVE_POST_COMMENT
+} from '../../types';
 import { displayNotification } from '../notificationToaster/notificationToaster';
 import { GlobalConstants } from '../../../utils/constants/GlobalConstants';
 
