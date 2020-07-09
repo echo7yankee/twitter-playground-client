@@ -54,7 +54,9 @@ export const SideMenu = () => {
     dispatch(updateNotifications({ userId: getUserFollows(user) }, { notificationState: false }))
   }
 
-  // console.log(notifications);
+  // console.log('USER', user.id === userIdFromToken());
+  // console.log('USER ID', user.id);
+  // console.log('USER ID FROM TOKEN', userIdFromToken());
 
   return (
     <div className={style.menuContainer}>

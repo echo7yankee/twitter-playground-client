@@ -13,6 +13,7 @@ export const MessagesSearch = ({ onChange, value }) => {
         onChange={onChange}
         value={value}
         name='search'
+        fullWidth={false}
       />
     </div>
   )
