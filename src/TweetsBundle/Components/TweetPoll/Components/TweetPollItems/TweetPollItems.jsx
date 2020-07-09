@@ -53,7 +53,7 @@ export const TweetPollItems = ({
       ...poll,
       whoVoted: [...pollObj.whoVoted, voteContainer],
     })
-    dispatch(votePoll(post.uuid, voteContainer))
+    dispatch(votePoll(post.id, voteContainer))
   }
 
   const personWhoVoted = pollObj.whoVoted.length && getPersonWhoVoted(pollObj, user);

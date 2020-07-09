@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import uuidv4 from 'uuid/v4';
 //style
 import style from './tweetCreator.module.css';
 //utils
@@ -43,8 +42,6 @@ export const TweetCreator = ({
   const [enterCount, setEnterCount] = useState(2);
   const [keyDropdownStickyLeft, setKeyDropDownStickyLeft] = useState(1);
   const [followedUsers, setFollowedUsers] = useState([]);
-
-  console.log(followedUsers);
 
   useEffect(() => {
     if (postObj.comment.includes('@')) {
@@ -133,7 +130,7 @@ export const TweetCreator = ({
 
     user.id && isEdit
       ? handleSubmit(processedPostObj)
-      : handleSubmit({ ...processedPostObj, uuid: uuidv4() })
+      : handleSubmit({ ...processedPostObj })
     if (hasReset) {
       setPost(post)
     }
@@ -155,6 +152,8 @@ export const TweetCreator = ({
     ? true
     : false;
   const buttonState = isPoll ? buttonStateIfPollTrue : postObj.comment ? true : false
+
+  // console.log('POST OBJ', postObj);
 
   return (
     <div className={style.tweetCreatorContainer}>

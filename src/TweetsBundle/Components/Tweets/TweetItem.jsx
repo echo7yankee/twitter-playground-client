@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 //redux
 import style from './tweets.module.css';
@@ -65,6 +65,10 @@ export const TweetItem = ({
   const contentEditableEdit = useRef(null);
   const linkRef = useRef(null);
 
+  useEffect(() => {
+    setPost(post);
+  }, [post])
+
   const handleLikePost = (e) => {
     e.preventDefault();
     const personWhoLiked = getPersonWhoLiked(postObj, user);
@@ -73,7 +77,7 @@ export const TweetItem = ({
         ...postObj,
         whoLiked: postObj.whoLiked.filter((like) => like !== user.id),
       })
-      dispatch(likePost(postObj.uuid, user.id))
+      dispatch(likePost(postObj.id, user.id))
       return;
     }
 
@@ -81,7 +85,7 @@ export const TweetItem = ({
       ...postObj,
       whoLiked: [...postObj.whoLiked, user.id]
     })
-    dispatch(likePost(postObj.uuid, user.id))
+    dispatch(likePost(postObj.id, user.id))
   }
 
   const openDropdown = () => {
@@ -96,9 +100,9 @@ export const TweetItem = ({
   const action = {
     remove: () => setIsModal({
       modalState: true,
-      modalAction: () => remove(post.uuid)
+      modalAction: () => remove(post.id)
     }),
-    edit: () => setPostOnEdit(post.uuid, true),
+    edit: () => setPostOnEdit(post.id, true),
     follow: () => {
       const isFollowed = getFollowButtonState(user.id, postObj.user);
       if (isFollowed) {
@@ -130,7 +134,7 @@ export const TweetItem = ({
 
   const handleEditButton = (updatedComment) => {
     setPost(editPostCommentFromPost(postObj, updatedComment))
-    dispatch(editPostComment(updatedComment.uuid, updatedComment))
+    dispatch(editPostComment(updatedComment.id, updatedComment))
   }
 
   const setEdit = (id) => {
@@ -142,11 +146,7 @@ export const TweetItem = ({
   }
 
   const removePostReply = (postComment) => {
-    setPost({
-      ...postObj,
-      postComments: postObj.postComments.filter((comment) => comment.uuid !== postComment.uuid)
-    })
-    dispatch(removePostComment(postComment.uuid))
+    dispatch(removePostComment(postComment.postId, postComment.id))
   }
 
   if (contentEditableCreator || contentEditableEdit) {
@@ -157,7 +157,7 @@ export const TweetItem = ({
   }
 
   return (
-    postObj.uuid ?
+    postObj.id ?
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -165,7 +165,7 @@ export const TweetItem = ({
       >
         <CustomLink
           to={{
-            pathname: `/dashboard/status/${post.uuid}`,
+            pathname: `/dashboard/status/${post.id}`,
           }}
           linkRef={linkRef}
           className={style.tweet}>
@@ -245,7 +245,7 @@ export const TweetItem = ({
         >
           {postObj.postComments.map((postComment) => {
             return (
-              <div key={postComment.uuid}>
+              <div key={postComment.id}>
                 {
                   postComment.isEdit && !isReplyInput
                     ?
@@ -258,14 +258,14 @@ export const TweetItem = ({
                       postComment={postComment}
                       hasReset={false}
                       isEdit={true}
-                      cancelButtonAction={() => cancelCommentEdit(postComment.uuid)}
+                      cancelButtonAction={() => cancelCommentEdit(postComment.id)}
                     />
                     : <TweetItemReply
                       postComment={postComment}
                       setConfirm={setConfirm}
                       togglePostCommentEdit={() => {
                         setIsReplyInput(false);
-                        setEdit(postComment.uuid);
+                        setEdit(postComment.id);
                       }}
                       user={user}
                     />
