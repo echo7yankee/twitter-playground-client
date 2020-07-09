@@ -65,8 +65,6 @@ export const DashboardHome = ({ history }) => {
     dispatch(cancelEdit(id))
   }
 
-  console.log('POSTS', posts);
-
   return !user.id && isLoading
     ? <>
       <TweetDummy />
