@@ -133,15 +133,15 @@ export const TweetItem = ({
     dispatch(editPostComment(postObj.id, updatedComment.id, updatedComment))
   }
 
-  const setPostCommentOnEdit = (id) => {
+  const handleSetPostCommentEdit = (id) => {
     dispatch(setPostCommentEdit(postObj.id, id))
   }
 
-  const cancelPostCommentOnEdit = (id) => {
+  const handleCancelPostCommentEdit = (id) => {
     dispatch(cancelPostCommentEdit(postObj.id, id))
   }
 
-  const removePostReply = (postComment) => {
+  const handleRemovePostComment = (postComment) => {
     dispatch(removePostComment(postComment.postId, postComment.id))
   }
 
@@ -254,14 +254,14 @@ export const TweetItem = ({
                       postComment={postComment}
                       hasReset={false}
                       isEdit={true}
-                      cancelButtonAction={() => cancelPostCommentOnEdit(postComment.id)}
+                      cancelButtonAction={() => handleCancelPostCommentEdit(postComment.id)}
                     />
                     : <TweetItemReply
                       postComment={postComment}
                       setConfirm={setConfirm}
                       togglePostCommentEdit={() => {
                         setIsReplyInput(false);
-                        setPostCommentOnEdit(postComment.id);
+                        handleSetPostCommentEdit(postComment.id);
                       }}
                       user={user}
                     />
@@ -289,7 +289,7 @@ export const TweetItem = ({
                 styleModal={{ width: '60rem' }}
                 question={GlobalConstants.REMOVE_MODAL.QUESTION}
                 buttonOneText={GlobalConstants.REMOVE_MODAL.BUTTON_ONE}
-                buttonOneAction={() => removePostReply(confirm.item)}
+                buttonOneAction={() => handleRemovePostComment(confirm.item)}
                 buttonTwoText={GlobalConstants.REMOVE_MODAL.BUTTON_TWO}
                 destroyModal={() => setConfirm((prevState) => ({ ...prevState, action: false }))}
               />
