@@ -5,7 +5,6 @@ import { RiSearchLine } from 'react-icons/ri';
 import style from './globalSearch.module.css';
 
 export const GlobalSearch = ({ type, placeholder, onChange, value, name, fullWidth }) => {
-  console.log(fullWidth);
   return (
     <div className={style.globalSearch}>
       <RiSearchLine />

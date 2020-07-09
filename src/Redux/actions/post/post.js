@@ -11,7 +11,10 @@ import {
   EDIT_POST,
   CANCEL_EDIT,
   ADD_POST_COMMENT,
-  REMOVE_POST_COMMENT
+  REMOVE_POST_COMMENT,
+  SET_POST_COMMENT_EDIT,
+  CANCEL_POST_COMMENT_EDIT,
+  EDIT_POST_COMMENT,
 } from '../../types';
 import { displayNotification } from '../notificationToaster/notificationToaster';
 import { GlobalConstants } from '../../../utils/constants/GlobalConstants';
@@ -119,6 +122,26 @@ export function setPostOnEdit(id) {
   }
 }
 
+export function setPostCommentEdit(postId, id) {
+  return {
+    type: SET_POST_COMMENT_EDIT,
+    payload: {
+      postId,
+      id
+    }
+  }
+}
+
+export function cancelPostCommentEdit(postId, id) {
+  return {
+    type: CANCEL_POST_COMMENT_EDIT,
+    payload: {
+      postId,
+      id,
+    }
+  }
+}
+
 export function editPost(postId, newPost) {
   return async (dispatch) => {
     try {
@@ -220,10 +243,18 @@ export function removePostComment(postId, id) {
   }
 }
 
-export function editPostComment(updatedCommentId, updatedComment) {
+export function editPostComment(postId, id, updatedComment) {
   return async (dispatch) => {
     try {
-      await axios.put(`/postComment/${updatedCommentId}`, updatedComment);
+      await axios.put(`/postComment/${id}`, updatedComment);
+      dispatch({
+        type: EDIT_POST_COMMENT,
+        payload: {
+          postId,
+          id,
+          updatedComment
+        }
+      })
       dispatch(displayNotification(
         GlobalConstants.SUCCESS.SUCCESS_EDIT_POST_COMMENT.TEXT,
         GlobalConstants.SUCCESS.SUCCESS_EDIT_POST_COMMENT.NOTIFICATION_TYPE,

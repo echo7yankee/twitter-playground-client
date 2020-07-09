@@ -8,6 +8,8 @@ import {
   removePostComment,
   editPostComment,
   likePost,
+  setPostCommentEdit,
+  cancelPostCommentEdit,
 } from '../../../Redux/actions/post/post';
 import { followUser } from '../../../Redux/actions/user/user';
 
@@ -18,10 +20,6 @@ import { getPersonWhoLiked } from '../TweetItemSocialButtons/Services/getPersonW
 import { filterPostsFollowers } from './Services/filterPostsFollowers';
 import { addFollowerToPost } from './Services/addFollowerToPost';
 import { getFollowButtonState } from '../../../utils/services/getFollowButtonState';
-import { addPostCommentToPost } from './Services/addPostCommentToPost';
-import { editPostCommentFromPost } from './Services/editPostCommentFromPost';
-import { setPostCommentOnEdit } from './Services/setPostCommentOnEdit';
-import { cancelPostCommentEdit } from './Services/cancelPostCommentEdit';
 import { TweetsConstants } from '../../Constants/Constants';
 import { GlobalConstants } from '../../../utils/constants/GlobalConstants';
 
@@ -128,21 +126,19 @@ export const TweetItem = ({
   }
 
   const handleSendButton = (comment) => {
-    setPost(addPostCommentToPost(postObj, comment, user))
     dispatch(createPostComment(user.id, post.id, comment))
   }
 
   const handleEditButton = (updatedComment) => {
-    setPost(editPostCommentFromPost(postObj, updatedComment))
-    dispatch(editPostComment(updatedComment.id, updatedComment))
+    dispatch(editPostComment(postObj.id, updatedComment.id, updatedComment))
   }
 
-  const setEdit = (id) => {
-    setPost(setPostCommentOnEdit(postObj, id))
+  const setPostCommentOnEdit = (id) => {
+    dispatch(setPostCommentEdit(postObj.id, id))
   }
 
-  const cancelCommentEdit = (id) => {
-    setPost(cancelPostCommentEdit(postObj, id))
+  const cancelPostCommentOnEdit = (id) => {
+    dispatch(cancelPostCommentEdit(postObj.id, id))
   }
 
   const removePostReply = (postComment) => {
@@ -258,14 +254,14 @@ export const TweetItem = ({
                       postComment={postComment}
                       hasReset={false}
                       isEdit={true}
-                      cancelButtonAction={() => cancelCommentEdit(postComment.id)}
+                      cancelButtonAction={() => cancelPostCommentOnEdit(postComment.id)}
                     />
                     : <TweetItemReply
                       postComment={postComment}
                       setConfirm={setConfirm}
                       togglePostCommentEdit={() => {
                         setIsReplyInput(false);
-                        setEdit(postComment.id);
+                        setPostCommentOnEdit(postComment.id);
                       }}
                       user={user}
                     />
