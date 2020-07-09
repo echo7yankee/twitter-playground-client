@@ -14,8 +14,9 @@ export const UsersInSearch = ({ users, onClick }) => {
             user={user}
             onClick={() => onClick(user)}
             isLink={false}
-          />)}
+          />
+        )}
       </ul>
-    </div>
+    </div >
   )
 }

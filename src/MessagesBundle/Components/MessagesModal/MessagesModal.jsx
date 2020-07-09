@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 //utils
 import { getUserFollows } from '../../../utils/services/getUserFollows';
 //style
@@ -136,7 +137,16 @@ export const MessagesModal = ({
 
 
   return (
-    <div className='overlay overlay-alpha-black' onClick={onClose} style={{ zIndex: '5000' }}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 0.2,
+      }}
+      exit={{ opacity: 0 }}
+      className='overlay overlay-alpha-black'
+      onClick={onClose}
+      style={{ zIndex: '5000' }}>
       <div
         className={style.modal}
         onClick={(e) => e.stopPropagation()}
@@ -185,6 +195,6 @@ export const MessagesModal = ({
           onClick={addUserToNewUsers}
         />
       </div>
-    </div>
+    </motion.div>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 //style
 import style from './tweets.module.css';
 
@@ -74,17 +74,23 @@ export const Tweets = ({
                     post={post}
                   />
                   :
-                  <TweetItem
-                    post={post}
-                    postIndex={index}
-                    user={user}
-                    users={users}
-                    isSingleTweet={false}
-                    setIsModal={setIsModal}
-                    setPostOnEdit={setPostOnEdit}
-                    remove={remove}
-                    history={history}
-                  />
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <TweetItem
+                      post={post}
+                      postIndex={index}
+                      user={user}
+                      users={users}
+                      isSingleTweet={false}
+                      setIsModal={setIsModal}
+                      setPostOnEdit={setPostOnEdit}
+                      remove={remove}
+                      history={history}
+                    />
+                  </motion.div>
                 }
               </div>
             )

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 //style
 import style from './messages.module.css';
 import { AiOutlineMail } from 'react-icons/ai';
@@ -22,6 +23,7 @@ import { PageTitle } from '../../GlobalComponents/PageTitle/PageTitle';
 import { MessagesView } from '../Components/MessagesView/MessagesView'
 import { MessagesModal } from '../Components/MessagesModal/MessagesModal';
 import { Chat } from '../Components/Chat/Chat';
+
 
 export const Messages = () => {
   //use state
@@ -100,13 +102,15 @@ export const Messages = () => {
             cancelAcceptUser={cancelAcceptUser}
           />
         </div>
-        {isModal
-          && <MessagesModal
-            user={userObj}
-            setUser={setUser}
-            title='New Message'
-            onClose={() => setIsModal(false)}
-          />}
+        <AnimatePresence>
+          {isModal
+            && <MessagesModal
+              user={userObj}
+              setUser={setUser}
+              title='New Message'
+              onClose={() => setIsModal(false)}
+            />}
+        </AnimatePresence>
       </div>
       <div className={style.messagesContainerRight}>
         <Route path='/dashboard/messages/:userId' component={Chat} />

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { config } from '../../../utils/constants/Environment';
 import ContentEditable from 'react-contenteditable';
+import { motion } from 'framer-motion';
 //services
 import { getNotificationDropdownItems } from '../../Services/getNotificationDropdownItems';
 import { getFollowButtonState } from '../../../utils/services/getFollowButtonState';
@@ -50,69 +51,75 @@ export const NotificationItem = ({ history, post, notificationIndex, user }) => 
 
   const { url } = config;
   return (
-    <CustomLink
-      to={{
-        pathname: `/dashboard/status/${notificationPost.id}`,
-        state: notificationPost
-      }}
-      linkRef={linkRef}
-      className={style.notificationItem}>
-      <div className={style.notificationItemIcon}>
-        <IoIosStar />
-      </div>
-      <div
-        className={style.notificationItemHeader}
-        onClick={(e) => e.preventDefault()}
-        onMouseLeave={() => setIsProfileResume(-1)}
-      >
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <CustomLink
+        to={{
+          pathname: `/dashboard/status/${notificationPost.id}`,
+          state: notificationPost
+        }}
+        linkRef={linkRef}
+        className={style.notificationItem}>
+        <div className={style.notificationItemIcon}>
+          <IoIosStar />
+        </div>
         <div
-          className={style.notificationItemImage}
-          onClick={() => customLinkHistory(() => pushToProfilePage(`/dashboard/user/${post.username.split(' ').join('')}`,
-            history, notificationPost, user))}
+          className={style.notificationItemHeader}
+          onClick={(e) => e.preventDefault()}
+          onMouseLeave={() => setIsProfileResume(-1)}
         >
-          {notificationPost.profileImg
-            ? <img
-              src={`${url.API_URL}image/${notificationPost.profileImg}`}
-              onMouseOver={() => setIsProfileResume(notificationIndex)}
-              alt="profile" />
-            : <IoIosPerson
-              onMouseOver={() => setIsProfileResume(notificationIndex)}
-              className='placeholder-profile-img' />
+          <div
+            className={style.notificationItemImage}
+            onClick={() => customLinkHistory(() => pushToProfilePage(`/dashboard/user/${post.username.split(' ').join('')}`,
+              history, notificationPost, user))}
+          >
+            {notificationPost.profileImg
+              ? <img
+                src={`${url.API_URL}image/${notificationPost.profileImg}`}
+                onMouseOver={() => setIsProfileResume(notificationIndex)}
+                alt="profile" />
+              : <IoIosPerson
+                onMouseOver={() => setIsProfileResume(notificationIndex)}
+                className='placeholder-profile-img' />
+            }
+          </div>
+          {isProfileResume === notificationIndex
+            && <div className="notificationItemProfileResumeContainer">
+              <TweetProfileResume
+                post={notificationPost}
+                user={user}
+                isAnimateProfileResume={isAnimateProfileResume}
+                setIsAnimateProfileResume={setIsAnimateProfileResume}
+                handleFollow={handleFollow}
+              />
+            </div>
           }
         </div>
-        {isProfileResume === notificationIndex
-          && <div className="notificationItemProfileResumeContainer">
-            <TweetProfileResume
-              post={notificationPost}
-              user={user}
-              isAnimateProfileResume={isAnimateProfileResume}
-              setIsAnimateProfileResume={setIsAnimateProfileResume}
-              handleFollow={handleFollow}
-            />
-          </div>
-        }
-      </div>
-      <div
-        ref={wrapperRef}
-        className={style.notificationItemDropdownIcon}
-        onClick={(e) => {
-          e.preventDefault();
-          setShowDropdown((prevState) => !prevState)
-          linkRef.current.focus();
-        }}>
-        <IoIosArrowDown
-          className={showDropdown ? 'rotate-0' : 'rotate-90'} />
-        <DropdownItems
-          dropdownItems={getNotificationDropdownItems()}
-          isDropdown={showDropdown} />
-      </div>
-      <div className={style.notificationItemSubtitle}>
-        <span>Recent Tweet from <b>{notificationPost.username}</b></span>
-      </div>
-      <ContentEditable
-        className={style.notificationItemContent}
-        html={notificationPost.comment}
-      />
-    </CustomLink>
+        <div
+          ref={wrapperRef}
+          className={style.notificationItemDropdownIcon}
+          onClick={(e) => {
+            e.preventDefault();
+            setShowDropdown((prevState) => !prevState)
+            linkRef.current.focus();
+          }}>
+          <IoIosArrowDown
+            className={showDropdown ? 'rotate-0' : 'rotate-90'} />
+          <DropdownItems
+            dropdownItems={getNotificationDropdownItems()}
+            isDropdown={showDropdown} />
+        </div>
+        <div className={style.notificationItemSubtitle}>
+          <span>Recent Tweet from <b>{notificationPost.username}</b></span>
+        </div>
+        <ContentEditable
+          className={style.notificationItemContent}
+          html={notificationPost.comment}
+        />
+      </CustomLink>
+    </motion.div>
   )
 }

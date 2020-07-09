@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 //redux
 import style from './tweets.module.css';
 import { useDispatch } from 'react-redux';
@@ -154,11 +154,7 @@ export const TweetItem = ({
 
   return (
     postObj.id ?
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
+      <div>
         <CustomLink
           to={{
             pathname: `/dashboard/status/${post.id}`,
@@ -296,6 +292,6 @@ export const TweetItem = ({
             }
           </AnimatePresence>
         </div>
-      </motion.div> : null
+      </div> : null
   )
 }
