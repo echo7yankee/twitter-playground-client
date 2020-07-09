@@ -2,7 +2,7 @@ export const editPostCommentFromPost = (postObj, updatedComment) => {
   return {
     ...postObj,
     postComments: postObj.postComments.map((postComment) => {
-      if (postComment.uuid === updatedComment.uuid) {
+      if (postComment.id === updatedComment.id) {
         return {
           ...updatedComment,
           createdAt: new Date(),

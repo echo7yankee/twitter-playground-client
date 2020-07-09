@@ -59,7 +59,7 @@ export const Tweets = ({
         <AnimatePresence className={style.tweets}>
           {posts.map((post, index) => {
             return (
-              <div key={post.uuid}>
+              <div key={post.id}>
                 {post.isEdit ?
                   <TweetCreator
                     handleSubmit={handleEditPost}
@@ -70,7 +70,7 @@ export const Tweets = ({
                     buttonText='Edit'
                     isEdit={true}
                     hasReset={false}
-                    cancelButtonAction={() => cancelButtonAction(post.uuid, false)}
+                    cancelButtonAction={() => cancelButtonAction(post.id, false)}
                     post={post}
                   />
                   :

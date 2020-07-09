@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 //style
 import style from './dashboardHome.module.css';
 //redux
 import { useSelector, useDispatch } from 'react-redux';
-import { addPost, getAllPosts, editPost, resetPosts, removePost } from '../../Redux/actions/post/post';
+import { addPost, getAllPosts, editPost, resetPosts, removePost, setPostOnEdit, cancelEdit } from '../../Redux/actions/post/post';
 import { getUserDetails, resetUserDetails, getUsers } from '../../Redux/actions/user/user';
 //Dashboard constants
 import { DashboardHomeConstants } from './Constants/DashboardHomeConstants';
@@ -11,13 +11,9 @@ import { DashboardHomeConstants } from './Constants/DashboardHomeConstants';
 import { Tweets } from '../../TweetsBundle/Components/Tweets/Tweets';
 import { PageTitle } from '../../GlobalComponents/PageTitle/PageTitle';
 import { userIdFromToken } from '../../utils/services/userIdFromToken';
-import { addNewPost } from '../Services/addNewPost';
-import { getUpdatedPost } from '../Services/getUpdatedPost';
 import { TweetDummy } from '../../GlobalComponents/Dummies/TweetDummy/TweetDummy';
 
 export const DashboardHome = ({ history }) => {
-  //useState
-  const [postsArr, setPosts] = useState([]);
   //redux
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userDetails);
@@ -41,7 +37,6 @@ export const DashboardHome = ({ history }) => {
   }, [dispatch])
 
   useEffect(() => {
-    setPosts(posts);
     dispatch(getUsers({ _id: user.social?.following }))
   }, [posts, dispatch, user.social])
 
@@ -51,43 +46,26 @@ export const DashboardHome = ({ history }) => {
       username: user.fName + ' ' + user.lName,
       profileImg: user.profileImg,
     }
-    setPosts([addNewPost(post, userData), ...postsArr])
     dispatch(addPost(post, userData));
   }
 
   const remove = (id) => {
-    setPosts(postsArr.filter((post) => post.uuid !== id));
     dispatch(removePost(id))
   }
 
   const handleEditPost = (updatedPost) => {
-    setPosts(getUpdatedPost(postsArr, updatedPost))
-    dispatch(editPost(updatedPost.uuid, updatedPost))
+    dispatch(editPost(updatedPost.id, updatedPost))
   }
 
-  const setPostOnEdit = (id) => {
-    setPosts(postsArr.map((post) => {
-      if (post.uuid === id) {
-        return {
-          ...post,
-          isEdit: true
-        }
-      }
-      return post;
-    }))
+  const setPostEdit = (id) => {
+    dispatch(setPostOnEdit(id));
   }
 
   const cancelButtonAction = (id) => {
-    setPosts(postsArr.map((post) => {
-      if (post.uuid === id) {
-        return {
-          ...post,
-          isEdit: false
-        }
-      }
-      return post;
-    }))
+    dispatch(cancelEdit(id))
   }
+
+  console.log('POSTS', posts);
 
   return !user.id && isLoading
     ? <>
@@ -109,10 +87,10 @@ export const DashboardHome = ({ history }) => {
           handleEditPost={handleEditPost}
           user={user}
           users={users}
-          posts={postsArr}
+          posts={posts}
           remove={remove}
           cancelButtonAction={cancelButtonAction}
-          setPostOnEdit={setPostOnEdit}
+          setPostOnEdit={setPostEdit}
           history={history}
           notificationMessage={notificationMessage}
           notificationType={notificationType}
